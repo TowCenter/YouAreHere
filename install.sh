@@ -14,7 +14,7 @@ RADIO_DRIVER=nl80211
 
 # ACCESS POINT
 AP_CHAN=6
-AP_SSID=YouAreHere
+AP_SSID=» you are here «
 AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
@@ -30,12 +30,12 @@ DHCP_LEASE=1h
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # BEGIN INSTALLATION PROCESS
 #
-echo "●▬▬▬▬▬▬▬▬▬▬▬*'¨'*▬▬▬▬▬▬▬▬▬▬▬●"
-echo "| You Are Here Installation |"
-echo "●▬▬▬▬▬▬▬▬▬▬▬*,_,*▬▬▬▬▬▬▬▬▬▬▬●"
+echo "●▬▬▬▬---▬▬▬▬▬▬▬*'¨'*▬▬▬▬▬▬▬---▬▬▬▬●"
+echo "|    You Are Here Installation    |"
+echo "●▬▬▬▬▬▬▬▬---▬▬▬*,_,*▬▬▬---▬▬▬▬▬▬▬▬●"
 echo ""
 
-read -p "This installation script will configure a wireless access point, lighttpd web server and ppp 3G data link. Make sure you have a USB wifi radio connected to your Raspberry Pi before proceeding. Press any key to continue..."
+read -p "This installation script will configure a wireless access point, captive portal, lighttpd web server and ppp 3G data link. Make sure you have a USB wifi radio connected to your Raspberry Pi before proceeding. Press any key to continue..."
 echo ""
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
