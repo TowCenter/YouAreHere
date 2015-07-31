@@ -15,7 +15,7 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 
 * clone the repository into your home folder (assuming /home/pi) and checkout the dev branch (for now)
 
-        git clone https://github.com/TowCenter/YouAreHere.git
+        git clone https://github.com/TowCenter/YouAreHere.git && cd YouAreHere
         git checkout dev
 
 * run the installation script
