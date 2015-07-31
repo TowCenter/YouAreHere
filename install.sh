@@ -226,6 +226,10 @@ update-rc.d you_are_here defaults
 # persist
 # usepeerdns
 
+# Copy over scripts to configure Huawei E303 3G Modem
+cp scripts/usb_modeswitch.conf /etc/usb_modeswitch.conf
+cp scripts/gprs /etc/ppp/peers/gprs
+
 read -p "Do you wish to reboot now? [N] " yn
 	case $yn in
 		[Yy]* )
