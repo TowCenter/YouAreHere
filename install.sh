@@ -14,7 +14,7 @@ RADIO_DRIVER=nl80211
 
 # ACCESS POINT
 AP_CHAN=6
-AP_SSID=» you are here «
+AP_SSID=*you are here
 AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
