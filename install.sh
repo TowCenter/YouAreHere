@@ -112,7 +112,9 @@ iface lo inet loopback
 auto eth0
 iface eth0 inet dhcp
 
-iface ap0 inet static
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet static
 	address $AP_IP
 	netmask 255.255.255.0
 
@@ -133,8 +135,8 @@ else
 fi
 
 # delete wlan0
-ifconfig wlan0 down
-iw wlan0 del
+#ifconfig wlan0 down
+#iw wlan0 del
 
 # create hostapd init file
 echo -en "Creating default hostapd file...			"
@@ -153,7 +155,7 @@ fi
 # create hostapd configuration with user's settings
 echo -en "Creating hostapd.conf file...				"
 cat <<EOF > /etc/hostapd/hostapd.conf
-interface=ap0
+interface=wlan0
 driver=$RADIO_DRIVER
 country_code=$AP_COUNTRY
 ctrl_interface=/var/run/hostapd
@@ -179,7 +181,7 @@ fi
 # CONFIGURE dnsmasq
 echo -en "Creating dnsmasq configuration file... 			"
 cat <<EOF > /etc/dnsmasq.conf
-interface=ap0
+interface=wlan0
 address=/#/$AP_IP
 address=/apple.com/0.0.0.0
 dhcp-range=$DHCP_START,$DHCP_END,$DHCP_NETMASK,$DHCP_LEASE
