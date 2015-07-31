@@ -48,7 +48,7 @@ case $yn in
 		echo ""
 		echo -en "Purging iw, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd, hostapd and dnsmasq... 			"
 		# how do i uninstall with apt-get
-		apt-get purge -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd
+		apt-get purge -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd mysql-server php5-common php5-cgi php5 php5-mysql
 		apt-get autoremove
 		echo -en "[OK]\n"
 
