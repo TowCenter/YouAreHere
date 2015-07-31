@@ -18,8 +18,8 @@ AP_SSID=YouAreHere
 AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
-DHCP_START=192.168.2.101
-DHCP_END=192.168.2.254
+DHCP_START=192.168.100.101
+DHCP_END=192.168.100.254
 DHCP_NETMASK=255.255.255.0
 DHCP_LEASE=1h
 
@@ -44,7 +44,7 @@ echo ""
 # SOFTWARE INSTALL
 #
 # update the packages
-echo "Updating apt-get and installing hostapd, dnsmasq, ppp, lighttpd web server, iw package for network interface configuration..."
+echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
 apt-get update && apt-get install -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd
 echo ""
 echo "Configuring lighttpd web server..."
@@ -105,15 +105,15 @@ auto lo
 iface lo inet loopback
 
 auto eth0
-iface eth0 inet dhcp
+allow-hotplug eth0
+iface eth0 inet manual
 
 auto wlan0
 allow-hotplug wlan0
 iface wlan0 inet static
-	address $AP_IP
-	netmask 255.255.255.0
+address $AP_IP
+netmask 255.255.255.0
 
-# create ppp
 auto gprs
 iface gprs inet ppp
 provider gprs
@@ -156,8 +156,6 @@ beacon_int=100
 auth_algs=1
 wpa=0
 macaddr_acl=0
-wmm_enabled=1
-ap_isolate=1
 EOF
 rc=$?
 if [[ $rc != 0 ]] ; then
