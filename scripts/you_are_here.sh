@@ -19,14 +19,8 @@ SCRIPTNAME=/etc/init.d/$NAME
 				#iw phy $PHY interface add wlan0 type __ap
 			#fi
 
-			# delete wlan0, if they exist
-			#WLAN0=`iw dev | awk '/Interface/ { print $2}' | grep wlan0`
-			#if [ -n "$WLAN0" ] ; then
-			#	ifconfig $WLAN0 down
-			#	iw $WLAN0 del
-			#fi
-
-			# bring up PPP interface
+			# bring up WLAN0 + PPP interface
+			ifup wlan0
 			ifup gprs
 
 			# set gateway to PPP IP
@@ -34,15 +28,15 @@ SCRIPTNAME=/etc/init.d/$NAME
 			#route add default gw 10.64.64.64
 
 			# start the hostapd and dnsmasq services
-			service hostapd restart
-			service dnsmasq restart
+			service hostapd start
+			service dnsmasq start
 		;;
 
 		status)
 		;;
 
 		stop)
-			#ifconfig wlan0 down
+			ifdown wlan0
 			ifdown gprs
 
 			service hostapd stop

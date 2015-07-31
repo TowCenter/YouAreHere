@@ -2,7 +2,6 @@
 #
 # Raspberry Pi YouAreHere Installation script
 # Sarah Grant
-# took guidance from a script by Paul Miller : https://dl.dropboxusercontent.com/u/1663660/scripts/install-rtl8188cus.sh
 # Updated 30 July 2015
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -14,10 +13,9 @@
 RADIO_DRIVER=nl80211
 
 # ACCESS POINT
-AP_COUNTRY=US
-AP_CHAN=1
-AP_SSID=you.are.here
-AP_IP=10.0.0.1
+AP_CHAN=6
+AP_SSID=YouAreHere
+AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
 DHCP_START=192.168.2.101
@@ -71,9 +69,6 @@ echo "Configuring Raspberry Pi as Access Point..."
 echo ""
 
 # ask how they want to configure their access point
-read -p "Wifi Country [$AP_COUNTRY]: " -e t1
-if [ -n "$t1" ]; then AP_COUNTRY="$t1";fi
-
 read -p "Wifi Channel Name [$AP_CHAN]: " -e t1
 if [ -n "$t1" ]; then AP_CHAN="$t1";fi
 
@@ -123,7 +118,6 @@ auto gprs
 iface gprs inet ppp
 provider gprs
 
-iface default inet dhcp
 EOF
 rc=$?
 if [[ $rc != 0 ]] ; then
@@ -133,10 +127,6 @@ if [[ $rc != 0 ]] ; then
 else
 	echo -en "[OK]\n"
 fi
-
-# delete wlan0
-#ifconfig wlan0 down
-#iw wlan0 del
 
 # create hostapd init file
 echo -en "Creating default hostapd file...			"
@@ -157,7 +147,6 @@ echo -en "Creating hostapd.conf file...				"
 cat <<EOF > /etc/hostapd/hostapd.conf
 interface=wlan0
 driver=$RADIO_DRIVER
-country_code=$AP_COUNTRY
 ctrl_interface=/var/run/hostapd
 ctrl_interface_group=0
 ssid=$AP_SSID
@@ -206,7 +195,7 @@ chmod 755 /etc/init.d/you_are_here
 update-rc.d you_are_here defaults
 
 # Need to create /etc/usb_modeswitch.conf and prompt for values:
-# (First two values are obtainable from lsusb and reading what 
+# (DefaultVendor and DefaultProduct are obtainable from lsusb and reading what 
 # is listed for the Huawei device, after ID)
 # DefaultVendor=0x12d1
 # DefaultProduct=0x14fe
