@@ -203,6 +203,27 @@ cp scripts/you_are_here.sh /etc/init.d/you_are_here
 chmod 755 /etc/init.d/you_are_here
 update-rc.d you_are_here defaults
 
+# Need to create /etc/usb_modeswitch.conf and prompt for values:
+# (First two values are obtainable from lsusb and reading what 
+# is listed for the Huawei device, after ID)
+# DefaultVendor=0x12d1
+# DefaultProduct=0x14fe
+# MessageEndpoint="0x01"
+# MessageContent="55534243123456780000000000000011062000000101000100000000000000"
+
+# Also need to create /etc/ppp/peers/gprs file
+# Need to prompt for user, APN
+# user ""
+# connect "/usr/sbin/chat -v -f /etc/chatscripts/gprs -T fast.t-mobile.com"
+# /dev/ttyUSB0
+# noipdefault
+# defaultroute
+# replacedefaultroute
+# hide-password
+# noauth
+# persist
+# usepeerdns
+
 read -p "Do you wish to reboot now? [N] " yn
 	case $yn in
 		[Yy]* )
