@@ -5,10 +5,12 @@ You Are Here web server and repository for spoken stories [This description is F
 
 Support for You Are Here is provided by the Tow Center for Digital Journalism at Columbia University and the Knight Foundation. This code is published under the [AGPLv3](http://www.gnu.org/licenses/agpl-3.0.html).
 
-To view the source code currently in development, please clone this respository and checkout the `dev` branch.
+To view the source code for the Raspberry Pi application currently in development, please clone this respository and checkout the `dev` branch.
 
         git clone https://github.com/TowCenter/YouAreHere.git && cd YouAreHere
         git checkout dev
+
+To view the source code for the You Are Here website, checkout the `gh-pages` branch.
 
 References
 ----------
