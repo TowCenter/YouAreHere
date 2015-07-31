@@ -35,17 +35,27 @@ case $yn in
 		rm /etc/dnsmasq.conf
 		echo -en "[OK]\n"
 
+		# remove usb_modeswitch.conf
+		echo -en "Deleting usb_modeswitch configuration file... 			"
+		rm /etc/usb_modeswitch.conf
+		echo -en "[OK]\n"
+
+		# remove gprs file
+		echo -en "Deleting gprs configuration file... 			"
+		rm /etc/ppp/peers/gprs
+		echo -en "[OK]\n"
+
 		echo ""
-		echo -en "Purging iw, hostapd and dnsmasq... 			"
+		echo -en "Purging iw, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd, hostapd and dnsmasq... 			"
 		# how do i uninstall with apt-get
-		apt-get purge -y hostapd dnsmasq iw
+		apt-get purge -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd
 		apt-get autoremove
 		echo -en "[OK]\n"
 
 		# restore the previous interfaces file
 		echo -en "Restoring previous network interfaces configuration file... 			"
 		rm /etc/network/interfaces
-		mv /etc/network/interfaces.orig.bak /etc/network/interfaces
+		mv /etc/network/interfaces.bak /etc/network/interfaces
 		echo -en "[OK]\n"
 
 		# Remove startup scripts and delete
