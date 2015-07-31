@@ -32,7 +32,7 @@ DHCP_LEASE=1h
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # BEGIN INSTALLATION PROCESS
 #
-echo "●▬▬▬▬▬▬▬▬▬▬▬*´¨`*▬▬▬▬▬▬▬▬▬▬▬●"
+echo "●▬▬▬▬▬▬▬▬▬▬▬*'¨'*▬▬▬▬▬▬▬▬▬▬▬●"
 echo "| You Are Here Installation |"
 echo "●▬▬▬▬▬▬▬▬▬▬▬*,_,*▬▬▬▬▬▬▬▬▬▬▬●"
 echo ""
