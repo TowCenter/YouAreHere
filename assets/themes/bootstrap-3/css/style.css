@@ -44,12 +44,12 @@ q:before, q:after {
 
 /* LAYOUT STYLES */
 body {
-  color: #fff;
-  font-family: 'Roboto Mono', 'Helvetica Neue', Helvetica, Arial, serif;
+  color: #d71f27;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
   font-weight: 300;
   line-height: 1.5;
-  background-color: #eee;
+  background-color: #e1f4fd;
   text-shadow: none;
   padding: 0 30px;
 }
