@@ -70,6 +70,8 @@ a:hover {
 header {
   padding-top: 25px;
   padding-bottom: 0px;
+  text-align:center;
+  font-size:21px;
 }
 
 header a,
