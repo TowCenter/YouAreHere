@@ -69,12 +69,14 @@ a:hover {
 
 header {
   padding-top: 25px;
-  padding-bottom: 25px;
+  padding-bottom: 0px;
 }
 
 header a,
 header a:hover {
   color: #fff;
+  text-align:center;
+  font-size: 21px;
 }
 
 header .social {
