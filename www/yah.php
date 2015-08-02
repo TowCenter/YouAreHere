@@ -9,12 +9,12 @@ class YouAreHere {
 	}
 	
 	function setup_vars() {
-	  // Where are we?
-	  $this->request_url = parse_url($_SERVER['REQUEST_URI']);
-	  $this->api_url = "http://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
-	  $this->base_url = dirname($this->api_url);
-	  
-	  // Where will we save files to?
+		// Where are we?
+		$this->request_url = parse_url($_SERVER['REQUEST_URI']);
+		$this->api_url = "http://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
+		$this->base_url = dirname($this->api_url);
+		
+		// Where will we save files to?
 		$this->log_dir      = dirname(__DIR__) . '/log';
 		$this->log_file     = "$this->log_dir/yah.log";
 		$this->stories_dir  = __DIR__ . '/stories';
@@ -23,7 +23,7 @@ class YouAreHere {
 		
 	function setup_env() {
 		
-	  // Baseline PHP configs
+		// Baseline PHP configs
 		ini_set('error_log', $this->log_file);
 		ini_set('display_errors', false);
 		error_reporting(E_ALL);
@@ -42,7 +42,7 @@ class YouAreHere {
 	}
 	
 	function setup_stories() {
-	  // Read known stories from CSV file
+		// Read known stories from CSV file
 		$this->stories = array();
 		if (file_exists($this->stories_file)) {
 			$fh = fopen($this->stories_file, 'r');
@@ -54,8 +54,8 @@ class YouAreHere {
 	}
 	
 	function handle_request() {
-	  $this->log_request();
-	  header('Content-type: text/xml');
+		$this->log_request();
+		header('Content-type: text/xml');
 		echo '<' . '?xml version="1.0" encoding="UTF-8"?' . ">\n";
 		echo "<Response>\n";
 		if (isset($_REQUEST['save_story'])) {
@@ -70,7 +70,7 @@ class YouAreHere {
 	}
 	
 	function log_request() {
-	  $vars = '';
+		$vars = '';
 		if (!empty($_REQUEST)) {
 			$vars = trim(print_r($_REQUEST, true));
 			$vars = "\n$vars";
@@ -125,19 +125,19 @@ class YouAreHere {
 	}
 	
 	function say($message) {
-	  echo "
+		echo "
 	  	<Say voice=\"woman\">$message</Say>
 		";
 	}
 	
 	function play($recording) {
-	  echo "
+		echo "
 	  	<Play>$recording</Play>
 		";
 	}
 	
 	function hangup() {
-	  echo "
+		echo "
 	  	<Hangup/>
 		";
 	}
@@ -153,14 +153,14 @@ class YouAreHere {
 		} else {
 			$url .= "?$args";
 		}
-	  echo "
+		echo "
 	  	<Redirect method=\"POST\">$url</Redirect>
 		";
 	}
 	
 	function save_recording($url) {
 		$curl = '/usr/bin/curl';
-	  exec("cd $this->stories_dir && $curl -O $url");
+		exec("cd $this->stories_dir && $curl -O $url");
 	}
 }
 
