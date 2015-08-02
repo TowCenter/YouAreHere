@@ -1,3 +1,5 @@
 .DS_Store
 _untracked
 _untracked/*
+log/*
+www/stories/*
