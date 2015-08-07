@@ -44,12 +44,12 @@ q:before, q:after {
 
 /* LAYOUT STYLES */
 body {
-  color: #fff;
-  font-family: 'Roboto Mono', 'Helvetica Neue', Helvetica, Arial, serif;
+  color: #d71f27;
+  font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
   font-weight: 300;
   line-height: 1.5;
-  background-color: #eee;
+  background-color: #e1f4fd;
   text-shadow: none;
   padding: 0 30px;
 }
@@ -68,13 +68,17 @@ a:hover {
 }
 
 header {
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 200px;
+  padding-bottom: 0px;
+  text-align:center;
+  font-size:21px;
 }
 
 header a,
 header a:hover {
   color: #fff;
+  text-align:center;
+  font-size: 21px;
 }
 
 header .social {
@@ -173,7 +177,7 @@ ul.nav li a.active {
 }
 
 #footer p {
-  color: #666;
+  color: #d71f27;
   font-size: .8em;
 }
 
