@@ -3,3 +3,5 @@ _untracked
 _untracked/*
 log/*
 www/stories/*
+vendor/
+stories/
