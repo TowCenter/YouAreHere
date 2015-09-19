@@ -11,6 +11,7 @@ SCRIPTNAME=/etc/init.d/$NAME
 		start)
 			echo "Starting $NAME access point..."
 			# bring down hostapd + dnsmasq to ensure wlan0 is brought up first
+			ifdown wlan0
 			service hostapd stop
 			service dnsmasq stop
 			# bring up WLAN0 + PPP interface
