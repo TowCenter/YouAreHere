@@ -4,6 +4,7 @@ class YouAreHere {
 	
 	function __construct() {
 		$this->setup_vars();
+		//$this->setup_db();
 		$this->setup_env();
 		$this->setup_stories();
 	}
@@ -19,13 +20,23 @@ class YouAreHere {
 		$this->log_dir      = dirname(__DIR__) . '/log';
 		$this->log_file     = "$this->log_dir/yah.log";
 		$this->stories_dir  = __DIR__ . '/stories';
-		$this->stories_file = "$this->stories_dir/stories.csv";
+	}
+	
+	function setup_db() {
+		$dsn = "pgsql:" .
+		       "host=;" .
+		       "dbname=;" .
+		       "user=;" .
+		       "port=5432;" .
+		       "sslmode=require;" .
+		       "password=";
+		$this->db = new PDO($dsn);
+		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 	}
 	
 	function setup_env() {
 		
 		// Baseline PHP configs
-		ini_set('error_log', $this->log_file);
 		ini_set('display_errors', false);
 		error_reporting(E_ALL);
 		date_default_timezone_set('America/New_York');
@@ -48,14 +59,17 @@ class YouAreHere {
 	}
 	
 	function setup_stories() {
-		// Read known stories from CSV file
+		// Read known stories from the database
+		$query = $this->db->exec("
+			SELECT story_id, call_time, call_id, phone_number
+			FROM stories
+			ORDER BY call_time DESC
+		");
+		
 		$this->stories = array();
-		if (file_exists($this->stories_file)) {
-			$fh = fopen($this->stories_file, 'r');
-			while ($story = fgetcsv($fh)) {
-				$this->stories[] = $story;
-			}
-			fclose($fh);
+		foreach ($query->fetchAll() as $story) {
+			$this->anonymize_phone_number($story);
+			$this->set_mp3_url($story);
 		}
 	}
 	
@@ -64,7 +78,14 @@ class YouAreHere {
 		if (!empty($_REQUEST['get_stories'])) {
 			header('Content-type: application/json');
 			echo json_encode(array(
-				'stories' => $this->get_stories()
+				'stories' => $this->stories
+			));
+		} else if (!empty($_REQUEST['get_config'])) {
+			$config = print_r($_SERVER, true);
+			$config['DB'] = getenv('DATABASE_URL');
+			header('Content-type: application/json');
+			echo json_encode(array(
+				'stories' => $config
 			));
 		} else {
 			header('Content-type: text/xml');
@@ -94,16 +115,17 @@ class YouAreHere {
 		return $stories;
 	}
 	
-	function anonymize_phone_number($phone) {
-		if (preg_match('/\d{4}$/', $phone, $matches)) {
-			return 'xxx-xxx-' . $matches[0];
+	function anonymize_phone_number($story) {
+		// Note: this is currently a very US-centric format, assumes 10 digits
+		if (preg_match('/\d{4}$/', $story->phone_number, $matches)) {
+			$story->phone_number = 'xxx-xxx-' . $matches[0];
 		} else {
-			return 'xxx-xxx-xxxx';
+			$story->phone_number = 'xxx-xxx-xxxx';
 		}
 	}
 	
-	function get_mp3_file($id) {
-		return "$this->base_url/stories/$id.mp3";
+	function set_mp3_url($story) {
+		$story->mp3_url = "$this->base_url/stories/$this->call_id.mp3";
 	}
 	
 	function log_request() {
