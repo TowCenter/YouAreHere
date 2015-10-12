@@ -6,7 +6,7 @@ class YouAreHere {
 		$this->setup_vars();
 		//$this->setup_db();
 		$this->setup_env();
-		$this->setup_stories();
+		//$this->setup_stories();
 	}
 	
 	function setup_vars() {
@@ -37,6 +37,7 @@ class YouAreHere {
 	function setup_env() {
 		
 		// Baseline PHP configs
+		ini_set('error_log', $this->log_file);
 		ini_set('display_errors', false);
 		error_reporting(E_ALL);
 		date_default_timezone_set('America/New_York');
@@ -81,7 +82,7 @@ class YouAreHere {
 				'stories' => $this->stories
 			));
 		} else if (!empty($_REQUEST['get_config'])) {
-			$config = print_r($_SERVER, true);
+			$config = $_SERVER;
 			$config['DB'] = getenv('DATABASE_URL');
 			header('Content-type: application/json');
 			echo json_encode(array(
