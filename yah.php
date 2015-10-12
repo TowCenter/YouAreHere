@@ -10,8 +10,9 @@ class YouAreHere {
 	
 	function setup_vars() {
 		// Where are we?
+		$protocol = empty($_SERVER['HTTPS']) ? 'http' : 'https';
 		$this->request_url = parse_url($_SERVER['REQUEST_URI']);
-		$this->api_url = "http://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
+		$this->api_url = "$protocol://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
 		$this->base_url = dirname($this->api_url);
 		
 		// Where will we save files to?
@@ -63,7 +64,7 @@ class YouAreHere {
 		if (!empty($_REQUEST['get_stories'])) {
 			header('Content-type: application/json');
 			echo json_encode(array(
-				'stories' => $this->stories
+				'stories' => $this->get_stories()
 			));
 		} else {
 			header('Content-type: text/xml');
@@ -79,6 +80,30 @@ class YouAreHere {
 			}
 			echo "</Response>\n";
 		}
+	}
+	
+	function get_stories() {
+		$stories = array();
+		foreach ($this->stories as $story) {
+			$stories[] = array(
+				'call_time' => $story[0],
+				'phone_number' => $this->anonymize_phone_number($story[1]),
+				'mp3_file' => $this->get_mp3_file($story[2])
+			);
+		}
+		return $stories;
+	}
+	
+	function anonymize_phone_number($phone) {
+		if (preg_match('/\d{4}$/', $phone, $matches)) {
+			return 'xxx-xxx-' . $matches[0];
+		} else {
+			return 'xxx-xxx-xxxx';
+		}
+	}
+	
+	function get_mp3_file($id) {
+		return "$this->base_url/stories/$id.mp3";
 	}
 	
 	function log_request() {
