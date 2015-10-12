@@ -30,14 +30,19 @@ class YouAreHere {
 		date_default_timezone_set('America/New_York');
 		
 		// Make sure we can write to the log dir
-		if (!file_exists($this->log_file) &&
-		    !is_writable($this->log_dir)) {
-			die("Please make $this->log_dir writable.");
+		if (!file_exists($this->log_dir)) {
+			mkdir($this->log_dir);
+		}
+		
+		if (is_writable($this->log_dir)) {
+			//die("Please make $this->log_dir writable.");
+			chmod($this->log_dir, 0755);
 		}
 		
 		// Make sure we can write to the stories dir
 		if (!is_writable($this->stories_dir)) {
-			die("Please make $this->stories_dir writable.");
+			//die("Please make $this->stories_dir writable.");
+			chmod($this->stories_dir, 0755);
 		}
 	}
 	
