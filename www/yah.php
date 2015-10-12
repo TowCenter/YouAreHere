@@ -20,7 +20,7 @@ class YouAreHere {
 		$this->stories_dir  = __DIR__ . '/stories';
 		$this->stories_file = "$this->stories_dir/stories.csv";
 	}
-		
+	
 	function setup_env() {
 		
 		// Baseline PHP configs
@@ -55,18 +55,25 @@ class YouAreHere {
 	
 	function handle_request() {
 		$this->log_request();
-		header('Content-type: text/xml');
-		echo '<' . '?xml version="1.0" encoding="UTF-8"?' . ">\n";
-		echo "<Response>\n";
-		if (isset($_REQUEST['save_story'])) {
-			$this->save_story();
-		} else if (isset($_REQUEST['play_story'])) {
-			$index = intval($_REQUEST['play_story']);
-			$this->play_story($index);
+		if (!empty($_REQUEST['get_stories'])) {
+			header('Content-type: application/json');
+			echo json_encode(array(
+				'stories' => $this->stories
+			));
 		} else {
-			$this->record_story();
+			header('Content-type: text/xml');
+			echo '<' . '?xml version="1.0" encoding="UTF-8"?' . ">\n";
+			echo "<Response>\n";
+			if (isset($_REQUEST['save_story'])) {
+				$this->save_story();
+			} else if (isset($_REQUEST['play_story'])) {
+				$index = intval($_REQUEST['play_story']);
+				$this->play_story($index);
+			} else {
+				$this->record_story();
+			}
+			echo "</Response>\n";
 		}
-		echo "</Response>\n";
 	}
 	
 	function log_request() {
