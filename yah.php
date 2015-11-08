@@ -11,7 +11,7 @@ class YouAreHere {
 	
 	function setup_vars() {
 		// Where are we?
-		$protocol = empty($_SERVER['HTTPS']) ? 'http' : 'https';
+		$protocol = $this->get_protocol();
 		$this->request_url = parse_url($_SERVER['REQUEST_URI']);
 		$this->api_url = "$protocol://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
 		$this->base_url = dirname($this->api_url);
@@ -71,6 +71,16 @@ class YouAreHere {
 		foreach ($query->fetchAll() as $story) {
 			$this->anonymize_phone_number($story);
 			$this->set_mp3_url($story);
+		}
+	}
+	
+	function get_protocol() {
+		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+			return 'https';
+		} else if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+			return $_SERVER['HTTP_X_FORWARDED_PROTO'];
+		} else {
+			return 'http';
 		}
 	}
 	
