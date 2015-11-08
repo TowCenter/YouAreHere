@@ -175,6 +175,7 @@ class YouAreHere {
 			'possible_queries' => array(
 				'?get=stories' => 'Retrieve a list of known stories.',
 				'?get=responses&story=[story ID]' => 'Retrieve a list of story responses.',
+				'?get=mp3s' => 'Download any pending MP3s from Twilio (good to cron-job this one)',
 				'?twilio=1' => 'Twilio POST endpoint'
 			)
 		));
