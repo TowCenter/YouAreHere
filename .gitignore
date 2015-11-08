@@ -3,4 +3,5 @@ _untracked
 _untracked/*
 log/*
 vendor/
-stories/*
+responses/*
+config.php
