@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+
 include 'lib/Services/Twilio/Capability.php';
  
 // put your Twilio API credentials here
