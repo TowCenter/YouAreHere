@@ -70,11 +70,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* Widths */
 /* mixins */
 body {
-  background-color: #eee;
+  background-color: #D7DFE2;
   color: #111;
   font-family: "Raleway", sans-serif;
   font-size: 16px;
-  font-weight: 400; }
+  font-weight: 400;
+  text-align: center; }
 
 h1 {
   color: #333;
@@ -108,7 +109,7 @@ a {
   color: #ff0000; }
 
 img {
-  width: 90%; }
+  width: 92%; }
 
 /* 
  * Layout Rules
@@ -166,8 +167,23 @@ nav li {
   height: 40px; }
 
 /* menu */
+.navbar-form {
+  margin: 0 auto;
+  max-width: 650px; }
+
 .recordings .thumbnail {
-  margin: 20px; }
+  margin: 30px; }
+
+.recordings .thumbnail img {
+  padding-top: 5px; }
+
+.recordings .thumbnail .btn-default {
+  margin-top: 5px; }
+
+.add-date {
+  color: #BBB;
+  font-style: italic;
+  font-size: .8em; }
 
 /* 
  * State Rules

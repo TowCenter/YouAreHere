@@ -24,7 +24,7 @@ $token = $capability->generateToken();
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300,500' rel='stylesheet' type='text/css'>
-        <link href="http://static0.twilio.com/bundles/quickstart/client.css" type="text/css" rel="stylesheet" />
+        <!-- <link href="http://static0.twilio.com/bundles/quickstart/client.css" type="text/css" rel="stylesheet" /> -->
 
         <!--build:css css/styles.min.css-->
         <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -35,18 +35,27 @@ $token = $capability->generateToken();
     </head>
     <body>
       <div class="jumbotron">
-        <h1>you are here</h1>
-        <p>...</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        <h1>You Are Here</h1>
+          <form class="navbar-form">
+            <p>Enter your phone number to have the recording system call you back. Follow the instructions to record your story and have it appear on this page.</p>
+            <p><input type="text" placeholder="212-555-1212"></p>
+            <p><button type="submit" class="btn btn-primary btn-lg">Record Your Story</button></p>
+          </form>
+        <div class="record">
+
+        </div>
       </div>
       <div class="container recordings">
+        <div class="row">
+          <div class="col-sm-12">loading recordings...</div>
+        </div>
         <div class="row">
           <div class="col-sm-4">
             <div class="thumbnail">
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added January 11, 2016</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
@@ -56,7 +65,7 @@ $token = $capability->generateToken();
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added January 9, 2016</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
@@ -66,7 +75,7 @@ $token = $capability->generateToken();
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added January 6, 2016</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
@@ -79,7 +88,7 @@ $token = $capability->generateToken();
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added January 4, 2016</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
@@ -89,7 +98,7 @@ $token = $capability->generateToken();
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added January 3, 2016</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
@@ -99,39 +108,7 @@ $token = $capability->generateToken();
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
                 <h4>Thumbnail label</h4>
-                <p>...</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>...</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>...</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p>...</p>
+                <p class="add-date">Added December 26, 2015</p>
                 <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
               </div>
             </div>
