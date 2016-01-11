@@ -1,5 +1,7 @@
 .DS_Store
 _untracked
 _untracked/*
-log/*
-www/stories/*
+www/build/*
+www/node_modules/*
+www/src/stories/*
+www/src/log/*
