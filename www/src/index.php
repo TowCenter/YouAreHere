@@ -39,7 +39,7 @@ $token = $capability->generateToken();
           <form class="navbar-form">
             <p>Enter your phone number to have the recording system call you back. Follow the instructions to record your story and have it appear on this page.</p>
             <p><input type="text" placeholder="212-555-1212"></p>
-            <p><button type="submit" class="btn btn-primary btn-lg">Record Your Story</button></p>
+            <p><button type="submit" class="btn btn-primary btn-lg">Request a Callback</button></p>
           </form>
         <div class="record">
 
