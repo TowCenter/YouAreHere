@@ -36,7 +36,7 @@ $token = $capability->generateToken();
 
     </head>
     <body>
-      <div class="jumbotron">
+      <!-- <div class="jumbotron">
         <h1>You Are Here</h1>
           <form class="navbar-form">
             <p>Enter your phone number to have the recording system call you back. Follow the instructions to record your story and have it appear on this page.</p>
@@ -46,7 +46,17 @@ $token = $capability->generateToken();
         <div class="record">
 
         </div>
+      </div> -->
+      <div class="heading">
+        <img src="img/logo.png" width="297" height="202" />
       </div>
+      <nav class="flex-nav">
+        <ul>
+          <li>RECORD</li>
+          <li>LISTEN</li>
+          <li>ABOUT</li>
+        </ul>
+      </nav>
       <div class="container recordings">
         <div class="row">
           <div class="col-sm-12">loading recordings...</div>
@@ -56,9 +66,13 @@ $token = $capability->generateToken();
             <div class="thumbnail">
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added January 11, 2016</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
+                <div class="btn-play" role="button"></div>
+                <div class="title">
+                  <h4>Title of story</h4>
+                  <p class="add-date">January 11, 2016</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
+                <p class="comments">56 Comments</p>
               </div>
             </div>
           </div>
@@ -66,9 +80,13 @@ $token = $capability->generateToken();
             <div class="thumbnail">
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added January 9, 2016</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
+                <div class="btn-play" role="button"></div>
+                <div class="title">
+                  <h4>Title of story</h4>
+                  <p class="add-date">January 11, 2016</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
+                <p class="comments">56 Comments</p>
               </div>
             </div>
           </div>
@@ -76,48 +94,76 @@ $token = $capability->generateToken();
             <div class="thumbnail">
               <img src="img/park.jpg" alt="park" />
               <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added January 6, 2016</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
+                <div class="btn-play" role="button"></div>
+                <div class="content">
+                  <div class="title">
+                    <h4>Title of story</h4>
+                    <p class="add-date">January 11, 2016</p>
+                  </div>
+                  <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
+                </div>
+                <div class="comments">
+                  <div class="count">
+                    56 Comments
+                  </div>
+                  <div class="expanded">
+                    <h3>We'd love to get your input</h3>
+                    <div class="comment">
+                      <img src="img/park.jpg" alt="park" />
+                      <div class="caption">
+                        <div class="btn-play" role="button"></div>
+                        <div class="content">
+                          <h4>comment title</h4>
+                          <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="comment">
+                      <img src="img/park.jpg" alt="park" />
+                      <div class="caption">
+                        <div class="btn-play" role="button"></div>
+                        <div class="content">
+                          <h4>comment title</h4>
+                          <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added January 4, 2016</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added January 3, 2016</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <h4>Thumbnail label</h4>
-                <p class="add-date">Added December 26, 2015</p>
-                <p><a href="#" class="btn btn-default" role="button">Listen</a></p>
-              </div>
-            </div>
-          </div>
+      </div> <!-- /container -->   
+      <div id="record"> 
+        <div class="btn-record" role="button"></div>
+        <form>
+          <input type="text" placeholder="Title" />
+          <input type="textarea" placeholder="Description" />
+          <input type="text" placeholder="Your Name" />
+          <ul>
+            <li>
+              <div class="btn-default" role="button">Cancel</div>
+            </li>
+            <li>
+              <div class="btn-default" role="button">Re-do</div>
+            </li>
+            <li>
+              <div class="btn-default" role="button">Submit</div>
+            </li>
+          </ul>
+        </form>
+        <div class="add-photo">
+          <h3>add a photo</h3>
+          <div class="btn-default" role="button">no thanks</div>
         </div>
+      </div>
       </div> <!-- /container -->  
-
+      <div id="about">
+        <p>“You Are Here” is an experimental journalism-distribution network that leverages small, inexpensive, open-source wireless routers to deliver compelling, location-specific content to communities around New York. Starting with a series of high-quality audio pieces that reflect the unique culture and history of the people, politics and communities of the geographic area, the “You Are Here” servers can also act as a kind of digital town square where those nearby can exchange ideas, stories and information. The fact that these servers are not connected to the Internet allows them to accumulate a genuinely local character, in addition to serving as a safe, resilient means of exchanging digital information.</p>
+        <p>This is a research project of the Tow Center for Digital Journalism, with fellows Sarah Grant, Susan McGregor, Benjamen Walker, Dan Phiffer, and Amelia Marzec.</p> 
+      </div>
+      </div> <!-- /container -->  
 
           <!-- main content -->
           <!-- <div class="col-md-12">
