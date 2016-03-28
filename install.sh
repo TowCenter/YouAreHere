@@ -2,7 +2,7 @@
 #
 # Raspberry Pi YouAreHere Installation script
 # Sarah Grant
-# Updated 30 July 2015
+# Updated 27 March 2016
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -45,15 +45,23 @@ echo ""
 #
 # update the packages
 echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
-apt-get update && apt-get install -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd mysql-server php5-common php5-cgi php5 php5-mysql
+apt-get update && apt-get install -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd sqlite3 python-pysqlite2 python-flup
 echo ""
 echo "Configuring lighttpd web server..."
 chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
 
-# enable the server to handle php scripts
-lighty-enable-mod fastcgi-php
+# apt-get install python-webpy ?
+#
+# cd /usr/src/
+# git clone git://github.com/webpy/webpy.git
+# cd webpy
+# python setup.py install
+# cp scripts/lighttpd.conf /etc/lighttpd/lighttpd.conf
+
+# enable the server to handle python scripts
+lighty-enable-mod
 
 #reload the server using
 service lighttpd force-reload
