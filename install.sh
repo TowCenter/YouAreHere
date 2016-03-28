@@ -47,21 +47,18 @@ echo ""
 echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
 apt-get update && apt-get install -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd sqlite3 python-pysqlite2 python-flup
 echo ""
+# apt-get install python-webpy ?
+#
+cd /usr/src/
+git clone git://github.com/webpy/webpy.git
+cd webpy
+python setup.py install
+cp scripts/lighttpd.conf /etc/lighttpd/lighttpd.conf
+
 echo "Configuring lighttpd web server..."
 chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
-
-# apt-get install python-webpy ?
-#
-# cd /usr/src/
-# git clone git://github.com/webpy/webpy.git
-# cd webpy
-# python setup.py install
-# cp scripts/lighttpd.conf /etc/lighttpd/lighttpd.conf
-
-# enable the server to handle python scripts
-lighty-enable-mod
 
 #reload the server using
 service lighttpd force-reload
