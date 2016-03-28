@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
-import web
-import json
+import web, json
 
 urls = (
     '/', 'index',
@@ -16,7 +15,7 @@ class index:
 class create:
     def GET(self):
         web.header('Content-Type', 'application/json')
-        return "{\"create\":\"444\"}"
+        return "{\"create\":\"danja touched sarahs boobs\"}"
 
 class user:
     def GET(self):
