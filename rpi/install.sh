@@ -53,9 +53,9 @@ cd /usr/src/
 git clone git://github.com/webpy/webpy.git
 cd webpy
 python setup.py install
-cp scripts/lighttpd.conf /etc/lighttpd/lighttpd.conf
 
 echo "Configuring lighttpd web server..."
+cp scripts/lighttpd.conf /etc/lighttpd/lighttpd.conf
 chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
