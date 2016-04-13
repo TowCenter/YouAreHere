@@ -1,36 +1,43 @@
 nav {
+	margin-top: 163px;
 
-}
+	ul {
+		margin: 0;
+	    padding: 0;
+	    list-style-type: none;
 
-nav ul {
-	margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
+	    li {
+			display: inline;
+		    height: 30px;
+		    margin-left: 10px;
 
-nav li {
-	display: inline;
-    height: 30px;
-    margin-left: 10px;
-}
+		    a {
+		    	color: $cBlack;
+				font-family: $fHeadlines, sans-serif;
+				font-weight: $fBold;
+				text-transform: uppercase;
+		    }
+		}
+	}
 
-.flex-nav {
-	display: -webkit-inline-flex; /* Safari */
-	display: inline-flex;
+	.flex-nav {
+		display: -webkit-inline-flex; /* Safari */
+		display: inline-flex;
 
-	-webkit-flex-direction: column-reverse; /* Safari */
-  	flex-direction:         column-reverse;
+		-webkit-flex-direction: column-reverse; /* Safari */
+	  	flex-direction:         column-reverse;
 
-  	-webkit-justify-content: space-around; /* Safari */
-  	justify-content:         space-around;
+	  	-webkit-justify-content: space-around; /* Safari */
+	  	justify-content:         space-around;
 
-  	padding: 10px 30px;
-}
+	  	padding: 10px 30px;
+	}
 
-.flex-item {
-	color: #fff;
-	padding: 5px;
-	background: #333;
-	margin: 2px;
-	cursor: pointer;
+	.flex-item {
+		color: #fff;
+		padding: 5px;
+		background: #333;
+		margin: 2px;
+		cursor: pointer;
+	}
 }

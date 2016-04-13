@@ -1,47 +1,35 @@
 body {
-	background-color: $cBackground;
+	background: $cBackground;
 	color: $cBody;
 	font-family: $fBody, sans-serif;
 	font-size: 16px;
-	font-weight: $fNormal;
+	font-weight: $fLight;
 	text-align: center;
+	margin-bottom: 60px;
 }
 h1 {
 	color: $cHeadline;
-	font-size: 2em;
-	font-weight: $fLight;
+	font-size: 1.5em;
+	font-family: $fHeadlines, sans-serif;
+	font-weight: $fNormal;
 	padding: 12px 0;
+	text-transform: uppercase;
+	margin-bottom: .5em;
 }
 h2 {
 	color: $cHeadline;
-	font-size: 1.75em;
-	font-weight: $fNormal;
-}
-h3 {
-	color: $cHeadline;
-	font-size: 1.5em;
-	font-weight: $fMedium;
-}
-h4 {
-	color: $cHeadline;
 	font-size: 1.25em;
-	font-weight: $fBold;
-}
-h5 {
-	color: $cHeadline;
+	font-family: $fHeadlines, sans-serif;
+	font-weight: $fNormal;
+	text-transform: uppercase;
+	margin-bottom: .5em;
 }
 p {
 	color: $cParagraph;
 	font-size: 1em;
+	line-height: 1.25em;
+	margin-bottom: 1em;
 }
 a {
 	color: $cLink;
-}
-img {
-}
-ul {
-
-}
-li {
-
 }

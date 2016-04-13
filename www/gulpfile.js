@@ -26,6 +26,22 @@ var gulp = require('gulp')
 	,gulpIf = require('gulp-if')
 	,runSequence = require('run-sequence');
 
+var path = {
+  PHP: 'src/*.php',
+  ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.php'],
+  JS: ['src/js/*.js', 'src/js/**/*.js'],
+  MINIFIED_JS_OUT: 'main.min.js',
+  SASS: 'src/sass/styles.scss',
+  CSS: ['src/css/*.css', 'src/css/**/*.css'],
+  MINIFIED_CSS_OUT: 'styles.min.css',
+  LIB: 'src/lib/**/*',
+  IMG: 'src/img/**/*',
+  FONTS: 'src/fonts/**/*',
+  DEST_CSS_SRC: 'src/css/',
+  DEST_JS_SRC: 'src/js/',
+  SRC: 'src/',
+  BUILD: 'build/'
+};
 
 // Development Tasks 
 // -----------------
@@ -34,68 +50,74 @@ var gulp = require('gulp')
 gulp.task('browsersync', function() {
 	browsersync({
 		server: {
-			baseDir: "src"
+			baseDir: path.SRC
 		}
 	});
-});
-
-// Compile our SASS into CSS into one minified file
-gulp.task('sass', function() {
-	return sass('src/sass/styles.scss', { compass: true, sourcemap: true })
-	    .pipe(autoprefixer('last 2 version'))
-	    .pipe(gulp.dest('src/css/'))
-	    .pipe(browsersync.reload({stream:true}));
 });
 
 // Watchers: Reload browser with CSS, JS, HTML as we develop
 gulp.task('watch', ['browsersync'], function() {
 
   gulp.watch('src/sass/**/*.scss', ['sass'], browsersync.reload);
-  gulp.watch('src/js/**/*.js', browsersync.reload);
-  gulp.watch('src/*.html', browsersync.reload);
+  gulp.watch(path.JS, browsersync.reload);
+  gulp.watch(path.PHP, browsersync.reload);
 
 });
 
 
-// Optimization Tasks 
-// ------------------
+// Optimization + Build Tasks 
+// --------------------------
 
-// Optimizing CSS and JavaScript 
-gulp.task('useref', function(){
-  var assets = useref.assets();
-
-  return gulp.src('src/*.html')
-    .pipe(assets)
-    // Minifies only if it's a CSS file
-    .pipe(gulpIf('src/*.css', minifyCSS()))
-    // Uglifies only if it's a Javascript file
-    .pipe(gulpIf('src/*.js', uglify()))
-    .pipe(assets.restore())
-    .pipe(useref())
-    .pipe(gulp.dest('build'))
+// Clean up! Delete the previous build
+gulp.task('clean', function() {
+    return del(path.BUILD);
 });
 
-// Copy php to our build folder
-gulp.task('php', function() {
-  return gulp.src('src/*.php')
-  .pipe(gulp.dest('build'));
-});
-
-// Copy images to our build folder
-gulp.task('images', function() {
-  return gulp.src('src/img/**/*')
-  .pipe(gulp.dest('build/img'));
+// Compile our SASS into CSS into one minified file
+gulp.task('sass', function() {
+  return sass(path.SASS, { compass: true, sourcemap: true })
+      .pipe(autoprefixer('last 2 version'))
+      .pipe(gulp.dest(path.DEST_CSS_SRC))
+      .pipe(browsersync.reload({stream:true}));
 });
 
 // Copy fonts to our build folder
 gulp.task('fonts', function() {
-  return gulp.src('src/fonts/**/*')
-  .pipe(gulp.dest('build/fonts'));
-})
+  return gulp.src(path.FONTS)
+  .pipe(gulp.dest(path.BUILD+'fonts'));
+});
 
-// Clean up! Delete the previous build
-gulp.task('clean', function() {
-    return del('build');
+// Copy images to our build folder
+gulp.task('images', function() {
+  return gulp.src(path.IMG)
+  .pipe(gulp.dest(path.BUILD+'img'));
+});
+
+// Copy lib to our build folder
+gulp.task('lib', function() {
+  return gulp.src(path.LIB)
+  .pipe(gulp.dest(path.BUILD+'lib'));
+});
+
+// Copy php to our build folder
+gulp.task('php', function() {
+  return gulp.src(path.PHP)
+  .pipe(gulp.dest(path.BUILD));
+});
+
+// Optimizing CSS and JavaScript 
+gulp.task('useref', function(){
+  // var assets = useref.assets();
+
+  return gulp.src('src/index.php')
+    // .pipe(assets)
+    // Minifies only if it's a CSS file
+    .pipe(gulpIf(['src/css/*.css', 'src/css/**/*.css'], minifyCSS()))
+    // Uglifies only if it's a Javascript file
+    .pipe(gulpIf(['src/js/*.js', 'src/js/**/*.js'], uglify()))
+    // .pipe(assets.restore())
+    .pipe(useref())
+    .pipe(gulp.dest(path.BUILD))
 });
 
 
@@ -109,5 +131,5 @@ gulp.task('default', ['clean'], function() {
 
 // Build: Clean and then prepare assets for uploading to server
 gulp.task('build', ['clean'], function() {
-    runSequence( ['sass', 'useref', 'php', 'images', 'fonts'] );
+    runSequence( ['sass', 'fonts', 'images', 'lib', 'php', 'useref'] );
 });

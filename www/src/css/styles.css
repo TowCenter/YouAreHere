@@ -52,61 +52,45 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
  A Base rule is applied to an element using an element selector, a descendent selector, or a child selector, along with any pseudo-classes. It doesn’t include any class or ID selectors. It is defining the default styling for how that element should look in all occurrences on the page.
  *
  */
-/* fonts */
-/* Example Usage:
- *
-    @font-face{
-        font-family:"Sofia Pro Light";
-        src:url("../assets/fonts/0eaf6264-15ee-4251-826e-9c0a59e8395f.eot?#iefix");
-        src:url("../assets/fonts/0eaf6264-15ee-4251-826e-9c0a59e8395f.eot?#iefix") format("eot"),url("../assets/fonts/8d11b8a0-868c-4a53-8b26-9f0ccbd58247.woff2") format("woff2"),url("../assets/fonts/9b976f15-23b7-45cd-ad4b-59c95b2889f9.woff") format("woff"),url("../assets/fonts/864da3de-5a97-4ce6-a22b-22932ed4dfe0.ttf") format("truetype"),url("../assets/fonts/d5898683-1b2a-4b1b-8058-0c8db30e40cf.svg#d5898683-1b2a-4b1b-8058-0c8db30e40cf") format("svg");
-    }
- *
- */
 /* Fonts */
 /* Colors */
 /* Colors + Use Cases */
 /* Responsive Breakpoints */
 /* Default Padding */
-/* Widths */
-/* mixins */
 body {
-  background-color: #D7DFE2;
+  background: #e1f4fd;
   color: #111;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 16px;
-  font-weight: 400;
-  text-align: center; }
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 60px; }
 
 h1 {
   color: #333;
-  font-size: 2em;
-  font-weight: 300;
-  padding: 12px 0; }
+  font-size: 1.5em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  padding: 12px 0;
+  text-transform: uppercase;
+  margin-bottom: .5em; }
 
 h2 {
   color: #333;
-  font-size: 1.75em;
-  font-weight: 400; }
-
-h3 {
-  color: #333;
-  font-size: 1.5em;
-  font-weight: 500; }
-
-h4 {
-  color: #333;
   font-size: 1.25em;
-  font-weight: 700; }
-
-h5 {
-  color: #333; }
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: .5em; }
 
 p {
-  color: #004A97;
-  font-size: 1em; }
+  color: #111;
+  font-size: 1em;
+  line-height: 1.25em;
+  margin-bottom: 1em; }
 
 a {
-  color: #ff0000; }
+  color: #d81f27; }
 
 /* 
  * Layout Rules
@@ -114,37 +98,51 @@ a {
  The major components, such as header, footer, articles.
  *
  */
-nav ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
+.jumbotron {
+  background-color: #e1f4fd; }
 
-nav li {
-  display: inline;
-  height: 30px;
-  margin-left: 10px; }
+header .logo {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  margin-left: -148px; }
 
-.flex-nav {
-  display: -webkit-inline-flex;
-  /* Safari */
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-direction: column-reverse;
-  /* Safari */
-  -ms-flex-direction: column-reverse;
-      flex-direction: column-reverse;
-  -webkit-justify-content: space-around;
-  /* Safari */
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: 10px 30px; }
-
-.flex-item {
-  color: #fff;
-  padding: 5px;
-  background: #333;
-  margin: 2px;
-  cursor: pointer; }
+nav {
+  margin-top: 163px; }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    nav ul li {
+      display: inline;
+      height: 30px;
+      margin-left: 10px; }
+      nav ul li a {
+        color: #111;
+        font-family: "Oswald", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase; }
+  nav .flex-nav {
+    display: -webkit-inline-flex;
+    /* Safari */
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-flex-direction: column-reverse;
+    /* Safari */
+    -ms-flex-direction: column-reverse;
+        flex-direction: column-reverse;
+    -webkit-justify-content: space-around;
+    /* Safari */
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    padding: 10px 30px; }
+  nav .flex-item {
+    color: #fff;
+    padding: 5px;
+    background: #333;
+    margin: 2px;
+    cursor: pointer; }
 
 /* 
  * Module Rules
@@ -155,32 +153,54 @@ nav li {
  standalone component.
  *
  */
+.about {
+  display: none;
+  text-align: left;
+  width: 94%;
+  padding-left: 30px; }
+  .about.visible {
+    display: block; }
+  .about h2 {
+    color: #d81f27; }
+
 .button {
-  background-color: #a1a1a1;
+  background-color: #111;
   cursor: pointer;
   display: block;
   padding: 20px;
   width: 200px;
   height: 40px; }
 
-/* menu */
-.navbar-form {
-  margin: 0 auto;
-  max-width: 650px; }
+.error {
+  display: none;
+  transition: 0.6s;
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  top: 100px;
+  width: 100%; }
+  .error.visible {
+    display: block; }
 
-.recordings .thumbnail {
-  margin: 30px; }
+.loading {
+  display: none; }
+  .loading.visible {
+    display: block; }
 
-.recordings .thumbnail img {
-  padding-top: 5px; }
-
-.recordings .thumbnail .btn-default {
-  margin-top: 5px; }
-
-.add-date {
-  color: #BBB;
-  font-style: italic;
-  font-size: .8em; }
+.recordings {
+  display: none; }
+  .recordings.visible {
+    display: block; }
+  .recordings .thumbnail {
+    margin: 30px; }
+    .recordings .thumbnail img {
+      padding-top: 5px; }
+    .recordings .thumbnail .btn-default {
+      margin-top: 5px; }
+  .recordings .add-date {
+    color: #BBB;
+    font-style: italic;
+    font-size: .8em; }
 
 /* 
  * State Rules

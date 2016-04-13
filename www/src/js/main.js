@@ -1,6 +1,6 @@
 (function ($) {
 
-    $( document ).ready( function() {
+  $( document ).ready( function() {
 
     console.log("document is ready!");
 
@@ -11,53 +11,132 @@
       https://phiffer.org/youarehere/yah.php?twilio=1 (Twilio POST endpoint)
     */
 
-    $.get( "https://phiffer.org/youarehere/yah.php?get=stories", function( data ) {
-      console.log( "Load was performed." );
-      // lay out thumbnails based on returned data
-    });
+    const PH_NUM = "+16194314373"; // pull this from config file
 
-    // $.ajax({
-    //     type: "GET",
-    //     dataType: "jsonp",
-    //     url: "https://phiffer.org/youarehere/yah.php?get=stories",
-    //     crossDomain: true
-    // })
-    // .done(function( data ) {
-    //   console.log( "Load was performed: " + data );
-    // })
-    // .fail( function(xhr, textStatus, errorThrown) {
-    //   console.log("xhr responseText: " + xhr.responseText);
-    //   console.log("textStatus: " + textStatus);
-    // });
-
-    $(".callback").on("click", function() {
-
-      // $.get( "https://phiffer.org/youarehere/yah.php?twilio=1", function( data ) {
-      //   console.log( "Load was performed: " + data );
-      // });
-
+    // fetch story
+    function fetchStory() {
       $.ajax({
-          type: "POST",
-          dataType: "jsonp",
-          url: "https://phiffer.org/youarehere/yah.php?twilio=1",
-          crossDomain : true
+          type: "GET",
+          dataType: "json",
+          url: "/server/yah.php?get=stories"
       })
       .done(function( data ) {
-        console.log( "Load was performed: " + data );
+
+        story = data.stories[PH_NUM];
+        renderStory(story);
+
+        // now get people's responses
+        fetchResponses(story);
+
       })
       .fail( function(xhr, textStatus, errorThrown) {
         console.log("xhr responseText: " + xhr.responseText);
         console.log("textStatus: " + textStatus);
       });
+    }
 
-    });
+    function fetchResponses(story) {
+      $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "/server/yah.php?get=responses&story="+story.id
+      })
+      .done(function( data ) {
 
-    $(".thumbnail .btn").on("click", function() {
+        // Call a function that will turn that data into HTML.
+        renderResponses(data.responses);
 
-      $.get( "https://phiffer.org/youarehere/yah.php?get=responses&story=1", function( data ) {
-        console.log( "Load was performed: " + data );
+        // Manually trigger a hashchange to start the app.
+        $(window).trigger('hashchange');
+      })
+      .fail( function(xhr, textStatus, errorThrown) {
+        console.log("xhr responseText: " + xhr.responseText);
+        console.log("textStatus: " + textStatus);
       });
+    }
+
+    function show(url) {
+
+      var view = url.split('/')[0];
+
+      // Hide current page
+      $('.current').removeClass('current visible');
+
+      switch( view ) {
+        // Homepage.
+        case '': 
+          $('.recordings').addClass('current visible');
+          break;
+
+        // About
+        case '#about':
+          $('.about').addClass('current visible');
+          break;
+
+        // 404 Not Found / Error
+        default:
+          $('.error').addClass('current visible');
+      }
+
+    }
+
+    function renderStory(story){
+
+      var $story = $('.story');
+
+      var tmplScript = $("#story-template").html();
+      var tmpl = Handlebars.compile(tmplScript);
+      $story.append( tmpl(story) );
+
+    }
+
+    function renderResponses(data){
+      // Uses Handlebars to create a list of responses using the provided data.
+      // This function is called only once on page load.
+      var list = $('.recordings .recordings-list');
+
+      var tmplScript = $("#recordings-template").html();
+      var tmpl = Handlebars.compile(tmplScript);
+      list.append( tmpl(data) );
+
+      // Each products has a data-index attribute.
+      // On click change the url hash to open up a preview for this product only.
+      // Remember: every hashchange triggers the render function.
+      list.find('.r-div').on('click', function (e) {
+        e.preventDefault();
+      });
+
+      // hide loading message
+      $('.loading').removeClass('visible')
+    }
+
+    // callbacks
+    $(window).on('hashchange', function(){
+      
+      show(decodeURI(window.location.hash));
     });
+
+    fetchStory();
+
+
+    
+    // $(".callback").on("click", function() {
+
+    //   $.ajax({
+    //       type: "POST",
+    //       dataType: "jsonp",
+    //       url: "https://phiffer.org/youarehere/yah.php?twilio=1",
+    //       crossDomain : true
+    //   })
+    //   .done(function( data ) {
+    //     console.log( "Load was performed: " + data );
+    //   })
+    //   .fail( function(xhr, textStatus, errorThrown) {
+    //     console.log("xhr responseText: " + xhr.responseText);
+    //     console.log("textStatus: " + textStatus);
+    //   });
+
+    // });
 
     // Twilio.Device.ready(function (evice) {
    //    $("#log").text("Ready");

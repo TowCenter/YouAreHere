@@ -1,6 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-
 include 'lib/Services/Twilio/Capability.php';
  
 // put your Twilio API credentials here
@@ -25,164 +23,71 @@ $token = $capability->generateToken();
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link href='https://fonts.googleapis.com/css?family=Raleway:400,700,300,500' rel='stylesheet' type='text/css'>
-        <!-- <link href="http://static0.twilio.com/bundles/quickstart/client.css" type="text/css" rel="stylesheet" /> -->
-
-        <!--build:css css/styles.min.css-->
+        <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+        
+        <!-- build:css css/styles.min.css -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/styles.css">
-        <!--endbuild-->
+        <!-- endbuild -->
+
+        <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+        <script>Twilio.Device.setup("<?php echo $token; ?>");</script>
 
     </head>
     <body>
-      <!-- <div class="jumbotron">
-        <h1>You Are Here</h1>
-          <form class="navbar-form">
-            <p>Enter your phone number to have the recording system call you back. Follow the instructions to record your story and have it appear on this page.</p>
-            <p><input type="text" placeholder="212-555-1212"></p>
-            <p><button type="submit" class="btn btn-primary btn-lg">Request a Callback</button></p>
-          </form>
-        <div class="record">
-
-        </div>
-      </div> -->
-      <div class="heading">
-        <img src="img/logo.png" width="297" height="202" />
-      </div>
-      <nav class="flex-nav">
-        <ul>
-          <li>RECORD</li>
-          <li>LISTEN</li>
-          <li>ABOUT</li>
-        </ul>
-      </nav>
-      <div class="container recordings">
-        <div class="row">
-          <div class="col-sm-12">loading recordings...</div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <div class="btn-play" role="button"></div>
-                <div class="title">
-                  <h4>Title of story</h4>
-                  <p class="add-date">January 11, 2016</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
-                <p class="comments">56 Comments</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <div class="btn-play" role="button"></div>
-                <div class="title">
-                  <h4>Title of story</h4>
-                  <p class="add-date">January 11, 2016</p>
-                </div>
-                <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
-                <p class="comments">56 Comments</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="thumbnail">
-              <img src="img/park.jpg" alt="park" />
-              <div class="caption">
-                <div class="btn-play" role="button"></div>
-                <div class="content">
-                  <div class="title">
-                    <h4>Title of story</h4>
-                    <p class="add-date">January 11, 2016</p>
-                  </div>
-                  <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="comments">
-                  <div class="count">
-                    56 Comments
-                  </div>
-                  <div class="expanded">
-                    <h3>We'd love to get your input</h3>
-                    <div class="comment">
-                      <img src="img/park.jpg" alt="park" />
-                      <div class="caption">
-                        <div class="btn-play" role="button"></div>
-                        <div class="content">
-                          <h4>comment title</h4>
-                          <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="comment">
-                      <img src="img/park.jpg" alt="park" />
-                      <div class="caption">
-                        <div class="btn-play" role="button"></div>
-                        <div class="content">
-                          <h4>comment title</h4>
-                          <p>Lorem ipsum dolor sit amet, lorem ipsum dolor sit amet.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> <!-- /container -->   
-      <div id="record"> 
-        <div class="btn-record" role="button"></div>
-        <form>
-          <input type="text" placeholder="Title" />
-          <input type="textarea" placeholder="Description" />
-          <input type="text" placeholder="Your Name" />
+      <header>
+        <img class="logo" src="img/logo.png" width="297" height="202" />
+        <nav>
           <ul>
-            <li>
-              <div class="btn-default" role="button">Cancel</div>
-            </li>
-            <li>
-              <div class="btn-default" role="button">Re-do</div>
-            </li>
-            <li>
-              <div class="btn-default" role="button">Submit</div>
-            </li>
+            <li><a href="/">Listen</a></li>
+            <li><a href="/#about">About</a></li>
           </ul>
-        </form>
-        <div class="add-photo">
-          <h3>add a photo</h3>
-          <div class="btn-default" role="button">no thanks</div>
+        </nav>
+        <div class="story">
+          <script id="story-template" type="x-handlebars-template">​
+            <p>To record your story, call {{story_phone_number}}<br/>or tap the button below.</p>
+            <p>
+              <a class="btn btn-primary btn-lg" href="tel:{{story_phone_number}}">Tap To Call!</a>
+            </p>
+            <div class="title">
+              <h1>{{name}}</h1>
+              <p class="add-date"></p>
+            </div>
+          </script> 
+        </div>
+      </header>
+      <div class="loading visible">
+        <div class="col-sm-12">loading recordings...</div>
+      </div>
+      <div class="container recordings">
+        <div class="row recordings-list">
+          <script id="recordings-template" type="x-handlebars-template">​
+            {{#each this}}
+              <div class="btn-play" role="button"></div>
+              <audio controls>
+                <source src="{{mp3_url}}" type="audio/mpeg">
+                Your browser does not support the audio tag.
+              </audio>
+              <p class="add-date">{{created}}</p>
+            {{/each}}
+          </script> 
         </div>
       </div>
-      </div> <!-- /container -->  
-      <div id="about">
+      <div class="about">
+        <h2>about</h2>
         <p>“You Are Here” is an experimental journalism-distribution network that leverages small, inexpensive, open-source wireless routers to deliver compelling, location-specific content to communities around New York. Starting with a series of high-quality audio pieces that reflect the unique culture and history of the people, politics and communities of the geographic area, the “You Are Here” servers can also act as a kind of digital town square where those nearby can exchange ideas, stories and information. The fact that these servers are not connected to the Internet allows them to accumulate a genuinely local character, in addition to serving as a safe, resilient means of exchanging digital information.</p>
-        <p>This is a research project of the Tow Center for Digital Journalism, with fellows Sarah Grant, Susan McGregor, Benjamen Walker, Dan Phiffer, and Amelia Marzec.</p> 
+        <p>This is a research project of the Tow Center for Digital Journalism, with fellows Sarah Grant, Dan Phiffer, Amelia Marzec, Susan McGregor, and Benjamen Walker.</p> 
       </div>
-      </div> <!-- /container -->  
+      <div class="error">
+        <h2>Sorry, something went wrong.</h2>
+      </div>
 
-          <!-- main content -->
-          <!-- <div class="col-md-12">
-            <button class="call">
-              Call
-            </button>
-         
-            <button class="hangup">
-              Hangup
-            </button>
-         
-            <div id="log">Loading pigeons...</div>
-          </div> -->
-
-      <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
-      <script>Twilio.Device.setup("<?php echo $token; ?>");</script>
-      <!--build:js js/main.min.js-->    
+      <!-- build:js js/main.min.js -->
       <script src="js/vendor/jquery-1.11.2.min.js"></script>
       <script src="js/vendor/bootstrap.min.js"></script>
+      <script src="js/vendor/handlebars.js"></script>
       <script src="js/main.js"></script>
       <!-- endbuild -->
     </body>

@@ -1,15 +1,27 @@
-.recordings .thumbnail {
-	margin: 30px;
-}
-.recordings .thumbnail img {
-	padding-top: 5px;
-}
+.recordings {
+	display: none;
 
-.recordings .thumbnail .btn-default {
-	margin-top: 5px;
-}
-.add-date {
-	color: #BBB;
-    font-style: italic;
-    font-size: .8em;
+	&.visible {
+		display: block;
+		// opacity: 1;
+		// transition: 1s;
+	}
+
+	.thumbnail {
+		margin: 30px;
+
+		img {
+			padding-top: 5px;
+		}
+
+		.btn-default {
+			margin-top: 5px;
+		}
+	}
+
+	.add-date {
+		color: #BBB;
+	    font-style: italic;
+	    font-size: .8em;
+	}
 }

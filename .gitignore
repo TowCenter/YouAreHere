@@ -1,5 +1,6 @@
 .DS_Store
-_untracked
+.sass-cache/
+_untracked/
 _untracked/*
 www/build/*
 www/node_modules/*

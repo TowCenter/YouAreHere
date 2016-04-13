@@ -1,0 +1,18 @@
+.about {
+	display: none;
+	text-align: left;
+    width: 94%;
+    padding-left: 30px;
+
+	&.visible {
+		display: block;
+	}
+
+	h2 {
+		color: $cOrange;
+	}
+
+	p {
+
+	}
+}

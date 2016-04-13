@@ -1,0 +1,7 @@
+.loading {
+	display: none;
+
+	&.visible {
+		display: block;
+	}
+}
