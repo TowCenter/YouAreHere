@@ -65,6 +65,7 @@
       switch( view ) {
         // Homepage.
         case '': 
+          $('.story').addClass('current visible');
           $('.recordings').addClass('current visible');
           break;
 

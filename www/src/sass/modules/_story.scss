@@ -1,0 +1,66 @@
+.story {
+	display: none;
+	margin-top: -60px;
+	
+	&.visible {
+		display: block;
+	}
+
+	.btn-play {
+		float: left;
+	}
+
+	.story-content {
+		margin-top: 15px;
+	}
+
+	.story-image {
+		display: block;
+		margin: 0 auto 10px;
+		width: 100%;
+	}
+
+	.summary {
+		text-align: left;
+		width: 90%;
+    	margin: 0 auto;
+    	padding-top: 15px;
+
+		.title {
+			color: $cOrange;
+    		display: inline-block;
+    		margin: 0 0 5px;
+    		padding: 0;
+		}
+
+		.date {
+			display: inline-block;
+		}
+	}
+
+	.description {
+
+		.right-arrow {
+			display: inline-block;
+    		margin-right: 3px;
+			width: 0; 
+			height: 0; 
+			border-top: 5px solid transparent;
+			border-bottom: 5px solid transparent;
+			border-left: 5px solid $cOrange;
+		}
+	}
+
+	.cta {
+		background-color: $cOrange;
+		color: $cBlue;
+		font-family: $fHeadlines;
+		text-transform: uppercase;
+		width: 400px;
+		height: 40px;
+		padding-top: 12px;
+		margin-bottom: 17px;
+		font-size: 1.5em;
+    	letter-spacing: .03em;
+	}
+}

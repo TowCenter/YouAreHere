@@ -1,10 +1,14 @@
 header {
+	margin-top: -30px;
+	
+	.info {
+		position: absolute;
+		right: 10px;
+		top: 4px;
+	}
 
 	.logo {
-		position: absolute;
+		position: relative;
 		z-index: -1;
-		top: 0;
-    	left: 50%;
-    	margin-left: -148px;
 	}
 }

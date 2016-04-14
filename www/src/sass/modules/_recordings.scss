@@ -7,21 +7,12 @@
 		// transition: 1s;
 	}
 
-	.thumbnail {
-		margin: 30px;
+	.item {
+		margin: 10px;
 
-		img {
-			padding-top: 5px;
+		p {
+			font-family: $fHeadlines;
+    		text-align: right;
 		}
-
-		.btn-default {
-			margin-top: 5px;
-		}
-	}
-
-	.add-date {
-		color: #BBB;
-	    font-style: italic;
-	    font-size: .8em;
 	}
 }

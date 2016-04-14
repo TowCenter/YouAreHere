@@ -16,48 +16,57 @@ $token = $capability->generateToken();
 
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>you are here</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>you are here</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
+      <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
         
-        <!-- build:css css/styles.min.css -->
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/styles.css">
-        <!-- endbuild -->
+      <!-- build:css css/styles.min.css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/styles.css">
+      <!-- endbuild -->
 
-        <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
-        <script>Twilio.Device.setup("<?php echo $token; ?>");</script>
+      <script src="//static.twilio.com/libs/twiliojs/1.2/twilio.min.js"></script>
+      <script>Twilio.Device.setup("<?php echo $token; ?>");</script>
 
-    </head>
-    <body>
-      <header>
+  </head>
+  <body>
+    <header>
+      <a class="info" href="/#about">About</a>
+      <a href="/">
         <img class="logo" src="img/logo.png" width="297" height="202" />
-        <nav>
-          <ul>
-            <li><a href="/">Listen</a></li>
-            <li><a href="/#about">About</a></li>
-          </ul>
-        </nav>
-        <div class="story">
-          <script id="story-template" type="x-handlebars-template">​
-            <p>To record your story, call {{story_phone_number}}<br/>or tap the button below.</p>
-            <p>
-              <a class="btn btn-primary btn-lg" href="tel:{{story_phone_number}}">Tap To Call!</a>
-            </p>
-            <div class="title">
-              <h1>{{name}}</h1>
-              <p class="add-date"></p>
-            </div>
-          </script> 
+      </a>
+    </header>
+    <section class="story current visible">
+      <!-- LOAD STORY HERE --> 
+      <script id="story-template" type="x-handlebars-template">​
+        <img class="story-image" src="../img/park.jpg" />
+        <div class="story-content">
+          <audio id="story-audio">
+            <source src="https://phiffer.org/youarehere/responses/1-2-RE7ce5815b77506679bdee30e42b2d8316.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+          </audio>
+          <div class="btn-play"></div>
+          <div class="summary">
+            <h1 class="title">{{name}}</h1>
+            <div class="date">Apr. 17, 2016</div>
+            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget commodo nibh. Quisque suscipit turpis velit, eleifend venenatis libero cursus a. Fusce non congue odio. Suspendisse potenti. <a href="#"><span class="right-arrow"></span>56 Comments</a></p>
+          </div>
         </div>
-      </header>
+        <div class="cta">we'd love to get your input!</div>
+        <p>To leave a response, call {{story_phone_number}}<br/>or tap the button below.</p>
+        <p>
+          <a class="btn btn-call btn-lg" href="tel:{{story_phone_number}}">Tap To Call!</a>
+        </p>
+      </script> 
+
+      <!-- LOAD RESPONSES HERE --> 
       <div class="loading visible">
         <div class="col-sm-12">loading recordings...</div>
       </div>
@@ -65,30 +74,33 @@ $token = $capability->generateToken();
         <div class="row recordings-list">
           <script id="recordings-template" type="x-handlebars-template">​
             {{#each this}}
-              <div class="btn-play" role="button"></div>
+            <div class="item">
+              <div class="toggle-button" role="button"></div>
+              <p class="date">{{created}}</p>
               <audio controls>
                 <source src="{{mp3_url}}" type="audio/mpeg">
                 Your browser does not support the audio tag.
               </audio>
-              <p class="add-date">{{created}}</p>
+            </div>
             {{/each}}
           </script> 
         </div>
       </div>
-      <div class="about">
-        <h2>about</h2>
-        <p>“You Are Here” is an experimental journalism-distribution network that leverages small, inexpensive, open-source wireless routers to deliver compelling, location-specific content to communities around New York. Starting with a series of high-quality audio pieces that reflect the unique culture and history of the people, politics and communities of the geographic area, the “You Are Here” servers can also act as a kind of digital town square where those nearby can exchange ideas, stories and information. The fact that these servers are not connected to the Internet allows them to accumulate a genuinely local character, in addition to serving as a safe, resilient means of exchanging digital information.</p>
-        <p>This is a research project of the Tow Center for Digital Journalism, with fellows Sarah Grant, Dan Phiffer, Amelia Marzec, Susan McGregor, and Benjamen Walker.</p> 
-      </div>
-      <div class="error">
-        <h2>Sorry, something went wrong.</h2>
-      </div>
+    </section>
+    <section class="about">
+      <h2>about</h2>
+      <p>“You Are Here” is an experimental journalism-distribution network that leverages small, inexpensive, open-source wireless routers to deliver compelling, location-specific content to communities around New York. Starting with a series of high-quality audio pieces that reflect the unique culture and history of the people, politics and communities of the geographic area, the “You Are Here” servers can also act as a kind of digital town square where those nearby can exchange ideas, stories and information. The fact that these servers are not connected to the Internet allows them to accumulate a genuinely local character, in addition to serving as a safe, resilient means of exchanging digital information.</p>
+      <p>This is a research project of the Tow Center for Digital Journalism, with fellows Sarah Grant, Dan Phiffer, Amelia Marzec, Susan McGregor, and Benjamen Walker.</p> 
+    </section>
+    <section class="error">
+      <h2>Sorry, something went wrong.</h2>
+    </section>
 
-      <!-- build:js js/main.min.js -->
-      <script src="js/vendor/jquery-1.11.2.min.js"></script>
-      <script src="js/vendor/bootstrap.min.js"></script>
-      <script src="js/vendor/handlebars.js"></script>
-      <script src="js/main.js"></script>
-      <!-- endbuild -->
-    </body>
+    <!-- build:js js/main.min.js -->
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/handlebars.js"></script>
+    <script src="js/main.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

@@ -52,24 +52,29 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
  A Base rule is applied to an element using an element selector, a descendent selector, or a child selector, along with any pseudo-classes. It doesn’t include any class or ID selectors. It is defining the default styling for how that element should look in all occurrences on the page.
  *
  */
+/* fonts */
+@font-face {
+  font-family: 'Bebas';
+  src: url("../fonts/BebasNeueBold.ttf") format("truetype"); }
 /* Fonts */
 /* Colors */
 /* Colors + Use Cases */
 /* Responsive Breakpoints */
 /* Default Padding */
 body {
-  background: #e1f4fd;
-  color: #111;
+  background: #E1F4FD;
+  color: #333;
   font-family: "Lato", sans-serif;
   font-size: 16px;
   font-weight: 300;
+  line-height: 1.25em;
   text-align: center;
   margin-bottom: 60px; }
 
 h1 {
   color: #333;
   font-size: 1.5em;
-  font-family: "Oswald", sans-serif;
+  font-family: "Bebas", sans-serif;
   font-weight: 400;
   padding: 12px 0;
   text-transform: uppercase;
@@ -78,19 +83,23 @@ h1 {
 h2 {
   color: #333;
   font-size: 1.25em;
-  font-family: "Oswald", sans-serif;
+  font-family: "Bebas", sans-serif;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: .5em; }
 
 p {
-  color: #111;
+  color: #333;
   font-size: 1em;
-  line-height: 1.25em;
+  line-height: 1.5em;
   margin-bottom: 1em; }
 
 a {
-  color: #d81f27; }
+  color: #D81F27; }
+
+.date {
+  font-size: .85em;
+  float: right; }
 
 /* 
  * Layout Rules
@@ -99,14 +108,15 @@ a {
  *
  */
 .jumbotron {
-  background-color: #e1f4fd; }
+  background-color: #E1F4FD; }
 
-header .logo {
+header .info {
   position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 50%;
-  margin-left: -148px; }
+  right: 10px;
+  top: 4px; }
+header .logo {
+  position: relative;
+  z-index: -1; }
 
 nav {
   margin-top: 163px; }
@@ -120,7 +130,7 @@ nav {
       margin-left: 10px; }
       nav ul li a {
         color: #111;
-        font-family: "Oswald", sans-serif;
+        font-family: "Bebas", sans-serif;
         font-weight: 700;
         text-transform: uppercase; }
   nav .flex-nav {
@@ -161,15 +171,34 @@ nav {
   .about.visible {
     display: block; }
   .about h2 {
-    color: #d81f27; }
+    color: #D81F27; }
 
 .button {
-  background-color: #111;
+  background-color: #333;
   cursor: pointer;
   display: block;
   padding: 20px;
   width: 200px;
   height: 40px; }
+
+.btn-call {
+  background-image: linear-gradient(to bottom, #eff2ff 0%, #bbcdd4 100%);
+  border-color: #C7C7C7;
+  color: #000; }
+
+.btn-play {
+  background: url(../img/button_play_med.png) no-repeat;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  margin: 10px; }
+
+.btn-pause {
+  background: url(../img/button_stop.png) no-repeat;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  margin: 10px; }
 
 .error {
   display: none;
@@ -191,16 +220,55 @@ nav {
   display: none; }
   .recordings.visible {
     display: block; }
-  .recordings .thumbnail {
-    margin: 30px; }
-    .recordings .thumbnail img {
-      padding-top: 5px; }
-    .recordings .thumbnail .btn-default {
-      margin-top: 5px; }
-  .recordings .add-date {
-    color: #BBB;
-    font-style: italic;
-    font-size: .8em; }
+  .recordings .item {
+    margin: 10px; }
+    .recordings .item p {
+      font-family: "Bebas";
+      text-align: right; }
+
+.story {
+  display: none;
+  margin-top: -60px; }
+  .story.visible {
+    display: block; }
+  .story .btn-play {
+    float: left; }
+  .story .story-content {
+    margin-top: 15px; }
+  .story .story-image {
+    display: block;
+    margin: 0 auto 10px; }
+  .story .summary {
+    text-align: left;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 15px; }
+    .story .summary .title {
+      color: #D81F27;
+      display: inline-block;
+      margin: 0 0 5px;
+      padding: 0; }
+    .story .summary .date {
+      display: inline-block; }
+  .story .description .right-arrow {
+    display: inline-block;
+    margin-right: 3px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #D81F27; }
+  .story .cta {
+    background-color: #D81F27;
+    color: #E1F4FD;
+    font-family: "Bebas";
+    text-transform: uppercase;
+    width: 400px;
+    height: 40px;
+    padding-top: 12px;
+    margin-bottom: 17px;
+    font-size: 1.5em;
+    letter-spacing: .03em; }
 
 /* 
  * State Rules

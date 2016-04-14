@@ -1,26 +1,26 @@
 /* Fonts */
 $fBody: 'Lato';
-$fHeadlines: 'Oswald';
+$fHeadlines: 'Bebas';
 $fLight: 300;
 $fNormal: 400;
 $fBold: 700;
 
 /* Colors */
 $cBlack: #111;
-$cLightGrey: #D7DFE2;
+$cLightGrey: #A7A9AC;
 $cGrey: #333;
-$cOrange: #d81f27;
-$cBlue: #e1f4fd;
+$cOrange: #D81F27;
+$cBlue: #E1F4FD;
 $cWhite: #a1a1a1;
 
 /* Colors + Use Cases */
-$cBody: $cBlack;
+$cBody: $cGrey;
 $cHeadline: $cGrey;
-$cParagraph: $cBlack;
+$cParagraph: $cGrey;
 $cLink: $cOrange;
 $cHover: $cBlack;
 $cBackground: $cBlue;
-$cButton: $cBlack;
+$cButton: $cGrey;
 
 /* Responsive Breakpoints */
 $bpMobile: 768px;

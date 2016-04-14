@@ -6,3 +6,24 @@
 	width: 200px;
 	height: 40px;
 }
+
+.btn-call {
+	background-image: linear-gradient(to bottom,#EFF2FF 0,#BBCDD4 100%);
+	border-color: #C7C7C7;
+	color: #000;
+}
+
+.btn-play {
+	background: url(../img/button_play_med.png) no-repeat;
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+	margin: 10px;
+}
+.btn-pause {
+	background: url(../img/button_stop.png) no-repeat;
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+	margin: 10px;
+}
