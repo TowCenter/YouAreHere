@@ -27,8 +27,8 @@ var gulp = require('gulp')
 	,runSequence = require('run-sequence');
 
 var path = {
-  PHP: 'src/*.php',
-  ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.php'],
+  HTML: 'src/*.html',
+  ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.html'],
   JS: ['src/js/*.js', 'src/js/**/*.js'],
   MINIFIED_JS_OUT: 'main.min.js',
   SASS: 'src/sass/styles.scss',
@@ -60,7 +60,7 @@ gulp.task('watch', ['browsersync'], function() {
 
   gulp.watch('src/sass/**/*.scss', ['sass'], browsersync.reload);
   gulp.watch(path.JS, browsersync.reload);
-  gulp.watch(path.PHP, browsersync.reload);
+  gulp.watch(path.HTML, browsersync.reload);
 
 });
 
@@ -99,9 +99,9 @@ gulp.task('lib', function() {
   .pipe(gulp.dest(path.BUILD+'lib'));
 });
 
-// Copy php to our build folder
-gulp.task('php', function() {
-  return gulp.src(path.PHP)
+// Copy HTML to our build folder
+gulp.task('html', function() {
+  return gulp.src(path.HTML)
   .pipe(gulp.dest(path.BUILD));
 });
 
@@ -109,7 +109,7 @@ gulp.task('php', function() {
 gulp.task('useref', function(){
   // var assets = useref.assets();
 
-  return gulp.src('src/index.php')
+  return gulp.src('src/index.html')
     // .pipe(assets)
     // Minifies only if it's a CSS file
     .pipe(gulpIf(['src/css/*.css', 'src/css/**/*.css'], minifyCSS()))
@@ -131,5 +131,5 @@ gulp.task('default', ['clean'], function() {
 
 // Build: Clean and then prepare assets for uploading to server
 gulp.task('build', ['clean'], function() {
-    runSequence( ['sass', 'fonts', 'images', 'lib', 'php', 'useref'] );
+    runSequence( ['sass', 'fonts', 'images', 'lib', 'html', 'useref'] );
 });

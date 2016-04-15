@@ -8,7 +8,11 @@ header {
 	}
 
 	.logo {
-		position: relative;
-		z-index: -1;
+		display: block;
+
+		img {
+			position: relative;
+			z-index: -1;
+		}
 	}
 }

@@ -13,17 +13,17 @@
 	color: #000;
 }
 
-.btn-play {
-	background: url(../img/button_play_med.png) no-repeat;
+.btn-audio {
 	cursor: pointer;
 	width: 80px;
 	height: 80px;
-	margin: 10px;
+	margin: 5px;
 }
-.btn-pause {
+.btn-audio.play {
+	background: url(../img/button_play_med.png) no-repeat;
+	background-size: 80px;
+}
+.btn-audio.pause {
 	background: url(../img/button_stop.png) no-repeat;
-	cursor: pointer;
-	width: 80px;
-	height: 80px;
-	margin: 10px;
+	background-size: 80px;
 }

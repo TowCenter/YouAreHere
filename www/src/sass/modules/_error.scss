@@ -1,11 +1,6 @@
 .error {
 	display: none;
 	transition: 0.6s;
-	pointer-events: none;
-	position: absolute;
-	left: 0;
-	top: 100px;
-	width: 100%;
 
 	&.visible {
 		display: block;

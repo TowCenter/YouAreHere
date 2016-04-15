@@ -66,7 +66,7 @@
         // Homepage.
         case '': 
           $('.story').addClass('current visible');
-          $('.recordings').addClass('current visible');
+          $('.responses').addClass('current visible');
           break;
 
         // About
@@ -84,7 +84,6 @@
     function renderStory(story){
 
       var $story = $('.story');
-
       var tmplScript = $("#story-template").html();
       var tmpl = Handlebars.compile(tmplScript);
       $story.append( tmpl(story) );
@@ -94,21 +93,58 @@
     function renderResponses(data){
       // Uses Handlebars to create a list of responses using the provided data.
       // This function is called only once on page load.
-      var list = $('.recordings .recordings-list');
+      var list = $('.responses .responses-list');
 
-      var tmplScript = $("#recordings-template").html();
+      var tmplScript = $("#responses-template").html();
       var tmpl = Handlebars.compile(tmplScript);
       list.append( tmpl(data) );
 
       // Each products has a data-index attribute.
       // On click change the url hash to open up a preview for this product only.
       // Remember: every hashchange triggers the render function.
-      list.find('.r-div').on('click', function (e) {
+      list.find('.item').on('click', function (e) {
+
         e.preventDefault();
+
+        toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
+
       });
 
       // hide loading message
-      $('.loading').removeClass('visible')
+      $('.loading').removeClass('visible');
+      $('.responses').addClass('current visible');
+    }
+
+    // audio controls
+    function toggleAudio(audio, btn) {
+
+      if (audio.paused) {
+
+        audio.addEventListener('ended', function() {
+          onAudioEnd(audio, btn);
+        });
+
+        audio.play();
+
+        $(btn).removeClass('play')
+              .addClass('pause');
+
+      } else { 
+
+        onAudioEnd(audio, btn);
+      }
+    }
+
+    function onAudioEnd(audio, btn) {
+    
+      audio.removeEventListener('ended', onAudioEnd);
+
+      audio.pause();
+
+      audio.currentTime = 0;
+
+      $(btn).removeClass('pause')
+            .addClass('play');
     }
 
     // callbacks

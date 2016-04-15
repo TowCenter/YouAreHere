@@ -56,6 +56,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 @font-face {
   font-family: 'Bebas';
   src: url("../fonts/BebasNeueBold.ttf") format("truetype"); }
+@font-face {
+  font-family: 'Lato';
+  src: url("../fonts/Lato-Light.ttf") format("truetype"); }
 /* Fonts */
 /* Colors */
 /* Colors + Use Cases */
@@ -69,7 +72,7 @@ body {
   font-weight: 300;
   line-height: 1.25em;
   text-align: center;
-  margin-bottom: 60px; }
+  margin-bottom: 300px; }
 
 h1 {
   color: #333;
@@ -110,13 +113,17 @@ a {
 .jumbotron {
   background-color: #E1F4FD; }
 
-header .info {
-  position: absolute;
-  right: 10px;
-  top: 4px; }
-header .logo {
-  position: relative;
-  z-index: -1; }
+header {
+  margin-top: -30px; }
+  header .info {
+    position: absolute;
+    right: 10px;
+    top: 4px; }
+  header .logo {
+    display: block; }
+    header .logo img {
+      position: relative;
+      z-index: -1; }
 
 nav {
   margin-top: 163px; }
@@ -186,28 +193,23 @@ nav {
   border-color: #C7C7C7;
   color: #000; }
 
-.btn-play {
-  background: url(../img/button_play_med.png) no-repeat;
+.btn-audio {
   cursor: pointer;
   width: 80px;
   height: 80px;
-  margin: 10px; }
+  margin: 5px; }
 
-.btn-pause {
+.btn-audio.play {
+  background: url(../img/button_play_med.png) no-repeat;
+  background-size: 80px; }
+
+.btn-audio.pause {
   background: url(../img/button_stop.png) no-repeat;
-  cursor: pointer;
-  width: 80px;
-  height: 80px;
-  margin: 10px; }
+  background-size: 80px; }
 
 .error {
   display: none;
-  transition: 0.6s;
-  pointer-events: none;
-  position: absolute;
-  left: 0;
-  top: 100px;
-  width: 100%; }
+  transition: 0.6s; }
   .error.visible {
     display: block; }
 
@@ -216,28 +218,31 @@ nav {
   .loading.visible {
     display: block; }
 
-.recordings {
+.responses {
   display: none; }
-  .recordings.visible {
-    display: block; }
-  .recordings .item {
+  .responses.visible {
+    display: inline-block; }
+  .responses .item {
     margin: 10px; }
-    .recordings .item p {
+    .responses .item p {
       font-family: "Bebas";
       text-align: right; }
+    .responses .item .date {
+      float: none; }
 
 .story {
   display: none;
   margin-top: -60px; }
   .story.visible {
     display: block; }
-  .story .btn-play {
+  .story .btn-audio {
     float: left; }
   .story .story-content {
     margin-top: 15px; }
   .story .story-image {
     display: block;
-    margin: 0 auto 10px; }
+    margin: 0 auto 10px;
+    width: 100%; }
   .story .summary {
     text-align: left;
     width: 90%;
@@ -263,7 +268,6 @@ nav {
     color: #E1F4FD;
     font-family: "Bebas";
     text-transform: uppercase;
-    width: 400px;
     height: 40px;
     padding-top: 12px;
     margin-bottom: 17px;
@@ -278,6 +282,22 @@ nav {
 /* ==========================================================================
    Media Queries
    ========================================================================== */
+@media only screen and (min-width: 768px) {
+  .story .story-content {
+    max-width: 70%;
+    margin: 0 auto; }
+
+  header .info {
+    right: 60px;
+    top: 14px; }
+
+  .responses .item {
+    margin: 10px auto;
+    max-width: 70%; }
+
+  .about {
+    max-width: 70%;
+    margin: 0 auto; } }
 /* Desktop */
 /* Tablet */
 /* Mobile */

@@ -2,6 +2,36 @@
    Media Queries
    ========================================================================== */
 
+@media only screen and (min-width: $bpMobile) {
+	.story {
+
+		.story-content {
+	    	max-width: 70%;
+    		margin: 0 auto;
+		}
+	}
+
+	header {
+
+		.info {
+			right: 60px;
+    		top: 14px;
+		}
+	}
+
+	.responses {
+		.item {
+			margin: 10px auto;
+    		max-width: 70%;
+		}
+	}
+
+	.about {
+		max-width: 70%;
+    	margin: 0 auto;
+	}
+}
+
 /* Desktop */
 @media only screen and (min-width: $bpDesktop) {
 

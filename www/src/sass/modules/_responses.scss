@@ -1,8 +1,8 @@
-.recordings {
+.responses {
 	display: none;
 
 	&.visible {
-		display: block;
+		display: inline-block;
 		// opacity: 1;
 		// transition: 1s;
 	}
@@ -13,6 +13,10 @@
 		p {
 			font-family: $fHeadlines;
     		text-align: right;
+		}
+
+		.date {
+			float: none;
 		}
 	}
 }
