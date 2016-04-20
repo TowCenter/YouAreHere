@@ -2,7 +2,7 @@
 .sass-cache/
 _untracked/
 _untracked/*
-www/build/*
+
 www/node_modules/*
 www/src/stories/*
 www/src/log/*

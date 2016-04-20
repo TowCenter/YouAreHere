@@ -9,7 +9,7 @@
  * $ sudo n stable
  * $ npm init
  * $ npm install -g gulp
- * $ npm install gulp gulp-ruby-sass gulp-compass gulp-autoprefixer gulp-sourcemaps gulp-minify-css gulp-uglify del browser-sync gulp-useref gulp-if run-sequence --save-dev
+ * $ npm install gulp gulp-ruby-sass gulp-compass gulp-autoprefixer gulp-sourcemaps gulp-clean-css gulp-uglify del browser-sync gulp-useref gulp-if run-sequence --save-dev
  */
 
  // Load plugins
@@ -18,7 +18,7 @@ var gulp = require('gulp')
 	,compass = require('gulp-compass')
 	,autoprefixer = require('gulp-autoprefixer')
 	,sourcemaps = require('gulp-sourcemaps')
-	,minifyCSS = require('gulp-minify-css')
+	,cleanCSS = require('gulp-clean-css')
 	,uglify = require('gulp-uglify')
 	,browsersync = require('browser-sync')
 	,del = require('del')
@@ -112,7 +112,7 @@ gulp.task('useref', function(){
   return gulp.src('src/index.html')
     // .pipe(assets)
     // Minifies only if it's a CSS file
-    .pipe(gulpIf(['src/css/*.css', 'src/css/**/*.css'], minifyCSS()))
+    .pipe(gulpIf(['src/css/*.css', 'src/css/**/*.css'], cleanCSS()))
     // Uglifies only if it's a Javascript file
     .pipe(gulpIf(['src/js/*.js', 'src/js/**/*.js'], uglify()))
     // .pipe(assets.restore())

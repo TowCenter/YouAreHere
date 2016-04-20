@@ -45,7 +45,7 @@ echo ""
 #
 # update the packages
 echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
-apt-get update && apt-get install -y hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd mysql-server php5-common php5-cgi php5 php5-mysql
+apt-get update && apt-get install -y npm hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd mysql-server php5-common php5-cgi php5 php5-mysql
 echo ""
 echo "Configuring lighttpd web server..."
 chown www-data:www-data /var/www
