@@ -14,7 +14,7 @@ RADIO_DRIVER=nl80211
 
 # ACCESS POINT
 AP_CHAN=6
-AP_SSID=*you are here
+AP_SSID=you.are.here
 AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
@@ -25,7 +25,7 @@ DHCP_LEASE=1h
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # CHECK USER PRIVILEGES
-(( `id -u` )) && echo "This script *must* be ran with root privileges, try prefixing with sudo. i.e sudo $0" && exit 1
+(( `id -u` )) && echo "This script must be ran with root privileges, try prefixing with sudo. i.e sudo $0" && exit 1
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # BEGIN INSTALLATION PROCESS
@@ -45,7 +45,7 @@ echo ""
 #
 # update the packages
 echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
-apt-get update && apt-get install -y npm hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd mysql-server php5-common php5-cgi php5 php5-mysql
+apt-get update && apt-get install -y npm hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd php5-common php5-cgi php5
 echo ""
 echo "Configuring lighttpd web server..."
 chown www-data:www-data /var/www
@@ -222,6 +222,11 @@ update-rc.d you_are_here defaults
 # Copy over scripts to configure Huawei E303 3G Modem
 cp scripts/usb_modeswitch.conf /etc/usb_modeswitch.conf
 cp scripts/gprs /etc/ppp/peers/gprs
+
+# Build files
+# cd www/
+# npm install
+rsync -r www/build/* /var/www/
 
 read -p "Do you wish to reboot now? [N] " yn
 	case $yn in
