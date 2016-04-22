@@ -2,7 +2,7 @@
 #
 # Raspberry Pi YouAreHere Installation script
 # Sarah Grant
-# Updated 30 July 2015
+# Updated 21 April 2016
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -52,14 +52,12 @@ chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
 
-#cp scripts/servername.conf /etc/apache2/conf-available/servername.conf
-
 a2enmod proxy_http proxy proxy_connect ssl 
-#xml2enc servername
 service apache2 reload
 apachectl restart
 
 # append scripts/mod_proxy.conf to end of /etc/apache2/apache2.conf...
+cat scripts/mod_proxy.conf >> /etc/apache2/apache2.conf
 
 # CHECK USB WIFI HARDWARE IS FOUND
 # and that iw list does not fail with 'nl80211 not found'
@@ -180,6 +178,8 @@ cat <<EOF > /etc/dnsmasq.conf
 interface=wlan0
 address=/#/$AP_IP
 address=/apple.com/0.0.0.0
+address=/phiffer.org/173.220.23.228
+address=/youarehere.network/192.30.252.153
 dhcp-range=$DHCP_START,$DHCP_END,$DHCP_NETMASK,$DHCP_LEASE
 EOF
 rc=$?
