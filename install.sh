@@ -35,7 +35,7 @@ echo "|    You Are Here Installation    |"
 echo "●▬▬▬▬▬▬▬▬---▬▬▬*,_,*▬▬▬---▬▬▬▬▬▬▬▬●"
 echo ""
 
-read -p "This installation script will configure a wireless access point, captive portal, lighttpd web server and ppp 3G data link. Make sure you have a USB wifi radio connected to your Raspberry Pi before proceeding. Press any key to continue..."
+read -p "This installation script will configure a wireless access point, captive portal, apache web server and ppp 3G data link. Make sure you have a USB wifi radio connected to your Raspberry Pi before proceeding. Press any key to continue..."
 echo ""
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -44,19 +44,22 @@ echo ""
 # SOFTWARE INSTALL
 #
 # update the packages
-echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, lighttpd web server, iw package for network interface configuration..."
-apt-get update && apt-get install -y npm hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data lighttpd php5-common php5-cgi php5
+echo "Updating apt-get and installing hostapd, dnsmasq, ppp, usb-modeswitch, usb-modeswitch-data, apache web server, iw package for network interface configuration..."
+apt-get update && apt-get install -y npm hostapd dnsmasq iw ppp usb-modeswitch usb-modeswitch-data apache2 apache2-utils
 echo ""
-echo "Configuring lighttpd web server..."
+echo "Configuring apache web server..."
 chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
 
-# enable the server to handle php scripts
-lighty-enable-mod fastcgi-php
+#cp scripts/servername.conf /etc/apache2/conf-available/servername.conf
 
-#reload the server using
-service lighttpd force-reload
+a2enmod proxy_http proxy proxy_connect ssl 
+#xml2enc servername
+service apache2 reload
+apachectl restart
+
+# append scripts/mod_proxy.conf to end of /etc/apache2/apache2.conf...
 
 # CHECK USB WIFI HARDWARE IS FOUND
 # and that iw list does not fail with 'nl80211 not found'
@@ -188,16 +191,6 @@ else
 	echo -en "[OK]\n"
 fi
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# COPY OVER THE ACCESS POINT START UP SCRIPT + enable services
-#
-clear
-update-rc.d hostapd enable
-update-rc.d dnsmasq enable
-cp scripts/you_are_here.sh /etc/init.d/you_are_here
-chmod 755 /etc/init.d/you_are_here
-update-rc.d you_are_here defaults
-
 # Need to create /etc/usb_modeswitch.conf and prompt for values:
 # (DefaultVendor and DefaultProduct are obtainable from lsusb and reading what 
 # is listed for the Huawei device, after ID)
@@ -222,11 +215,25 @@ update-rc.d you_are_here defaults
 # Copy over scripts to configure Huawei E303 3G Modem
 cp scripts/usb_modeswitch.conf /etc/usb_modeswitch.conf
 cp scripts/gprs /etc/ppp/peers/gprs
+cp scripts/huawei_e303.rules /etc/udev/rules.d/huawei_e303.rules
+
+# reload rules so data stick is automatically mode switched from storage device to modem
+udevadm control --reload-rules
 
 # Build files
 # cd www/
 # npm install
-rsync -r www/build/* /var/www/
+rsync -r www/build/* /var/www/html/
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# COPY OVER THE ACCESS POINT START UP SCRIPT + enable services
+#
+clear
+update-rc.d hostapd enable
+update-rc.d dnsmasq enable
+cp scripts/you_are_here.sh /etc/init.d/you_are_here
+chmod 755 /etc/init.d/you_are_here
+update-rc.d you_are_here defaults
 
 read -p "Do you wish to reboot now? [N] " yn
 	case $yn in
