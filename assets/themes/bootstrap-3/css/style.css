@@ -56,15 +56,16 @@ body {
 
 a {
   /*color: #d5000d;*/
-  color: #D2408D;
+  color: #333;
   /*color: ##F4BFBF;*/
   /*color: #04D3C4;*/
+   
 }
 a:hover {
   /*color: #c5000c;*/
   /*color: #CFF5F3;*/
   color: #B01C6A;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 header {
