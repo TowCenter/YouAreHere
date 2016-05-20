@@ -178,6 +178,7 @@ ul.nav li a.active {
 #footer {
   background: none;
   margin-left: -30px;
+  margin-top:40px;
 }
 
 #footer p {
