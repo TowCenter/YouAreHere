@@ -468,6 +468,10 @@ header h1 {
   .navbar-brand, .navbar-nav>li>a {
     padding: 15px 0;
   }
+ .sidebar {
+    max-width: none;
+    padding: 30px 0;
+  }
 }
 
 /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
@@ -483,6 +487,10 @@ header h1 {
   }
   #footer p {
     font-size: .5em;
+  }
+ .sidebar {
+    max-width: none;
+    padding: 30px 0;
   }
 }
 
