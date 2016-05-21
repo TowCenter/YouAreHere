@@ -498,7 +498,7 @@ header h1 {
     padding: 0 30px 0 0;
   }
   #thislogo{
-     background-position:center;
+     background-position:center top;
      border:1px solid red;
 }
 }
