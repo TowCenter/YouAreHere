@@ -235,7 +235,7 @@ class YouAreHere {
 	
 	function set_mp3_url($response) {
 		$filename = $this->get_mp3_filename($response);
-		$response->mp3_url = "$this->base_url/responses/$filename";
+		$response->mp3_url = "/responses/$filename";
 	}
 	
 	function log_request() {
