@@ -498,8 +498,9 @@ header h1 {
     padding: 0 30px 0 0;
   }
   #thislogo{
-      margin:0 0 0 -50px;
-     border:1px solid yellow;
+      /*margin:0 0 0 -52px;*/
+      width:100%;
+     border:1px solid orange;
 }
 }
 
