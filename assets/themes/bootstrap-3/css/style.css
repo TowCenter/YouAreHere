@@ -499,6 +499,7 @@ header h1 {
   }
   #thislogo{
      background-position:center;
+     border:1px solid red;
 }
 }
 
