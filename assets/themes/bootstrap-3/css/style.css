@@ -57,7 +57,7 @@ body {
   color: #333333;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 1em;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.5;
   background-color: #e1f4fd;
   text-shadow: none;
@@ -312,7 +312,7 @@ h6 {
 
 p {
   margin-bottom: 20px;
-  font-weight: normal;
+  font-weight: 300;
 }
 
 a {
@@ -320,7 +320,7 @@ a {
 }
 
 p a {
-  font-weight: normal;
+  font-weight: 300;
 }
 
 blockquote {
