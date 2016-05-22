@@ -2,6 +2,18 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+
+@font-face {
+    font-family: 'bebasneuebold';
+    src: url('../font/VeraMono-Italic-webfont.eot');
+    src: url('../font/VeraMono-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/VeraMono-Italic-webfont.woff') format('woff'),
+         url('https://raw.githubusercontent.com/TowCenter/YouAreHere/gh-pages/assets/themes/bootstrap-3/images/BebasNeue%20Bold.ttf') format('truetype'),
+         url('../font/VeraMono-Italic-webfont.svg#BitstreamVeraSansMonoOblique') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -265,7 +277,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, serif;
+  font-family: 'bebasneuebold', 'Roboto', 'Helvetica Neue', Helvetica, Arial, serif;
   font-size: 1.25em;
   font-weight: 400;
   line-height: 1.3;
