@@ -193,16 +193,16 @@ ul.nav li a.active {
 }
 
 #footer p {
-  color: #d71f27;
+  color: #333;
   font-size: .8em;
 }
 
 #footer a {
-  color: #333;
+  color: #d71f27;
 }
 
 #footer a:hover {
-  color: #666;
+  color: #d71f27;
 }
 
 a.button {
