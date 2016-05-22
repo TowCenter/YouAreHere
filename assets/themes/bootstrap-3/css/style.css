@@ -5,11 +5,9 @@
 
 @font-face {
     font-family: 'bebasneuebold';
-    src: url('../font/VeraMono-Italic-webfont.eot');
-    src: url('../font/VeraMono-Italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../font/VeraMono-Italic-webfont.woff') format('woff'),
-         url('https://raw.githubusercontent.com/TowCenter/YouAreHere/gh-pages/assets/themes/bootstrap-3/images/BebasNeue%20Bold.ttf') format('truetype'),
-         url('../font/VeraMono-Italic-webfont.svg#BitstreamVeraSansMonoOblique') format('svg');
+    src: url('https://raw.githubusercontent.com/TowCenter/YouAreHere/gh-pages/assets/themes/bootstrap-3/images/bebasneue_bold.woff2') format('woff2'),
+         url('https://raw.githubusercontent.com/TowCenter/YouAreHere/gh-pages/assets/themes/bootstrap-3/images/bebasneue_bold.woff') format('woff'),
+         url('https://raw.githubusercontent.com/TowCenter/YouAreHere/gh-pages/assets/themes/bootstrap-3/images/BebasNeue%20Bold.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
