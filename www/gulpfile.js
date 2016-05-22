@@ -2,134 +2,92 @@
  * https://packagecontrol.io/packages/SCSS <-- drop into packages dir, restart sublime
  * gulp
  * $ gem install sass
- * $ gem install compass --pre
  * $ compass init
  * $ sudo npm cache clean
  * $ sudo npm install -g n
  * $ sudo n stable
  * $ npm init
- * $ npm install -g gulp
- * $ npm install gulp gulp-ruby-sass gulp-compass gulp-autoprefixer gulp-sourcemaps gulp-clean-css gulp-uglify del browser-sync gulp-useref gulp-if run-sequence --save-dev
  */
 
  // Load plugins
 var gulp = require('gulp')
-	,sass = require('gulp-ruby-sass')
-	,compass = require('gulp-compass')
-	,autoprefixer = require('gulp-autoprefixer')
-	,sourcemaps = require('gulp-sourcemaps')
-	,cleanCSS = require('gulp-clean-css')
+	,sass = require('gulp-sass')
+	,minify = require('gulp-minify-css')
 	,uglify = require('gulp-uglify')
-	,browsersync = require('browser-sync')
 	,del = require('del')
 	,useref = require('gulp-useref')
 	,gulpIf = require('gulp-if')
-	,runSequence = require('run-sequence');
+	,runSequence = require('run-sequence')
+  ,eol = require('gulp-eol');
 
 var path = {
-  HTML: 'src/*.html',
-  ALL: ['src/js/*.js', 'src/js/**/*.js', 'src/index.html'],
-  JS: ['src/js/*.js', 'src/js/**/*.js'],
-  MINIFIED_JS_OUT: 'main.min.js',
-  SASS: 'src/sass/styles.scss',
-  CSS: ['src/css/*.css', 'src/css/**/*.css'],
-  MINIFIED_CSS_OUT: 'styles.min.css',
-  LIB: 'src/lib/**/*',
-  IMG: 'src/img/**/*',
-  FONTS: 'src/fonts/**/*',
-  DEST_CSS_SRC: 'src/css/',
+  JS: 'src/js/**/*.js',
   DEST_JS_SRC: 'src/js/',
+  SASS: 'src/sass/**/*.scss',
+  CSS: 'src/css/**/*.css',
+  DEST_CSS_SRC: 'src/css/',
+  FONTS: 'src/fonts/**/*',
+  IMG: 'src/img/**/*',
+  LIB: 'src/lib/**/*',
+  HTML: 'src/*.html',
+  CONFIG: 'src/config.json',
   SRC: 'src/',
   BUILD: 'build/'
 };
 
+var staticFiles = [
+  path.FONTS,
+  path.IMG,
+  path.LIB,
+  path.CONFIG
+];
+
 // Development Tasks 
 // -----------------
-
-// Live reload task via Browser Sync
-gulp.task('browsersync', function() {
-	browsersync({
-		server: {
-			baseDir: path.SRC
-		}
-	});
+gulp.task('watch', function() {
+  gulp.watch(path.SASS, ['sass']); 
 });
 
-// Watchers: Reload browser with CSS, JS, HTML as we develop
-gulp.task('watch', ['browsersync'], function() {
-
-  gulp.watch('src/sass/**/*.scss', ['sass'], browsersync.reload);
-  gulp.watch(path.JS, browsersync.reload);
-  gulp.watch(path.HTML, browsersync.reload);
-
+// Compile our SASS into CSS into one minified file
+gulp.task('sass', function() {
+  return gulp.src(path.SASS)
+    .pipe(sass())
+    .pipe(gulp.dest(path.DEST_CSS_SRC));
 });
-
 
 // Optimization + Build Tasks 
 // --------------------------
-
 // Clean up! Delete the previous build
 gulp.task('clean', function() {
     return del(path.BUILD);
 });
 
-// Compile our SASS into CSS into one minified file
-gulp.task('sass', function() {
-  return sass(path.SASS, { compass: true, sourcemap: true })
-      .pipe(autoprefixer('last 2 version'))
-      .pipe(gulp.dest(path.DEST_CSS_SRC))
-      .pipe(browsersync.reload({stream:true}));
-});
-
-// Copy fonts to our build folder
-gulp.task('fonts', function() {
-  return gulp.src(path.FONTS)
-  .pipe(gulp.dest(path.BUILD+'fonts'));
-});
-
-// Copy images to our build folder
-gulp.task('images', function() {
-  return gulp.src(path.IMG)
-  .pipe(gulp.dest(path.BUILD+'img'));
-});
-
-// Copy lib to our build folder
-gulp.task('lib', function() {
-  return gulp.src(path.LIB)
-  .pipe(gulp.dest(path.BUILD+'lib'));
-});
-
-// Copy HTML to our build folder
-gulp.task('html', function() {
-  return gulp.src(path.HTML)
+// Copy static assets over
+// fonts, images, twilio lib
+gulp.task('static', function() {
+  gulp.src(staticFiles, { base: path.SRC })
   .pipe(gulp.dest(path.BUILD));
 });
 
 // Optimizing CSS and JavaScript 
 gulp.task('useref', function(){
-  // var assets = useref.assets();
-
-  return gulp.src('src/index.html')
-    // .pipe(assets)
-    // Minifies only if it's a CSS file
-    .pipe(gulpIf(['src/css/*.css', 'src/css/**/*.css'], cleanCSS()))
-    // Uglifies only if it's a Javascript file
-    .pipe(gulpIf(['src/js/*.js', 'src/js/**/*.js'], uglify()))
-    // .pipe(assets.restore())
+  return gulp.src(path.HTML)
+    .pipe(eol('\r\n'))
     .pipe(useref())
+    // Minifies only if it's a CSS file
+    .pipe(gulpIf(path.CSS, minify()))
+    // Uglifies only if it's a Javascript file
+    .pipe(gulpIf(path.JS, uglify()))
     .pipe(gulp.dest(path.BUILD))
 });
 
-
-// Build Tasks
-// -----------
+// Build: Clean and then prepare assets for uploading to server
+gulp.task('build', ['clean', 'sass'], function() {
+    // run build tasks
+    runSequence( ['static', 'useref'] );
+});
 
 // Default: Clean and then update CSS + JS
 gulp.task('default', ['clean'], function() {
     gulp.start('watch');
-});
-
-// Build: Clean and then prepare assets for uploading to server
-gulp.task('build', ['clean'], function() {
-    runSequence( ['sass', 'fonts', 'images', 'lib', 'html', 'useref'] );
 });

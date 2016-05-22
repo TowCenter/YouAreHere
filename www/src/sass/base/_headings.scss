@@ -1,7 +1,7 @@
 body {
 	background: $cBackground;
 	color: $cBody;
-	font-family: $fBody, sans-serif;
+	font-family: $fLato, sans-serif;
 	font-size: 16px;
 	font-weight: $fLight;
 	line-height: 1.25em;
@@ -11,7 +11,7 @@ body {
 h1 {
 	color: $cHeadline;
 	font-size: 1.5em;
-	font-family: $fHeadlines, sans-serif;
+	font-family: $fBebas, sans-serif;
 	font-weight: $fNormal;
 	padding: 12px 0;
 	text-transform: uppercase;
@@ -20,22 +20,8 @@ h1 {
 h2 {
 	color: $cHeadline;
 	font-size: 1.25em;
-	font-family: $fHeadlines, sans-serif;
+	font-family: $fBebas, sans-serif;
 	font-weight: $fNormal;
 	text-transform: uppercase;
 	margin-bottom: .5em;
-}
-p {
-	color: $cParagraph;
-	font-size: 1em;
-	line-height: 1.5em;
-	margin-bottom: 1em;
-}
-a {
-	color: $cLink;
-}
-
-.date {
-	font-size: .85em;
-	float: right;
 }

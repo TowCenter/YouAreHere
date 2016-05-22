@@ -1,51 +1,4 @@
 @charset "UTF-8";
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline; }
-
-html {
-  line-height: 1; }
-
-ol, ul {
-  list-style: none; }
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0; }
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle; }
-
-q, blockquote {
-  quotes: none; }
-  q:before, q:after, blockquote:before, blockquote:after {
-    content: "";
-    content: none; }
-
-a img {
-  border: none; }
-
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block; }
-
 /* 
  * Base Rules
  *
@@ -56,14 +9,39 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 @font-face {
   font-family: 'Bebas';
   src: url("../fonts/BebasNeueBold.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'Lato';
   src: url("../fonts/Lato-Light.ttf") format("truetype"); }
+
 /* Fonts */
 /* Colors */
 /* Colors + Use Cases */
 /* Responsive Breakpoints */
 /* Default Padding */
+section {
+  width: 100%; }
+
+p {
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1em; }
+
+a {
+  color: #D81F27; }
+
+.cta {
+  background-color: #D81F27;
+  color: #E1F4FD;
+  font-family: "Bebas";
+  text-transform: uppercase;
+  height: 40px;
+  padding-top: 12px;
+  margin-bottom: 17px;
+  font-size: 1.5em;
+  letter-spacing: .03em; }
+
 body {
   background: #E1F4FD;
   color: #333;
@@ -91,19 +69,6 @@ h2 {
   text-transform: uppercase;
   margin-bottom: .5em; }
 
-p {
-  color: #333;
-  font-size: 1em;
-  line-height: 1.5em;
-  margin-bottom: 1em; }
-
-a {
-  color: #D81F27; }
-
-.date {
-  font-size: .85em;
-  float: right; }
-
 /* 
  * Layout Rules
  *
@@ -115,10 +80,16 @@ a {
 
 header {
   margin-top: -30px; }
-  header .info {
+  header #viewButton {
+    color: #333;
+    cursor: pointer;
+    font-family: "Bebas";
+    font-weight: 700;
+    font-size: 1.5em;
     position: absolute;
-    right: 10px;
-    top: 4px; }
+    right: 20px;
+    top: 13px;
+    text-transform: uppercase; }
   header .logo {
     display: block; }
     header .logo img {
@@ -143,16 +114,13 @@ nav {
   nav .flex-nav {
     display: -webkit-inline-flex;
     /* Safari */
-    display: -ms-inline-flexbox;
     display: inline-flex;
     -webkit-flex-direction: column-reverse;
     /* Safari */
-    -ms-flex-direction: column-reverse;
-        flex-direction: column-reverse;
+    flex-direction: column-reverse;
     -webkit-justify-content: space-around;
     /* Safari */
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
     padding: 10px 30px; }
   nav .flex-item {
     color: #fff;
@@ -173,8 +141,8 @@ nav {
 .about {
   display: none;
   text-align: left;
-  width: 94%;
-  padding-left: 30px; }
+  width: 90%;
+  margin: 0 auto; }
   .about.visible {
     display: block; }
   .about h2 {
@@ -189,23 +157,34 @@ nav {
   height: 40px; }
 
 .btn-call {
-  background-image: linear-gradient(to bottom, #eff2ff 0%, #bbcdd4 100%);
-  border-color: #C7C7C7;
-  color: #000; }
+  cursor: pointer;
+  background: url(../img/button_tap.png) no-repeat;
+  background-size: 107px;
+  width: 107px;
+  height: 107px;
+  margin: 13px auto; }
 
 .btn-audio {
   cursor: pointer;
-  width: 80px;
-  height: 80px;
   margin: 5px; }
 
 .btn-audio.play {
-  background: url(../img/button_play_med.png) no-repeat;
-  background-size: 80px; }
+  background: url(../img/button_play.png) no-repeat;
+  background-position: center; }
+
+.btn-audio.play.white {
+  background: url(../img/button_play_white.png) no-repeat;
+  background-size: 65px;
+  background-position: center; }
 
 .btn-audio.pause {
   background: url(../img/button_stop.png) no-repeat;
-  background-size: 80px; }
+  background-position: center; }
+
+.btn-audio.pause.white {
+  background: url(../img/button_stop_white.png) no-repeat;
+  background-size: 65px;
+  background-position: center; }
 
 .error {
   display: none;
@@ -222,13 +201,40 @@ nav {
   display: none; }
   .responses.visible {
     display: inline-block; }
+  .responses .responses-list {
+    width: 90%;
+    margin: 0 auto; }
   .responses .item {
-    margin: 10px; }
-    .responses .item p {
-      font-family: "Bebas";
-      text-align: right; }
+    display: inline-block;
+    margin: 5px 0;
+    max-width: 215px;
+    width: 50%; }
+    .responses .item .btn-audio {
+      height: 100px; }
+    .responses .item .tn-holder {
+      margin: 0 auto;
+      width: 178px; }
+    .responses .item .tn {
+      background-repeat: no-repeat;
+      background-size: 178px 100px; }
+    .responses .item .time,
     .responses .item .date {
-      float: none; }
+      margin: 0;
+      padding: 0;
+      text-align: left; }
+    .responses .item .date {
+      color: #D81F27;
+      font-family: "Bebas", sans-serif;
+      font-weight: 400;
+      font-size: 1.25em;
+      text-transform: uppercase;
+      margin-top: 7px; }
+    .responses .item .time {
+      color: #111;
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      font-size: 0.85em;
+      margin-top: -5px; }
 
 .story {
   display: none;
@@ -236,43 +242,29 @@ nav {
   .story.visible {
     display: block; }
   .story .btn-audio {
-    float: left; }
-  .story .story-content {
-    margin-top: 15px; }
+    display: inline-block;
+    width: 80px;
+    height: 80px; }
   .story .story-image {
     display: block;
     margin: 0 auto 10px;
     width: 100%; }
-  .story .summary {
-    text-align: left;
+  .story .story-content {
     width: 90%;
-    margin: 0 auto;
-    padding-top: 15px; }
+    margin: 0 auto; }
+  .story .summary {
+    display: inline-block;
+    text-align: left;
+    width: 75%;
+    margin: 0 auto 20px; }
     .story .summary .title {
       color: #D81F27;
-      display: inline-block;
-      margin: 0 0 5px;
+      margin-bottom: 0;
       padding: 0; }
-    .story .summary .date {
-      display: inline-block; }
-  .story .description .right-arrow {
-    display: inline-block;
-    margin-right: 3px;
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid #D81F27; }
-  .story .cta {
-    background-color: #D81F27;
-    color: #E1F4FD;
-    font-family: "Bebas";
-    text-transform: uppercase;
-    height: 40px;
-    padding-top: 12px;
-    margin-bottom: 17px;
-    font-size: 1.5em;
-    letter-spacing: .03em; }
+  .story .prompt {
+    text-align: left;
+    margin: 0 auto;
+    width: 90%; }
 
 /* 
  * State Rules
@@ -286,18 +278,16 @@ nav {
   .story .story-content {
     max-width: 70%;
     margin: 0 auto; }
-
   header .info {
     right: 60px;
     top: 14px; }
-
   .responses .item {
     margin: 10px auto;
     max-width: 70%; }
-
   .about {
     max-width: 70%;
     margin: 0 auto; } }
+
 /* Desktop */
 /* Tablet */
 /* Mobile */
@@ -313,5 +303,3 @@ nav {
 /* Portrait and Landscape */
 /* ----------- iPhone 4 and 4S ----------- */
 /* Portrait and Landscape */
-
-

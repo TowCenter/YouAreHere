@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <a class="info" href="/#about">About</a>
+      <div id="viewButton" data-href="about">About</div>
       <a class="logo" href="/">
         <img src="img/logo.png" width="297" height="202" />
       </a>
@@ -20,28 +20,26 @@
     <section class="story current visible">
       <!-- LOAD STORY HERE --> 
       <script id="story-template" type="x-handlebars-template">​
-        <img class="story-image" src="../img/park.jpg" />
+        <img class="story-image" src="/server/{{image}}" />
         <div class="story-content">
           <audio>
-            <source src="https://phiffer.org/youarehere/responses/1-2-RE7ce5815b77506679bdee30e42b2d8316.mp3" type="audio/mpeg">
+            <source src="/server/{{mp3}}" type="audio/mpeg">
             Your browser does not support the audio tag.
           </audio>
           <div class="btn-audio play"></div>
           <div class="summary">
             <h1 class="title">{{name}}</h1>
-            <div class="date">Apr. 17, 2016</div>
-            <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget commodo nibh. Quisque suscipit turpis velit, eleifend venenatis libero cursus a. Fusce non congue odio. Suspendisse potenti.</p>
+            <p class="description">{{story}}</p>
           </div>
         </div>
         <div class="cta">we would love to get your input!</div>
-        <p>To leave a response, call {{story_phone_number}}<br/>or tap the button below.</p>
-        <p>
-          <a class="btn btn-call btn-lg" href="tel:{{story_phone_number}}">Tap To Call!</a>
-        </p>
+        <p class="prompt">{{prompt}}</p>
+        <div class="btn-call" data-tel="{{story_phone_number}}"></div>
+        <p>(or call {{story_phone_number}})</p>
       </script> 
-      <!-- <a href="#"><span class="right-arrow"></span>56 Comments</a> -->
     </section>
     <section class="responses">
+      <div class="cta">hear the responses</div>
       <!-- LOAD RESPONSES HERE --> 
       <div class="loading visible">
         <div class="col-sm-12">loading responses...</div>
@@ -51,12 +49,17 @@
           <script id="responses-template" type="x-handlebars-template">​
             {{#each this}}
             <div class="item">
-              <div class="btn-audio play"></div>
-              <p class="date">{{created}}</p>
-              <audio>
-                <source src="{{mp3_url}}" type="audio/mpeg">
-                Your browser does not support the audio tag.
-              </audio>
+              <div class="tn-holder">
+                <div class="tn" style="background-image: url(../img/park/{{getPark}}_{{getRandomNumber}}.jpg);">
+                  <div class="btn-audio play white"></div>
+                  <audio>
+                    <source src="/server/{{mp3_url}}" type="audio/mpeg">
+                    Your browser does not support the audio tag.
+                  </audio>
+                </div>
+                <h1 class="date">{{formatDate created day="numeric" month="long" year="numeric"}}</h1>
+                <p class="time">{{formatTime created hour="numeric" minute="numeric"}}</p>
+              </div>
             </div>
             {{/each}}
           </script> 

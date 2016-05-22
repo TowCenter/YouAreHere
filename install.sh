@@ -216,6 +216,7 @@ fi
 cp scripts/usb_modeswitch.conf /etc/usb_modeswitch.conf
 cp scripts/gprs /etc/ppp/peers/gprs
 cp scripts/huawei_e303.rules /etc/udev/rules.d/huawei_e303.rules
+cp scripts/blacklist-bc.conf /etc/modprobe.d/blacklist-bc.conf
 
 # reload rules so data stick is automatically mode switched from storage device to modem
 udevadm control --reload-rules

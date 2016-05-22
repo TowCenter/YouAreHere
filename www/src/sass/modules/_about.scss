@@ -1,8 +1,8 @@
 .about {
 	display: none;
 	text-align: left;
-    width: 94%;
-    padding-left: 30px;
+    width: 90%;
+    margin: 0 auto;
 
 	&.visible {
 		display: block;
@@ -10,9 +10,5 @@
 
 	h2 {
 		color: $cOrange;
-	}
-
-	p {
-
 	}
 }

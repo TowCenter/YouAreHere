@@ -7,16 +7,51 @@
 		// transition: 1s;
 	}
 
-	.item {
-		margin: 10px;
+	.responses-list {
+		width: 90%;
+    	margin: 0 auto;
+	}
 
-		p {
-			font-family: $fHeadlines;
-    		text-align: right;
+	.item {
+	    display: inline-block;
+	    margin: 5px 0;
+    	max-width: 215px;
+	    width: 50%;
+
+		.btn-audio {
+			height: 100px;
 		}
 
+		.tn-holder {
+			margin: 0 auto;
+    		width: 178px;
+		}
+
+		.tn {
+			background-repeat: no-repeat;
+			background-size: 178px 100px;
+		}
+
+		.time,
 		.date {
-			float: none;
+			margin: 0;
+		    padding: 0;
+		    text-align: left;
+		}
+		.date {
+			color: $cOrange;
+			font-family: $fBebas, sans-serif;
+			font-weight: $fNormal;
+			font-size: 1.25em;
+			text-transform: uppercase;
+			margin-top: 7px;
+		}
+		.time {
+			color: $cBlack;
+			font-family: $fLato, sans-serif;
+			font-weight: $fLight;
+			font-size: 0.85em;
+			margin-top: -5px;
 		}
 	}
 }

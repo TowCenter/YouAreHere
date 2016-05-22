@@ -1,10 +1,16 @@
 header {
 	margin-top: -30px;
 	
-	.info {
+	#viewButton {
+		color: $cGrey;
+		cursor: pointer;
+		font-family: $fBebas;
+		font-weight: $fBold;
+		font-size: 1.5em;
 		position: absolute;
-		right: 10px;
-		top: 4px;
+		right: 20px;
+    	top: 13px;
+    	text-transform: uppercase;
 	}
 
 	.logo {

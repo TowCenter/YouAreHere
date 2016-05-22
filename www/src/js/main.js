@@ -2,8 +2,6 @@
 
   $( document ).ready( function() {
 
-    console.log("document is ready!");
-
     /* API CALLS />
       https://phiffer.org/youarehere/yah.php?get=stories
       https://phiffer.org/youarehere/yah.php?get=responses&story=[story ID]
@@ -11,9 +9,71 @@
       https://phiffer.org/youarehere/yah.php?twilio=1 (Twilio POST endpoint)
     */
 
-    const PH_NUM = "+16194314373"; // pull this from config file
+    /* HANDLEBARS HELPERS */
+    Handlebars.registerHelper('getPark', function() {
+      return PARK;
+    });
 
-    // fetch story
+    Handlebars.registerHelper('getRandomNumber', function() {
+      var min = 0
+          ,max = 14
+          ,num = Math.floor(Math.random() * (max - min + 1)) + min
+          ,padded;
+
+      num < 10 ? padded = "0"+num : padded = String(num);
+
+      return padded;
+    });
+    /* * * * */
+
+    /* APP FUNCTIONS, UTILITIES */
+    // vars, cached els
+    var PH_NUM
+        ,PARK="ts" // default to tompkins sq (not good, i know.. just for now)
+        ,currentAudio = {}
+        ,$viewButton = $('#viewButton');
+
+    // callbacks
+    // buttons
+    $viewButton.on('click', function() {
+      var href = $(this).data('href');
+      triggerView( href );
+
+      window.location.hash = href;
+      
+    });
+
+    // story audio + call button assigned in renderStory function
+
+    // window
+    $(window).on('hashchange', function(){
+      
+      show(decodeURI(window.location.hash));
+    });
+
+    // Methods in order of operation...
+    // load config file
+    function loadConfig() {
+      $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "/config.json"
+      })
+      .done(function( data ) {
+
+        PH_NUM = data["number"];
+        PARK = data["park"];
+
+        // now fetch the correct story
+        fetchStory();
+
+      })
+      .fail( function(xhr, textStatus, errorThrown) {
+        console.log("xhr responseText: " + xhr.responseText);
+        console.log("textStatus: " + textStatus);
+      });
+    }
+
     function fetchStory() {
       $.ajax({
           type: "GET",
@@ -46,6 +106,9 @@
         // Call a function that will turn that data into HTML.
         renderResponses(data.responses);
 
+        // Trigger a hashchange depending on where we are in the app
+        triggerView(window.location.hash);
+
         // Manually trigger a hashchange to start the app.
         $(window).trigger('hashchange');
       })
@@ -53,6 +116,69 @@
         console.log("xhr responseText: " + xhr.responseText);
         console.log("textStatus: " + textStatus);
       });
+    }
+
+    function renderStory(story){
+
+      var $story = $('.story');
+      var tmplScript = $("#story-template").html();
+      var tmpl = Handlebars.compile(tmplScript);
+      HandlebarsIntl.registerWith(Handlebars);
+      $story.append( tmpl(story) );
+
+      $story.find('.btn-audio').on('click', function (e) {
+        e.preventDefault();
+
+        toggleAudio( $story.find('audio').get(0), $(this) );
+
+      });
+
+      $story.find('.btn-call').on('click', function(e) {
+        e.preventDefault();
+        
+        window.location.href="tel://" + $(this).data('tel');
+
+      });
+
+    }
+
+    function renderResponses(data){
+      // Uses Handlebars to create a list of responses using the provided data.
+      // This function is called only once on page load.
+      var list = $('.responses .responses-list');
+
+      var tmplScript = $("#responses-template").html();
+      var tmpl = Handlebars.compile(tmplScript);
+      HandlebarsIntl.registerWith(Handlebars);
+      list.append( tmpl(data) );
+
+      // click to toggle audio
+      list.find('.tn').on('click', function (e) {
+
+        e.preventDefault();
+
+        toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
+
+      });
+
+      // hide loading message
+      $('.loading').removeClass('visible');
+      $('.responses').addClass('current visible');
+    }
+
+    function triggerView(href) {
+      //strip ot hash, if it's there
+      href = href.replace(/^.*#/, '');
+      switch(href) {
+        case 'about':
+          $viewButton.data('href', '');
+          $viewButton.html('HOME');
+          break;
+        case '':
+          $viewButton.data('href', 'about');
+          $viewButton.html('ABOUT');
+          break;
+      }
     }
 
     function show(url) {
@@ -81,137 +207,52 @@
 
     }
 
-    function renderStory(story){
-
-      var $story = $('.story');
-      var tmplScript = $("#story-template").html();
-      var tmpl = Handlebars.compile(tmplScript);
-      $story.append( tmpl(story) );
-
-    }
-
-    function renderResponses(data){
-      // Uses Handlebars to create a list of responses using the provided data.
-      // This function is called only once on page load.
-      var list = $('.responses .responses-list');
-
-      var tmplScript = $("#responses-template").html();
-      var tmpl = Handlebars.compile(tmplScript);
-      list.append( tmpl(data) );
-
-      // Each products has a data-index attribute.
-      // On click change the url hash to open up a preview for this product only.
-      // Remember: every hashchange triggers the render function.
-      list.find('.item').on('click', function (e) {
-
-        e.preventDefault();
-
-        toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
-
-      });
-
-      // hide loading message
-      $('.loading').removeClass('visible');
-      $('.responses').addClass('current visible');
-    }
-
     // audio controls
     function toggleAudio(audio, btn) {
 
-      if (audio.paused) {
+      // first, stop any currently playing audio
+      if( currentAudio.audio && currentAudio.audio != audio) {
+        onAudioEnd(currentAudio);
+      }
 
-        audio.addEventListener('ended', function() {
-          onAudioEnd(audio, btn);
+      // update currentAudio
+      currentAudio.audio = audio;
+      currentAudio.btn = btn;
+
+      // then toggle audio state
+      if (currentAudio.audio.paused) {
+
+        currentAudio.audio.addEventListener('ended', function() {
+          onAudioEnd(currentAudio);
         });
 
-        audio.play();
+        currentAudio.audio.play();
 
-        $(btn).removeClass('play')
+        $(currentAudio.btn).removeClass('play')
               .addClass('pause');
 
-      } else { 
+      } 
+      else { 
 
-        onAudioEnd(audio, btn);
+        onAudioEnd(currentAudio);
+        currentAudio = {};
       }
     }
 
-    function onAudioEnd(audio, btn) {
+    function onAudioEnd(obj) {
     
-      audio.removeEventListener('ended', onAudioEnd);
+      obj.audio.removeEventListener('ended', onAudioEnd);
 
-      audio.pause();
+      obj.audio.pause();
 
-      audio.currentTime = 0;
+      obj.audio.currentTime = 0;
 
-      $(btn).removeClass('pause')
-            .addClass('play');
+      $(obj.btn).removeClass('pause')
+                .addClass('play');
     }
 
-    // callbacks
-    $(window).on('hashchange', function(){
-      
-      show(decodeURI(window.location.hash));
-    });
-
-    fetchStory();
-
-
-    
-    // $(".callback").on("click", function() {
-
-    //   $.ajax({
-    //       type: "POST",
-    //       dataType: "jsonp",
-    //       url: "https://phiffer.org/youarehere/yah.php?twilio=1",
-    //       crossDomain : true
-    //   })
-    //   .done(function( data ) {
-    //     console.log( "Load was performed: " + data );
-    //   })
-    //   .fail( function(xhr, textStatus, errorThrown) {
-    //     console.log("xhr responseText: " + xhr.responseText);
-    //     console.log("textStatus: " + textStatus);
-    //   });
-
-    // });
-
-    // Twilio.Device.ready(function (evice) {
-   //    $("#log").text("Ready");
-   //  });d
-         
-   //  Twilio.Device.error(function (error) {
-   //    $("#log").text("Error: " + error.message);
-   //  });
-         
-   //  Twilio.Device.connect(function (conn) {
-   //    $("#log").text("Successfully established call");
-   //  });
-         
-   //  Twilio.Device.disconnect(function (conn) {
-   //    $("#log").text("Call ended");
-   //  });
-         
-   //  Twilio.Device.incoming(function (conn) {
-   //    $("#log").text("Incoming connection from " + conn.parameters.From);
-   //    // accept the incoming connection and start two-way audio
-   //    conn.accept();
-   //  });
-         
-   //  function call() {
-   //    Twilio.Device.connect();
-   //  }
-         
-   //  function hangup() {
-   //    Twilio.Device.disconnectAll();
-   //  }
-
-   //  $(".call").on("click", function() {
-   //    call();
-   //  });
-
-   //  $(".hangup").on("click", function() {
-   //    hangup();
-   //  });
+    // Ready to go, load the config
+    loadConfig();
 
   } );
 
