@@ -76,7 +76,7 @@ echo "Configuring Raspberry Pi as Access Point..."
 echo ""
 
 # ask how they want to configure their access point
-read -p "Wifi Channel Name [$AP_CHAN]: " -e t1
+read -p "Wifi Channel Number [$AP_CHAN]: " -e t1
 if [ -n "$t1" ]; then AP_CHAN="$t1";fi
 
 read -p "Wifi SSID [$AP_SSID]: " -e t1

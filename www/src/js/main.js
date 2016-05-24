@@ -69,8 +69,8 @@
 
       })
       .fail( function(xhr, textStatus, errorThrown) {
-        console.log("xhr responseText: " + xhr.responseText);
-        console.log("textStatus: " + textStatus);
+        console.log("config xhr responseText: " + xhr.responseText);
+        console.log("config textStatus: " + textStatus);
       });
     }
 
@@ -90,8 +90,8 @@
 
       })
       .fail( function(xhr, textStatus, errorThrown) {
-        console.log("xhr responseText: " + xhr.responseText);
-        console.log("textStatus: " + textStatus);
+        console.log("get stories xhr responseText: " + xhr.responseText);
+        console.log("get stories textStatus: " + textStatus);
       });
     }
 
@@ -113,8 +113,8 @@
         $(window).trigger('hashchange');
       })
       .fail( function(xhr, textStatus, errorThrown) {
-        console.log("xhr responseText: " + xhr.responseText);
-        console.log("textStatus: " + textStatus);
+        console.log("get responses xhr responseText: " + xhr.responseText);
+        console.log("get responses textStatus: " + textStatus);
       });
     }
 
