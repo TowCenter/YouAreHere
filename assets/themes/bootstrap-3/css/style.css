@@ -100,8 +100,15 @@ iframe{
 }
 #thislogo{
 }
+.row{
+   max-width:1100px;
+   margin:0 auto;
+}
 .content {
-  padding: 0 30px 0 0;
+    display: inline-block;
+    max-width: 740px;
+    padding: 0 30px 0 0;
+    vertical-align: top;
 }
 
 .navbar {
@@ -172,6 +179,7 @@ ul.nav li a.active {
 
 .sidebar {
   max-width: 325px;
+  display: inline-block;
 }
 
 .sidebar p {
@@ -190,6 +198,7 @@ ul.nav li a.active {
   background: none;
   margin-left: -30px;
   margin-top:40px;
+  text-align: center;
 }
 
 #footer p {
