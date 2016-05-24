@@ -408,10 +408,18 @@ header h1 {
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) (max-width: 959px) */
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1400px) {
  .sidebar {
     max-width: none;
-    padding: 0 30px 0 0;
+    width:30%;
+    padding: 0 0px 0 0;
+  }
+  .content{
+     max-width: none;
+     width:66%;
+  }
+  .row{
+     max-width:1100px;
   }
 }
 
@@ -419,6 +427,7 @@ header h1 {
 @media only screen and (min-width: 768px) and (max-width: 959px) { 
   .sidebar {
     max-width: none;
+    width:100%;
     padding: 0 30px 0 0;
   }
   .sidebar div {
@@ -431,6 +440,11 @@ header h1 {
   }
   header .social {
     display: block;
+  }
+  .content{
+     width:100%;
+     max-width: none;
+  }
   }
 }
 
@@ -458,6 +472,7 @@ header h1 {
   }
   .sidebar {
     max-width: none;
+    width:100%;
     padding: 0 30px 0 0;
   }
   .sidebar div {
@@ -470,6 +485,10 @@ header h1 {
   }
   header .social {
     display: block;
+  }
+  .content{
+     width:100%;
+     max-width: none;
   }
 }
 
@@ -486,6 +505,8 @@ header h1 {
   }
   .content {
     padding: 0;
+    width:100%;
+    max-width: none;
   }
   #footer p {
     font-size: .5em;
@@ -496,6 +517,7 @@ header h1 {
  .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
+    width:100%;
   }
   #thislogo{
       margin-top:-30px;
@@ -512,6 +534,8 @@ header h1 {
   }
   .content {
     padding: 0;
+    width:100%;
+    max-width: none;
   }
   #footer p {
     font-size: .5em;
@@ -519,6 +543,7 @@ header h1 {
  .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
+    width:100%;
   }
   #thislogo{
       width:100%;
