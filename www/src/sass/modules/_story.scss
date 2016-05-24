@@ -10,6 +10,8 @@
 		display: inline-block;
 		width: 80px;
     	height: 80px;
+    	top: -50px;
+    	position: relative;
 	}
 
 	.story-image {
@@ -19,14 +21,14 @@
 	}
 
 	.story-content {
-		width: 90%;
+		width: 95%;
     	margin: 0 auto;
 	}
 
 	.summary {
 		display: inline-block;
 		text-align: left;
-		width: 75%;
+		width: 70%;
     	margin: 0 auto 20px;
 
     	.title {
