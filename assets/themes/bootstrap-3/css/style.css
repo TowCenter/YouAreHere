@@ -408,11 +408,11 @@ header h1 {
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) (max-width: 959px) */
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1099px) {
  .sidebar {
     max-width: none;
-    width:31%;
-    padding: 0 30px 0 0;
+    width:35%;
+    padding: 0 0px 0 0;
     border:1px solid red;
   }
   .content{
