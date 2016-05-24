@@ -90,8 +90,11 @@
 
       })
       .fail( function(xhr, textStatus, errorThrown) {
-        console.log("get stories xhr responseText: " + xhr.responseText);
+        for (var k in xhr) {
+          console.log(k + "get stories in xhr : " + xhr[k]);
+        }
         console.log("get stories textStatus: " + textStatus);
+        console.log("get stories errorThrown: " + errorThrown);
       });
     }
 
