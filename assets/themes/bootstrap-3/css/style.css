@@ -408,7 +408,7 @@ header h1 {
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) (max-width: 959px) */
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1150px) {
  .sidebar {
     max-width: none;
     width:31%;
@@ -445,6 +445,7 @@ header h1 {
   }
   .content{
      width:100%;
+     max-width: none;
   }
   }
 }
@@ -473,6 +474,7 @@ header h1 {
   }
   .sidebar {
     max-width: none;
+    width:100%;
     padding: 0 30px 0 0;
   }
   .sidebar div {
@@ -485,6 +487,10 @@ header h1 {
   }
   header .social {
     display: block;
+  }
+  .content{
+     width:100%;
+     max-width: none;
   }
 }
 
@@ -501,6 +507,8 @@ header h1 {
   }
   .content {
     padding: 0;
+    width:100%;
+    max-width: none;
   }
   #footer p {
     font-size: .5em;
@@ -511,6 +519,7 @@ header h1 {
  .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
+    width:100%;
   }
   #thislogo{
       margin-top:-30px;
@@ -527,6 +536,8 @@ header h1 {
   }
   .content {
     padding: 0;
+    width:100%;
+    max-width: none;
   }
   #footer p {
     font-size: .5em;
@@ -534,6 +545,7 @@ header h1 {
  .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
+    width:100%;
   }
   #thislogo{
       width:100%;
