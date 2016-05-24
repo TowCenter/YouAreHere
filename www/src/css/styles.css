@@ -207,16 +207,16 @@ nav {
   .responses .item {
     display: inline-block;
     margin: 5px 0;
-    max-width: 215px;
+    max-width: 150px;
     width: 50%; }
     .responses .item .btn-audio {
       height: 100px; }
     .responses .item .tn-holder {
       margin: 0 auto;
-      width: 178px; }
+      width: 150px; }
     .responses .item .tn {
       background-repeat: no-repeat;
-      background-size: 178px 100px; }
+      background-size: 150px 100px; }
     .responses .item .time,
     .responses .item .date {
       margin: 0;

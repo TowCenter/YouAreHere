@@ -91,7 +91,7 @@
       })
       .fail( function(xhr, textStatus, errorThrown) {
         for (var k in xhr) {
-          console.log(k + "get stories in xhr : " + xhr[k]);
+          console.log(k + " in get stories xhr : " + xhr[k]);
         }
         console.log("get stories textStatus: " + textStatus);
         console.log("get stories errorThrown: " + errorThrown);
