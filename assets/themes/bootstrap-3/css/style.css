@@ -408,7 +408,7 @@ header h1 {
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) (max-width: 959px) */
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1200px) {
  .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
@@ -417,6 +417,9 @@ header h1 {
   .content{
      max-width: none;
   }
+  .row{
+     max-width:none;
+  }
 }
 
 /* Tablet Portrait size to standard 960 (devices and browsers) */
@@ -424,7 +427,6 @@ header h1 {
   .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
-    border:1px solid green;
   }
   .sidebar div {
     display: inline-block;
@@ -464,7 +466,6 @@ header h1 {
   .sidebar {
     max-width: none;
     padding: 0 30px 0 0;
-    border:1px solid purple;
   }
   .sidebar div {
     display: inline-block;
