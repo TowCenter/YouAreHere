@@ -408,7 +408,7 @@ header h1 {
 ================================================== */
 
 /* Smaller than standard 960 (devices and browsers) (max-width: 959px) */
-@media only screen and (max-width: 1100px) {
+@media only screen and (max-width: 1400px) {
  .sidebar {
     max-width: none;
     width:35%;
@@ -420,7 +420,7 @@ header h1 {
      width:60%;
   }
   .row{
-     max-width:1099px;
+     max-width:1100px;
   }
 }
 
