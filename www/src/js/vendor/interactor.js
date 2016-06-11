@@ -38,6 +38,8 @@ Interactor.prototype = {
 		for (var k in config) {
 			console.log(k + ": " + config[k]);
 		}
+
+		config.log("typeof interactions: " + typeof(config.interactions));
 		
 		// Argument Assignment  // Type Checks 																			// Default Values
 		this.interactions 		= typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
@@ -51,6 +53,7 @@ Interactor.prototype = {
 		this.records 			= [];
 		this.loadTime 			= new Date();
 
+		console.log("in init, config.interactions: " + config.interactions);
 		console.log("in init, this.interactions: " + this.interactions);
 		console.log("in init, this.interactionElement: " + this.interactionElement);
 		console.log("in init, this.interactionEvents: " + this.interactionEvents);
