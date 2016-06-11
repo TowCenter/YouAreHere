@@ -251,7 +251,7 @@ nav {
   .story.visible {
     display: block; }
   .story .hidden {
-    display: none; }
+    opacity: 0; }
   .story .btn-audio {
     display: inline-block;
     width: 80px;
