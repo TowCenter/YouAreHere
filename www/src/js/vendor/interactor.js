@@ -55,9 +55,9 @@ Interactor.prototype = {
 	// Create Events to Track
 	__bindEvents__: function () {
 		
-		console.log("tracking bind events");
 		var interactor 	= this;
 
+		console.log("tracking bind events: " + (interactor.interactions === true));
 		// Set Interaction Capture
 		if (interactor.interactions === true) {
 			console.log("hi");
