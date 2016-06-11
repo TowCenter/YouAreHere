@@ -51,13 +51,13 @@
 
     // callbacks
     // buttons
-    // $viewButton.on('click', function() {
-    //   var href = $(this).data('href');
-    //   triggerView( href );
+    $viewButton.on('click', function() {
+      var href = $(this).data('href');
+      triggerView( href );
 
-    //   window.location.hash = href;
+      window.location.hash = href;
       
-    // });
+    });
 
     // story audio + call button assigned in renderStory function
 
@@ -73,12 +73,7 @@
       var interactions = new Interactor({
           interactions        : true,
           interactionElement  : "interaction",
-          interactionEvents   : ["mousedown", "mouseup", "touchstart", "touchend"],
-          conversions         : false,
-          conversionElement   : "conversion",
-          conversionEvents    : ["mouseup", "touchend"],
-          endpoint            : '/interactions',
-          async               : true
+          interactionEvents   : ["mousedown", "mouseup", "touchstart", "touchend"]
       });
     }
     // load config file
@@ -154,19 +149,19 @@
       HandlebarsIntl.registerWith(Handlebars);
       $story.append( tmpl(data) );
 
-      // $story.find('.btn-audio').on('click', function (e) {
-      //   //e.preventDefault();
+      $story.find('.btn-audio').on('click', function (e) {
+        e.preventDefault();
 
-      //   toggleAudio( $story.find('audio').get(0), $(this) );
+        toggleAudio( $story.find('audio').get(0), $(this) );
 
-      // });
+      });
 
-      // $story.find('.btn-call').on('click', function(e) {
-      //   //e.preventDefault();
+      $story.find('.btn-call').on('click', function(e) {
+        e.preventDefault();
         
-      //   window.location.href="tel://" + $(this).data('tel');
+        window.location.href="tel://" + $(this).data('tel');
 
-      // });
+      });
 
     }
 
@@ -179,13 +174,13 @@
       list.append( tmpl(data) );
 
       // click to toggle audio
-      // list.find('.tn').on('click', function (e) {
+      list.find('.tn').on('click', function (e) {
 
-      //   //e.preventDefault();
+        e.preventDefault();
 
-      //   toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
+        toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
 
-      // });
+      });
 
       // hide loading message
       $('.loading').removeClass('visible');
