@@ -287,7 +287,9 @@ nav {
 @media only screen and (min-width: $bpMobile) and (max-width: $bpTablet - 1) {
 
 }*/
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 768px) {
+  .story .btn-audio {
+    top: 0; }
   .story .story-content {
     width: 70%;
     margin: 0 auto; }

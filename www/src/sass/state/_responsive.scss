@@ -18,6 +18,10 @@
 @media only screen and (min-width: $bpMobile) {
 	.story {
 
+		.btn-audio {
+			top: 0;
+		}
+
 		.story-content {
 	    	width: 70%;
     		margin: 0 auto;
