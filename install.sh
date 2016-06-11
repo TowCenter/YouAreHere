@@ -57,8 +57,8 @@ a2enmod proxy_http proxy proxy_connect ssl cache_disk rewrite
 # append scripts/mod_proxy.conf to end of /etc/apache2/apache2.conf...
 cat scripts/mod_proxy.conf >> /etc/apache2/apache2.conf
 
-# copy scripts/999-youarehere-rewrite.conf to mods-enabled...
-cp scripts/999-youarehere-rewrite.conf /etc/apache2/mods-enabled
+# copy scripts/999-youarehere-rewrite.conf to conf-enabled...
+cp scripts/999-youarehere-rewrite.conf /etc/apache2/conf-enabled
 
 # restart apache
 service apache2 reload
