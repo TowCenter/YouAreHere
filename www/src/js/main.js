@@ -9,7 +9,9 @@
       https://phiffer.org/youarehere/yah.php?twilio=1 (Twilio POST endpoint)
     */
 
-    /* HANDLEBARS HELPERS */
+    /* * * *
+     * Handlebar Helpers
+     */
     Handlebars.registerHelper('getPark', function() {
       return PARK;
     });
@@ -42,14 +44,18 @@
     };
     /* * * * */
 
-    /* APP FUNCTIONS, UTILITIES */
-    // vars, cached els
+    /* * * *
+     * Variables
+     */
     var PH_NUM
         ,PARK="ts" // default to tompkins sq (not good, i know.. just for now)
         ,currentAudio = {}
         ,$viewButton = $('#viewButton');
 
-    // callbacks
+
+    /* * * *
+     * Callbacks
+     */
     // buttons
     $viewButton.on('click', function() {
       var href = $(this).data('href');
@@ -67,22 +73,9 @@
       show(decodeURI(window.location.hash));
     });
 
-    // Methods in order of operation...
-    // set up tracking
-    function loadTracking() {
-      var interactions = new Interactor({
-          interactions        : true,
-          interactionElement  : 'interaction',
-          interactionEvents   : ['mouseup', 'touchend'],
-          conversions         : false,
-          conversionElement   : 'conversion',
-          conversionEvents    : ['mouseup', 'touchend'],
-          endpoint            : 'http://youarehere.com/cgi/stats.py',
-          async               : true,
-          debug               : true
-      });
-    }
-    // load config file
+    /* * * *
+     * Load Config file
+     */
     function loadConfig() {
       $.ajax({
           type: "GET",
@@ -104,6 +97,9 @@
       });
     }
 
+    /* * * *
+     * Fetch + Render
+     */
     function fetchStory() {
       $.ajax({
           type: "GET",
@@ -191,8 +187,29 @@
       // hide loading message
       $('.loading').removeClass('visible');
       $('.responses').addClass('current visible');
+
+      // kick off tracking!
+      loadTracking();
     }
 
+    // set up tracking
+    function loadTracking() {
+      var interactions = new Interactor({
+          interactions        : true,
+          interactionElement  : 'interaction',
+          interactionEvents   : ['mouseup', 'touchend'],
+          conversions         : false,
+          conversionElement   : 'conversion',
+          conversionEvents    : ['mouseup', 'touchend'],
+          endpoint            : 'http://youarehere.com/cgi/stats.py',
+          async               : true,
+          debug               : true
+      });
+    }
+
+    /* * * *
+     * Helper Functions
+     */
     function triggerView(href) {
       //strip out hash, if it's there
       href = href.replace(/^.*#/, '');
@@ -234,7 +251,9 @@
 
     }
 
-    // audio controls
+    /* * * *
+     * Audio Controls
+     */
     function toggleAudio(audio, btn) {
 
       // first, stop any currently playing audio
@@ -278,9 +297,9 @@
                 .addClass('play');
     }
 
-    loadTracking();
-
-    // Ready to go, load the config
+    /* * * *
+     * Ready to go, load the config
+     */
     loadConfig();
 
   } );

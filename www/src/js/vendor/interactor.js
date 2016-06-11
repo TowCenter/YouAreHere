@@ -70,8 +70,7 @@ Interactor.prototype = {
 		if (interactor.interactions === true) {
 			for (var i = 0; i < interactor.interactionEvents.length; i++) {
 				var ev 		= interactor.interactionEvents[i],
-					//targets = document.getElementsByClassName(interactor.interactionElement);
-					targets = $('.'+interactor.interactionElement);
+					targets = document.getElementsByClassName(interactor.interactionElement);
 					console.log("$$$ interactor.interactionElement: " + interactor.interactionElement);
 					console.log("$$$ targets length: " + targets.length);
 				for (var j = 0; j < targets.length; j++) {
