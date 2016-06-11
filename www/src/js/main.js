@@ -145,6 +145,7 @@
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
       $story.append( tmpl(story) );
+      console.log("tmpl story: " + tmpl);
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -171,6 +172,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
+      console.log("tmpl responses: " + tmpl);
       list.append( tmpl(data) );
 
       // click to toggle audio
