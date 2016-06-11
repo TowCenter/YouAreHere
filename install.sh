@@ -52,12 +52,17 @@ chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
 
-a2enmod proxy_http proxy proxy_connect ssl 
-service apache2 reload
-apachectl restart
+a2enmod proxy_http proxy proxy_connect ssl cache_disk rewrite
 
 # append scripts/mod_proxy.conf to end of /etc/apache2/apache2.conf...
 cat scripts/mod_proxy.conf >> /etc/apache2/apache2.conf
+
+# copy scripts/999-youarehere-rewrite.conf to mods-enabled...
+cp scripts/999-youarehere-rewrite.conf /etc/apache2/mods-enabled
+
+# restart apache
+service apache2 reload
+apachectl restart
 
 # CHECK USB WIFI HARDWARE IS FOUND
 # and that iw list does not fail with 'nl80211 not found'
@@ -177,6 +182,7 @@ echo -en "Creating dnsmasq configuration file... 			"
 cat <<EOF > /etc/dnsmasq.conf
 interface=wlan0
 address=/#/$AP_IP
+address=/youarehere.com/$AP_IP
 address=/apple.com/0.0.0.0
 address=/phiffer.org/173.220.23.228
 address=/youarehere.network/192.30.252.153

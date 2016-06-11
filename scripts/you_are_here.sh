@@ -25,10 +25,6 @@ SCRIPTNAME=/etc/init.d/$NAME
 			# start the hostapd and dnsmasq services
 			service hostapd start
 			service dnsmasq start
-
-			# share internet connection to all web traffic
-			iptables -t nat -A POSTROUTING -o ppp0 -j MASQUERADE
-            echo 1  > /proc/sys/net/ipv4/ip_forward
 		;;
 
 		status)
