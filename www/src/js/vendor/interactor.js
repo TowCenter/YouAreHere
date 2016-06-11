@@ -57,14 +57,14 @@ Interactor.prototype = {
 
 		// Set Interaction Capture
 		if (interactor.interactions === true) {
+			console.log("hi");
 			for (var i = 0; i < interactor.interactionEvents.length; i++) {
+				console.log("running through interaction events");
 				var ev 		= interactor.interactionEvents[i],
 					targets = document.getElementsByClassName(interactor.interactionElement);
 					console.log("targets length: " + targets.length);
-					for (var i=0; i<targets.length; i++) {
-						console.log("target: " + targets[i]);
-					}
 				for (var j = 0; j < targets.length; j++) {
+					console.log("target: " + targets[j]);
 					targets[j].addEventListener(ev, function (e) {
 						e.stopPropagation();
 						interactor.__addInteraction__(e, "interaction");

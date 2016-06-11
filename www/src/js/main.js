@@ -56,6 +56,7 @@
       triggerView( href );
 
       window.location.hash = href;
+      window.location.href="";
       
     });
 
@@ -153,7 +154,7 @@
         e.preventDefault();
 
         toggleAudio( $story.find('audio').get(0), $(this) );
-        window.location.href="tel://" + $(this).data('tel');
+        window.location.href="";
 
       });
 
@@ -180,6 +181,7 @@
         e.preventDefault();
 
         toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
+        window.location.href="";
 
       });
 
