@@ -137,15 +137,15 @@
       });
     }
 
-    function renderStory(story){
+    function renderStory(data){
 
       var $story = $('.story');
       //var tmplScript = $("#story-template").html();
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      $story.append( tmpl(story) );
-      console.log("tmpl story: " + tmpl);
+      $story.append( tmpl(data) );
+      console.log("tmpl story: " + tmpl(data));
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -172,8 +172,8 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      console.log("tmpl responses: " + tmpl);
       list.append( tmpl(data) );
+      console.log("tmpl responses: " + tmpl(data));
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
