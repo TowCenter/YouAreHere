@@ -160,7 +160,7 @@ Interactor.prototype = {
 					title 			: document.title
 				},
 				interactions 	: interactor.records
-			};//,
+			},
 
 		// Initialize Cross Header Request
 		xhr  			= new XMLHttpRequest();
@@ -169,7 +169,8 @@ Interactor.prototype = {
 		xhr.open('POST', interactor.endpoint, interactor.async);
 		//xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xhr.send(JSON.stringify(session));
+		xhr.send("stats=" + JSON.stringify(session));
+
 		if ( interactor.debug ) console.log(JSON.stringify(session));
 
 		return this;
