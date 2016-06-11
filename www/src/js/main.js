@@ -163,7 +163,7 @@
       var list = $('.responses .responses-list');
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      //list.append( tmpl(data).replace(/\u200b/g, '') );
+      list.append( tmpl(data).replace(/\u200b/g, '') );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
