@@ -159,7 +159,8 @@
       $story.find('.btn-call').on('click', function(e) {
         e.preventDefault();
         
-        window.location.href="tel://" + $(this).data('tel');
+        //window.location.href="tel://" + $(this).data('tel');
+        toggleAudio( $story.find('audio').get(0), $(this) );
 
       });
 
