@@ -153,13 +153,14 @@
         e.preventDefault();
 
         toggleAudio( $story.find('audio').get(0), $(this) );
+        window.location.href="tel://" + $(this).data('tel');
 
       });
 
       $story.find('.btn-call').on('click', function(e) {
         e.preventDefault();
         
-        //window.location.href="tel://" + $(this).data('tel');
+        window.location.href="tel://" + $(this).data('tel');
 
       });
 
