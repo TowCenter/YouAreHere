@@ -250,7 +250,7 @@ nav {
   margin-top: -45px; }
   .story.visible {
     display: block; }
-  .story .hidden {
+  .story .tracking {
     opacity: 0; }
   .story .btn-audio {
     display: inline-block;
