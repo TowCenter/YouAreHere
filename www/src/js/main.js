@@ -33,7 +33,7 @@
                   if (Handlebars.templates === undefined) {
                       Handlebars.templates = {};
                   }
-                  Handlebars.templates[name] = Handlebars.compile(data.html());
+                  Handlebars.templates[name] = Handlebars.compile(data);
               },
               async : false
           });
