@@ -72,8 +72,8 @@ Interactor.prototype = {
 				var ev 		= interactor.interactionEvents[i],
 					//targets = document.getElementsByClassName(interactor.interactionElement);
 					targets = $('.'+interactor.interactionElement);
-					console.log("interactor.interactionElement: " + interactor.interactionElement);
-					console.log("targets length: " + targets.length);
+					console.log("$$$ interactor.interactionElement: " + interactor.interactionElement);
+					console.log("$$$ targets length: " + targets.length);
 				for (var j = 0; j < targets.length; j++) {
 					console.log("target: " + targets[j]);
 					targets[j].addEventListener(ev, function (e) {
