@@ -155,14 +155,14 @@
       $story.append( tmpl(data) );
 
       $story.find('.btn-audio').on('click', function (e) {
-        e.preventDefault();
+        //e.preventDefault();
 
         toggleAudio( $story.find('audio').get(0), $(this) );
 
       });
 
       $story.find('.btn-call').on('click', function(e) {
-        e.preventDefault();
+        //e.preventDefault();
         
         window.location.href="tel://" + $(this).data('tel');
 
@@ -181,7 +181,7 @@
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
 
-        e.preventDefault();
+        //e.preventDefault();
 
         toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
 
