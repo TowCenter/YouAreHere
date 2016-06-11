@@ -62,6 +62,7 @@ Interactor.prototype = {
 
 		var interactor 	= this;
 
+		console.log("interactor.interactions: " + interactor.interactions);
 		console.log("tracking bind events: " + (interactor.interactions == true));
 		// Set Interaction Capture
 		if (interactor.interactions == true) {
