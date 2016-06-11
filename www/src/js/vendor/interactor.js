@@ -39,7 +39,7 @@ Interactor.prototype = {
 			console.log(k + ": " + config[k]);
 		}
 
-		config.log("typeof interactions: " + typeof(config.interactions));
+		console.log("typeof interactions: " + typeof(config.interactions));
 		
 		// Argument Assignment  // Type Checks 																			// Default Values
 		this.interactions 		= typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
