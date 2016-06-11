@@ -237,7 +237,7 @@ nav {
 
 .story {
   display: none;
-  margin-top: -60px; }
+  margin-top: -45px; }
   .story.visible {
     display: block; }
   .story .btn-audio {
@@ -304,7 +304,7 @@ nav {
   .responses .item {
     display: inline-block;
     margin: 5px 0;
-    max-width: 154px;
+    max-width: 158px;
     width: 50%; } }
 
 /* ----------- iPhone 5 and 5S ----------- */
