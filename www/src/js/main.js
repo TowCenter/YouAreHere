@@ -78,7 +78,8 @@
           conversionElement   : 'conversion',
           conversionEvents    : ['mouseup', 'touchend'],
           endpoint            : 'http://youarehere.com/cgi/stats.py?stats=',
-          async               : true
+          async               : true,
+          debug               : true
       });
     }
     // load config file
