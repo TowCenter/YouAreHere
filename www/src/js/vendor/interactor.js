@@ -60,6 +60,7 @@ Interactor.prototype = {
 			for (var i = 0; i < interactor.interactionEvents.length; i++) {
 				var ev 		= interactor.interactionEvents[i],
 					targets = document.getElementsByClassName(interactor.interactionElement);
+					console.log("targets length: " + targets.length);
 					for (var i=0; i<targets.length; i++) {
 						console.log("target: " + targets[i]);
 					}

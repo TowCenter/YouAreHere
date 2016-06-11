@@ -174,24 +174,24 @@ nav {
   height: 107px;
   margin: 13px auto; }
 
-.btn-call2 {
+.btn-audio {
   cursor: pointer;
   margin: 5px; }
 
-.btn-call2.play {
+.btn-audio.play {
   background: url(../img/button_play.png) no-repeat;
   background-position: center; }
 
-.btn-call2.play.white {
+.btn-audio.play.white {
   background: url(../img/button_play_white.png) no-repeat;
   background-size: 65px;
   background-position: center; }
 
-.btn-call2.pause {
+.btn-audio.pause {
   background: url(../img/button_stop.png) no-repeat;
   background-position: center; }
 
-.btn-call2.pause.white {
+.btn-audio.pause.white {
   background: url(../img/button_stop_white.png) no-repeat;
   background-size: 65px;
   background-position: center; }
@@ -250,7 +250,7 @@ nav {
   margin-top: -45px; }
   .story.visible {
     display: block; }
-  .story .btn-call2 {
+  .story .btn-audio {
     display: inline-block;
     width: 80px;
     height: 80px;
