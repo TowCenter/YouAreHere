@@ -29,6 +29,7 @@ var path = {
   FONTS: 'src/fonts/**/*',
   IMG: 'src/img/**/*',
   LIB: 'src/lib/**/*',
+  TMPL: 'src/tmpl/**/*.handlebars',
   HTML: 'src/*.html',
   CONFIG: 'src/config.json',
   SRC: 'src/',
@@ -39,6 +40,7 @@ var staticFiles = [
   path.FONTS,
   path.IMG,
   path.LIB,
+  path.TMPL,
   path.CONFIG
 ];
 
