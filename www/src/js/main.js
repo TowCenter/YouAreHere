@@ -106,9 +106,6 @@
 
       })
       .fail( function(xhr, textStatus, errorThrown) {
-        for (var k in xhr) {
-          console.log(k + " in get stories xhr : " + xhr[k]);
-        }
         console.log("get stories textStatus: " + textStatus);
         console.log("get stories errorThrown: " + errorThrown);
       });
@@ -140,8 +137,6 @@
     function renderStory(data){
 
       var $story = $('.story');
-      //var tmplScript = $("#story-template").html();
-      //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
       $story.append( tmpl(data).replace(/\u200b/g, '') );
@@ -166,12 +161,9 @@
       // Uses Handlebars to create a list of responses using the provided data.
       // This function is called only once on page load.
       var list = $('.responses .responses-list');
-
-      //var tmplScript = $("#responses-template").html();
-      //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      list.append( tmpl(data).replace(/\u200b/g, '') );
+      //list.append( tmpl(data).replace(/\u200b/g, '') );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
