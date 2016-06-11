@@ -33,7 +33,7 @@
                   if (Handlebars.templates === undefined) {
                       Handlebars.templates = {};
                   }
-                  Handlebars.templates[name] = Handlebars.compile(data);
+                  Handlebars.templates[name] = Handlebars.compile(data.html());
               },
               async : false
           });
@@ -144,7 +144,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      $story.append( tmpl(data).html() );
+      $story.append( tmpl(data) );
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -171,7 +171,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      list.append( tmpl(data).html() );
+      list.append( tmpl(data) );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
