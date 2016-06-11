@@ -1,17 +1,17 @@
 
     <img class="story-image" src="/server/{{image}}" />
     <div class="story-content">
-      <audio>
+      <audio">
         <source src="/server/{{mp3}}" type="audio/mpeg">
         Your browser does not support the audio tag.
       </audio>
-    <div class="btn-audio play"></div>
-    <div class="summary">
-      <h1 class="title">{{name}}</h1>
-      <p class="description">{{story}}</p>
+      <div class="btn-audio play interaction"></div>
+      <div class="summary">
+        <h1 class="title">{{name}}</h1>
+        <p class="description">{{story}}</p>
+     </div>
     </div>
-  </div>
-  <div class="cta">we would love to get your input!</div>
-  <p class="prompt">{{prompt}}</p>
-  <div class="btn-call" data-tel="{{story_phone_number}}"></div>
-  <p>(or call {{story_phone_number}})</p>
+    <div class="cta">we would love to get your input!</div>
+    <p class="prompt">{{prompt}}</p>
+    <div class="btn-call interaction" data-tel="{{story_phone_number}}"></div>
+    <p class="interaction">(or call {{story_phone_number}})</p>
