@@ -250,6 +250,8 @@ nav {
   margin-top: -45px; }
   .story.visible {
     display: block; }
+  .story .hidden {
+    display: none; }
   .story .btn-audio {
     display: inline-block;
     width: 80px;

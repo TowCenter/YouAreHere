@@ -5,7 +5,9 @@
         <source src="/server/{{mp3}}" type="audio/mpeg">
         Your browser does not support the audio tag.
       </audio>
-      <div class="btn-audio play interaction"></div>
+      <div class="btn-audio play interaction">
+        <span class="hidden">{{name}}</span>
+      </div>
       <div class="summary">
         <h1 class="title">{{name}}</h1>
         <p class="description">{{story}}</p>
