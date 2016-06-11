@@ -8,18 +8,17 @@
 	}
 
 	.responses-list {
-		width: 90%;
     	margin: 0 auto;
 	}
 
 	.item {
 	    display: inline-block;
 	    margin: 5px 0;
-    	max-width: 150px;
+    	max-width: 165px;
 	    width: 50%;
 
 		.btn-audio {
-			height: 100px;
+			height: 80px;
 		}
 
 		.tn-holder {
@@ -29,7 +28,7 @@
 
 		.tn {
 			background-repeat: no-repeat;
-			background-size: 150px 100px;
+			background-size: 150px 84px;
 		}
 
 		.time,

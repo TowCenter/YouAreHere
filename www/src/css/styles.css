@@ -202,21 +202,20 @@ nav {
   .responses.visible {
     display: inline-block; }
   .responses .responses-list {
-    width: 90%;
     margin: 0 auto; }
   .responses .item {
     display: inline-block;
     margin: 5px 0;
-    max-width: 150px;
+    max-width: 165px;
     width: 50%; }
     .responses .item .btn-audio {
-      height: 100px; }
+      height: 80px; }
     .responses .item .tn-holder {
       margin: 0 auto;
       width: 150px; }
     .responses .item .tn {
       background-repeat: no-repeat;
-      background-size: 150px 100px; }
+      background-size: 150px 84px; }
     .responses .item .time,
     .responses .item .date {
       margin: 0;
@@ -244,18 +243,20 @@ nav {
   .story .btn-audio {
     display: inline-block;
     width: 80px;
-    height: 80px; }
+    height: 80px;
+    top: -50px;
+    position: relative; }
   .story .story-image {
     display: block;
     margin: 0 auto 10px;
     width: 100%; }
   .story .story-content {
-    width: 90%;
+    width: 95%;
     margin: 0 auto; }
   .story .summary {
     display: inline-block;
     text-align: left;
-    width: 75%;
+    width: 70%;
     margin: 0 auto 20px; }
     .story .summary .title {
       color: #D81F27;
