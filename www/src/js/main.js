@@ -24,6 +24,22 @@
 
       return padded;
     });
+
+    Handlebars.getTemplate = function(name) {
+      if (Handlebars.templates === undefined || Handlebars.templates[name] === undefined) {
+          $.ajax({
+              url : 'tmpl/' + name + '.handlebars',
+              success : function(data) {
+                  if (Handlebars.templates === undefined) {
+                      Handlebars.templates = {};
+                  }
+                  Handlebars.templates[name] = Handlebars.compile(data);
+              },
+              async : false
+          });
+      }
+      return Handlebars.templates[name];
+    };
     /* * * * */
 
     /* APP FUNCTIONS, UTILITIES */
@@ -124,8 +140,9 @@
     function renderStory(story){
 
       var $story = $('.story');
-      var tmplScript = $("#story-template").html();
-      var tmpl = Handlebars.compile(tmplScript);
+      //var tmplScript = $("#story-template").html();
+      //var tmpl = Handlebars.compile(tmplScript);
+      var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
       $story.append( tmpl(story) );
 
@@ -150,8 +167,9 @@
       // This function is called only once on page load.
       var list = $('.responses .responses-list');
 
-      var tmplScript = $("#responses-template").html();
-      var tmpl = Handlebars.compile(tmplScript);
+      //var tmplScript = $("#responses-template").html();
+      //var tmpl = Handlebars.compile(tmplScript);
+      var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
       list.append( tmpl(data) );
 
@@ -170,7 +188,7 @@
     }
 
     function triggerView(href) {
-      //strip ot hash, if it's there
+      //strip out hash, if it's there
       href = href.replace(/^.*#/, '');
       switch(href) {
         case 'about':
