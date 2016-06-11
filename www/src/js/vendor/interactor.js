@@ -166,7 +166,7 @@ Interactor.prototype = {
 
 		// Post Session Data Serialized as JSON
 		xhr.open('POST', interactor.endpoint, interactor.async);
-		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.send("stats=" + session_json );
 
 		if ( interactor.debug ) console.log(session_json);
