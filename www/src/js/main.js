@@ -144,8 +144,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      console.log("tmpl story before appending: " + tmpl(data));
-      $story.append( tmpl(data) );
+      $story.append( tmpl(data).html() );
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -172,8 +171,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      console.log("tmpl responses: " + tmpl(data));
-      list.append( tmpl(data) );
+      list.append( tmpl(data).html() );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
