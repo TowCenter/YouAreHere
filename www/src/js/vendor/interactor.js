@@ -31,6 +31,8 @@ Interactor.prototype = {
 
 	// Initialization
 	__init__: function (config) {
+
+		console.log("init tracking");
 		
 		// Argument Assignment  // Type Checks 																			// Default Values
 		this.interactions 		= typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
@@ -53,6 +55,7 @@ Interactor.prototype = {
 	// Create Events to Track
 	__bindEvents__: function () {
 		
+		console.log("tracking bind events");
 		var interactor 	= this;
 
 		// Set Interaction Capture
