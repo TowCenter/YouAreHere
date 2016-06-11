@@ -144,7 +144,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      console.log("tmpl story: " + tmpl(data));
+      console.log("tmpl story before appending: " + tmpl(data));
       $story.append( tmpl(data) );
 
       $story.find('.btn-audio').on('click', function (e) {
