@@ -70,7 +70,8 @@ Interactor.prototype = {
 		if (interactor.interactions === true) {
 			for (var i = 0; i < interactor.interactionEvents.length; i++) {
 				var ev 		= interactor.interactionEvents[i],
-					targets = document.getElementsByClassName(interactor.interactionElement);
+					//targets = document.getElementsByClassName(interactor.interactionElement);
+					targets = $('.'+interactor.interactionElement);
 					console.log("interactor.interactionElement: " + interactor.interactionElement);
 					console.log("targets length: " + targets.length);
 				for (var j = 0; j < targets.length; j++) {
@@ -167,7 +168,8 @@ Interactor.prototype = {
 
 		// Post Session Data Serialized as JSON
 		xhr.open('POST', interactor.endpoint, interactor.async);
-		xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		//xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 		xhr.send(JSON.stringify(session));
 		if ( interactor.debug ) console.log(JSON.stringify(session));
 
