@@ -42,6 +42,9 @@ a {
   font-size: 1.5em;
   letter-spacing: .03em; }
 
+.tracking {
+  opacity: 0; }
+
 body {
   background: #E1F4FD;
   color: #333;
@@ -240,8 +243,6 @@ nav {
   margin-top: -45px; }
   .story.visible {
     display: block; }
-  .story .tracking {
-    opacity: 0; }
   .story .btn-audio {
     display: inline-block;
     width: 80px;
