@@ -70,16 +70,7 @@
     // Methods in order of operation...
     // set up tracking
     function loadTracking() {
-      var interactions = new Interactor({
-          interactions        : true,
-          interactionElement  : 'interaction',
-          interactionEvents   : ['mouseup', 'touchend'],
-          conversions         : false,
-          conversionElement   : 'conversion',
-          conversionEvents    : ['mouseup', 'touchend'],
-          endpoint            : '/interactions',
-          async               : true
-      });
+      var interactions = new Interactor();
     }
     // load config file
     function loadConfig() {
