@@ -312,10 +312,7 @@ nav {
 /* Portrait and Landscape */
 @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
   .responses .item {
-    display: inline-block;
-    margin: 5px 0;
-    max-width: 158px;
-    width: 50%; } }
+    max-width: 160px; } }
 
 /* ----------- iPhone 5 and 5S ----------- */
 /* Portrait and Landscape */

@@ -139,7 +139,7 @@
       var $story = $('.story');
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      $story.append( tmpl(data).replace(/\u200b/g, '') );
+      $story.append( tmpl(data) );
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -163,7 +163,7 @@
       var list = $('.responses .responses-list');
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      list.append( tmpl(data).replace(/\u200b/g, '') );
+      list.append( tmpl(data) );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
@@ -173,9 +173,6 @@
         toggleAudio( $(this).find('audio').get(0), $(this).find('.btn-audio') );
 
       });
-
-      // removes the &#8203; being inserted by handlebars rendering
-      //removeInvisibleChars();
 
       // hide loading message
       $('.loading').removeClass('visible');
@@ -221,14 +218,6 @@
           $('.error').addClass('current visible');
       }
 
-    }
-
-    function removeInvisibleChars() {
-      $('body').contents().eq(0).each(function(){
-        if(this.nodeName.toString()=='#text' && this.data.trim().charCodeAt(0)==8203){
-            $(this).remove();
-        }
-      });
     }
 
     // audio controls
