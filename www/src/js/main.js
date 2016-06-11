@@ -149,19 +149,12 @@
       HandlebarsIntl.registerWith(Handlebars);
       $story.append( tmpl(data) );
 
-      $story.find('.btn-call2').on('click', function (e) {
+      $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
 
-        toggleAudio( $story.find('audio').get(0), $(this) );
+        //toggleAudio( $story.find('audio').get(0), $(this) );
 
       });
-
-      // $story.find('.btn-audio').on('click', function (e) {
-      //   e.preventDefault();
-
-      //   toggleAudio( $story.find('audio').get(0), $(this) );
-
-      // });
 
       $story.find('.btn-call').on('click', function(e) {
         e.preventDefault();
