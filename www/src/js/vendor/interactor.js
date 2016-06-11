@@ -60,6 +60,9 @@ Interactor.prototype = {
 			for (var i = 0; i < interactor.interactionEvents.length; i++) {
 				var ev 		= interactor.interactionEvents[i],
 					targets = document.getElementsByClassName(interactor.interactionElement);
+					for (var i=0; i<targets.length; i++) {
+						console.log("target: " + targets[i]);
+					}
 				for (var j = 0; j < targets.length; j++) {
 					targets[j].addEventListener(ev, function (e) {
 						e.stopPropagation();
