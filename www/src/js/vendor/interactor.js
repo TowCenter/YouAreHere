@@ -33,6 +33,11 @@ Interactor.prototype = {
 	__init__: function (config) {
 
 		console.log("init tracking");
+
+		console.log("config: " + config);
+		for (var k in config) {
+			console.log(k + ": " + config[k]);
+		}
 		
 		// Argument Assignment  // Type Checks 																			// Default Values
 		this.interactions 		= typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
@@ -54,7 +59,7 @@ Interactor.prototype = {
 
 	// Create Events to Track
 	__bindEvents__: function () {
-		
+
 		var interactor 	= this;
 
 		console.log("tracking bind events: " + (interactor.interactions === true));
