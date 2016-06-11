@@ -174,24 +174,24 @@ nav {
   height: 107px;
   margin: 13px auto; }
 
-.btn-audio {
+.btn-call2 {
   cursor: pointer;
   margin: 5px; }
 
-.btn-audio.play {
+.btn-call2.play {
   background: url(../img/button_play.png) no-repeat;
   background-position: center; }
 
-.btn-audio.play.white {
+.btn-call2.play.white {
   background: url(../img/button_play_white.png) no-repeat;
   background-size: 65px;
   background-position: center; }
 
-.btn-audio.pause {
+.btn-call2.pause {
   background: url(../img/button_stop.png) no-repeat;
   background-position: center; }
 
-.btn-audio.pause.white {
+.btn-call2.pause.white {
   background: url(../img/button_stop_white.png) no-repeat;
   background-size: 65px;
   background-position: center; }
