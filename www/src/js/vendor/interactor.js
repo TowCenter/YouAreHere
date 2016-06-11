@@ -34,15 +34,10 @@ Interactor.prototype = {
 
 		console.log("init tracking");
 
-		console.log("config: " + config);
-		for (var k in config) {
-			console.log(k + ": " + config[k]);
-		}
-
 		console.log("typeof interactions: " + typeof(config.interactions));
 		
 		// Argument Assignment  // Type Checks 																			// Default Values
-		this.interactions 		= typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
+		this.interactions 		= true; //typeof(config.interactions) 				== "boolean" 	? config.interations 		: true,
 		this.interactionElement = typeof(config.interactionElement) 		== "string" 	? config.interactionElement :'interaction',
 		this.interactionEvents 	= Array.isArray(config.interactionEvents) 	=== true 		? config.interactionEvents 	: ['mouseup', 'touchend'],
 		this.conversions 		= typeof(config.coversions)					== "boolean" 	? config.conversions		: false,
