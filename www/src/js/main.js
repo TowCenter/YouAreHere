@@ -68,6 +68,19 @@
     });
 
     // Methods in order of operation...
+    // set up tracking
+    function loadTracking() {
+      var interactions = new Interactor({
+          interactions        : true,
+          interactionElement  : "interaction",
+          interactionEvents   : ["mousedown", "mouseup", "touchstart", "touchend"],
+          conversions         : false,
+          conversionElement   : "conversion",
+          conversionEvents    : ["mouseup", "touchend"],
+          endpoint            : '/interactions',
+          async               : true
+      });
+    }
     // load config file
     function loadConfig() {
       $.ajax({
@@ -263,6 +276,8 @@
       $(obj.btn).removeClass('pause')
                 .addClass('play');
     }
+
+    loadTracking();
 
     // Ready to go, load the config
     loadConfig();
