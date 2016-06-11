@@ -144,7 +144,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('story');
       HandlebarsIntl.registerWith(Handlebars);
-      $story.append( tmpl(data) );
+      $story.append( tmpl(data).replace(/\u200b/g, '') );
 
       $story.find('.btn-audio').on('click', function (e) {
         e.preventDefault();
@@ -171,7 +171,7 @@
       //var tmpl = Handlebars.compile(tmplScript);
       var tmpl = Handlebars.getTemplate('responses');
       HandlebarsIntl.registerWith(Handlebars);
-      list.append( tmpl(data) );
+      list.append( tmpl(data).replace(/\u200b/g, '') );
 
       // click to toggle audio
       list.find('.tn').on('click', function (e) {
@@ -183,7 +183,7 @@
       });
 
       // removes the &#8203; being inserted by handlebars rendering
-      removeInvisibleChars();
+      //removeInvisibleChars();
 
       // hide loading message
       $('.loading').removeClass('visible');
