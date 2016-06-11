@@ -22,7 +22,7 @@
     <section class="story current visible">
       <!-- LOAD STORY HERE --> 
       <script id="story-template" type="x-handlebars-template">​
-        <img class="story-image" src="/server/{{image}}" />
+      <img class="story-image" src="/server/{{image}}" />
         <div class="story-content">
           <audio>
             <source src="/server/{{mp3}}" type="audio/mpeg">
@@ -49,7 +49,7 @@
       <div class="container">
         <div class="row responses-list">
           <script id="responses-template" type="x-handlebars-template">​
-            {{#each this}}
+          {{#each this}}
             <div class="item">
               <div class="tn-holder">
                 <div class="tn" style="background-image: url(../img/park/{{getPark}}_{{getRandomNumber}}.jpg);">
