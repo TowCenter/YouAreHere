@@ -15,7 +15,8 @@ T-Mobile network SIM card
 [WiFi Amplifier] (https://www.amazon.com/gp/product/B00S4RIKK8)  
 
 Be sure to download the latest Jessie or Jessie Lite image from the Raspberry Pi [downloads] (https://www.raspberrypi.org/downloads/raspbian/) page. If you download Jessie Lite, you will need to install git before proceeding:  
-	sudo apt-get install git  
+
+        sudo apt-get install git  
 
 How to install  
 --------------
