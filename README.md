@@ -14,24 +14,24 @@ T-Mobile network SIM card
 [9db Antenna] (https://www.amazon.com/gp/product/B00DMJI9TA)  
 [WiFi Amplifier] (https://www.amazon.com/gp/product/B00S4RIKK8)  
 
-Be sure to download the latest Jessie or Jessie Lite image from the Raspberry Pi [downloads] (https://www.raspberrypi.org/downloads/raspbian/) page. If you download Jessie Lite, you will need to install git before proceeding:  
-
-        sudo apt-get install git  
-
 How to install  
 --------------
-Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/downloads/) install on your SD card, these are the steps for installing You are Here on your Raspberry Pi. It is also assumed that you have one wireless USB adapter and one Huawei E303 3G Modem attached to your RPi's onboard USB ports. The wireless radio must work with the nl80211 driver.
+First, be sure to download the latest Jessie or Jessie Lite image from the Raspberry Pi [downloads] (https://www.raspberrypi.org/downloads/raspbian/) page to install on your SD card. If you download Jessie Lite, you will need to install git before proceeding:  
 
-* set up your Raspberry Pi with a basic configuration
+        sudo apt-get install git  
+        
+Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/downloads/) install, these are the steps for installing You Are Here on your Raspberry Pi. It is also assumed that you have one wireless USB adapter and one Huawei E303 3G Modem attached to your RPi's onboard USB ports. The wireless radio must work with the nl80211 driver.
+
+* Set up your Raspberry Pi with a basic configuration
 
         sudo raspi-config
 
-* clone the repository into your home folder (assuming /home/pi) and checkout the dev branch (for now)
+* Clone the repository into your home folder (assuming /home/pi) and checkout the dev branch (for now)
 
         git clone https://github.com/TowCenter/YouAreHere.git && cd YouAreHere
         git checkout dev
 
-* run the installation script
+* Run the installation script
 
         cd YouAreHere
         sudo ./install.sh
