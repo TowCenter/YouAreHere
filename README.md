@@ -54,9 +54,9 @@ The installation process takes about 5 minutes. You will be prompted to name you
 
 Notes
 -----
-Recommended to *not* use a Broadcom WiFi radio, as this is the default radio on the Raspberry Pi 3 and all Broadcom radios are blacklisted by our script blacklist-bc.conf in order to let the external TP Link radio be wlan0.
+* Recommended to *not* use a Broadcom WiFi radio, as this is the default radio on the Raspberry Pi 3 and all Broadcom radios are blacklisted by our script blacklist-bc.conf in order to let the external TP Link radio be wlan0.
 
-If you update the web site build files, rsync it to the document root in /var/www/ :  
+* If you update the web site build files, rsync it to the document root in /var/www/ :  
 
         sudo rsync -r www/build/* /var/www/html/
 	
