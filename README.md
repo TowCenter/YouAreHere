@@ -7,17 +7,17 @@ Support for You Are Here is provided by the Tow Center for Digital Journalism at
 
 Recommended Hardware
 --------------------
-[Raspberry Pi 3] (https://www.adafruit.com/products/3055)
-[2.4A 5V Power Supply] (https://www.adafruit.com/products/1995)
-T-Mobile network SIM card
-[TP Link TL-WN722N WiFi USB Adapter] (https://www.amazon.com/gp/product/B002SZEOLG/)
-[9db Antenna] (https://www.amazon.com/gp/product/B00DMJI9TA)
-[WiFi Amplifier] (https://www.amazon.com/gp/product/B00S4RIKK8)
+[Raspberry Pi 3] (https://www.adafruit.com/products/3055)  
+[2.4A 5V Power Supply] (https://www.adafruit.com/products/1995)  
+T-Mobile network SIM card  
+[TP Link TL-WN722N WiFi USB Adapter] (https://www.amazon.com/gp/product/B002SZEOLG/)  
+[9db Antenna] (https://www.amazon.com/gp/product/B00DMJI9TA)  
+[WiFi Amplifier] (https://www.amazon.com/gp/product/B00S4RIKK8)  
 
-Be sure to download the latest Jessie or Jessie Lite image from the Raspberry Pi [downloads] (https://www.raspberrypi.org/downloads/raspbian/) page. If you download Jessie Lite, you will need to install git before proceeding:
-	sudo apt-get install git
+Be sure to download the latest Jessie or Jessie Lite image from the Raspberry Pi [downloads] (https://www.raspberrypi.org/downloads/raspbian/) page. If you download Jessie Lite, you will need to install git before proceeding:  
+	sudo apt-get install git  
 
-How to install
+How to install  
 --------------
 Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/downloads/) install on your SD card, these are the steps for installing You are Here on your Raspberry Pi. It is also assumed that you have one wireless USB adapter and one Huawei E303 3G Modem attached to your RPi's onboard USB ports. The wireless radio must work with the nl80211 driver.
 
@@ -37,9 +37,9 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 
 * After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
 	
-		sudo /etc/init.d/dnsmasq stop
-		sudo routes del default
-		sudo routes add default gw 10.64.64.64
+	sudo /etc/init.d/dnsmasq stop
+	sudo routes del default
+	sudo routes add default gw 10.64.64.64
 
 * To set a cron job rebooting the device once a day, run the following command:
 	
