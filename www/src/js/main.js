@@ -203,7 +203,7 @@
           conversionEvents    : ['mouseup', 'touchend'],
           endpoint            : 'http://youarehere.com/cgi/stats.py',
           async               : true,
-          debug               : true
+          debug               : false
       });
     }
 
