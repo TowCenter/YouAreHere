@@ -52,13 +52,23 @@ chown www-data:www-data /var/www
 chmod 775 /var/www
 usermod -a -G www-data pi
 
-a2enmod proxy_http proxy proxy_connect ssl cache_disk rewrite
+# create script and file for tracking / analytics
+mkdir /var/www/cgi
+cp scripts/stats.py /var/www/cgi/
+chmod+x /var/www/cgi/stats.py
+
+touch /var/www/stats.txt
+chmod 666 stats.txt
+
+# configure apache proxy, cache, ssl, rewrite
+a2enmod proxy_http proxy proxy_connect ssl cache_disk rewrite cgid
 
 # append scripts/mod_proxy.conf to end of /etc/apache2/apache2.conf...
 cat scripts/mod_proxy.conf >> /etc/apache2/apache2.conf
 
 # copy scripts/999-youarehere-rewrite.conf to conf-enabled...
-cp scripts/999-youarehere-rewrite.conf /etc/apache2/conf-enabled
+cp scripts/999-youarehere-rewrite.conf /etc/apache2/conf-enabled/
+cp scripts/999-youarehere-cgi.conf /etc/apache2/conf-enabled/
 
 # restart apache
 service apache2 reload
