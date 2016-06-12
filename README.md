@@ -42,13 +42,13 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 	sudo routes add default gw 10.64.64.64
 
 * To set a cron job rebooting the device once a day, run the following command:
-	
-	sudo crontab -e
+
+        sudo crontab -e
 
 * Add to the crontab:
-	
-	# reboot pi every 24hrs at 5a
-	0 5 * * * reboot -f
+
+        reboot pi every 24hrs at 5a  
+        0 5 * * * reboot -f
 
 The installation process takes about 5 minutes. You will be prompted to name your wireless access point. After it has completed, you will have a running lighttpd web server, a connection to a 3G data network and will be broadcasting a wireless access point. Connecting to the network and navigating to http://192.168.100.1 in a browser window will take you to the root of the web server, currently served from /var/www/.
 
@@ -56,7 +56,7 @@ Notes
 -----
 Recommended to *not* use a Broadcom WiFi radio, as this is the default radio on the Raspberry Pi 3 and all Broadcom radios are blacklisted by our script blacklist-bc.conf in order to let the external TP Link radio be wlan0.
 
-If you update the web site build files, rsync it to the document root in /var/www/ :
+If you update the web site build files, rsync it to the document root in /var/www/ :  
 	sudo rsync -r www/build/* /var/www/html/
 	
 
