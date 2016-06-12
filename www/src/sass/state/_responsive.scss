@@ -1,0 +1,93 @@
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+/* Desktop 
+@media only screen and (min-width: $bpDesktop) {
+
+}*/
+/* Tablet 
+@media only screen and (min-width: $bpTablet) and (max-width: $bpDesktop - 1) {
+
+}*/
+/* Mobile 
+@media only screen and (min-width: $bpMobile) and (max-width: $bpTablet - 1) {
+
+}*/
+
+@media only screen and (min-width: $bpMobile) {
+	.story {
+
+		.btn-audio {
+			margin-top: 15px;
+		}
+
+		.story-content {
+	    	width: 70%;
+    		margin: 0 auto;
+		}
+
+		.prompt {
+			width: 60%;
+		}
+	}
+
+	.responses {
+		.item {
+			margin: 10px auto;
+    		max-width: 25%;
+		}
+	}
+
+	.about {
+		max-width: 70%;
+    	margin: 0 auto;
+	}
+}
+/* Smaller Mobile
+@media only screen and (max-width: $bpMobile - 1) {
+
+}*/
+
+/* Specific Mobile Device Media Queries */
+
+/* ----------- iPhone 6+ ----------- */
+
+/* Portrait and Landscape
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) { 
+
+}*/
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (device-aspect-ratio: 375/667) { 
+
+}*/
+
+/* ----------- Galaxy S5 / Android / OnePlus X ----------- */
+
+/* Portrait and Landscape
+@media screen and (device-width: 360px) and (device-height: 640px) {
+
+}*/
+
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+	.responses .item {
+	    max-width: 160px;
+	}
+}
+
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (device-aspect-ratio: 40/71) {
+
+}*/
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (device-aspect-ratio: 2/3) {
+
+}*/

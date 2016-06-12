@@ -1,0 +1,46 @@
+.story {
+	display: none;
+	margin-top: -45px;
+	
+	&.visible {
+		display: block;
+	}
+
+	.btn-audio {
+		display: inline-block;
+		width: 80px;
+    	height: 80px;
+    	margin-top: 30px;
+    	vertical-align: top;
+	}
+
+	.story-image {
+		display: block;
+		margin: 0 auto 10px;
+		width: 100%;
+	}
+
+	.story-content {
+		width: 95%;
+    	margin: 0 auto;
+	}
+
+	.summary {
+		display: inline-block;
+		text-align: left;
+		width: 70%;
+    	margin: 0 auto 20px;
+
+    	.title {
+    		color: $cOrange;
+    		margin-bottom: 0;
+    		padding: 0;
+    	}
+	}
+
+	.prompt {
+		text-align: left;
+		margin: 0 auto;
+    	width: 90%;
+	}
+}

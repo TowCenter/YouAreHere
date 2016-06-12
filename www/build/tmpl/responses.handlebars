@@ -1,0 +1,18 @@
+
+  {{#each this}}
+  <div class="item">
+    <div class="tn-holder">
+      <div class="tn" style="background-image: url(../img/park/{{getPark}}_{{getRandomNumber}}.jpg);">
+        <div class="btn-audio play white interaction">
+          <span class="tracking">{{getPark}}_{{formatDate created day="numeric" month="long" year="numeric"}}_{{formatTime created hour="numeric" minute="numeric"}}</span>
+        </div>
+        <audio>
+          <source src="/server/{{mp3_url}}" type="audio/mpeg">
+          Your browser does not support the audio tag.
+        </audio>
+      </div>
+      <h1 class="date">{{formatDate created day="numeric" month="long" year="numeric"}}</h1>
+      <p class="time">{{formatTime created hour="numeric" minute="numeric"}}</p>
+    </div>
+  </div>
+  {{/each}}

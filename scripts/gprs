@@ -1,0 +1,10 @@
+user ""
+connect "/usr/sbin/chat -v -f /etc/chatscripts/gprs -T fast.t-mobile.com"
+/dev/ttyUSB0
+noipdefault
+defaultroute
+replacedefaultroute
+hide-password
+noauth
+persist
+usepeerdns

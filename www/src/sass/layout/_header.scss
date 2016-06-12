@@ -1,0 +1,24 @@
+header {
+	margin-top: -30px;
+	
+	#viewButton {
+		color: $cGrey;
+		cursor: pointer;
+		font-family: $fBebas;
+		font-weight: $fBold;
+		font-size: 1.5em;
+		position: absolute;
+		right: 20px;
+    	top: 13px;
+    	text-transform: uppercase;
+	}
+
+	.logo {
+		display: block;
+
+		img {
+			position: relative;
+			z-index: -1;
+		}
+	}
+}

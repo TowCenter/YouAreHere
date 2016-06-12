@@ -1,0 +1,50 @@
+{
+  "name": "youarehere",
+  "version": "1.0.0",
+  "description": "Front-end for You Are Here project, AKA let's you listen to recorded stories fetched from Twilio.",
+  "author": {
+    "name": "Sarah Grant",
+    "email": "com@chootka.com"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TowCenter/YouAreHere.git"
+  },
+  "keywords": [
+    "wlan",
+    "mesh",
+    "lan",
+    "offline",
+    "offnets",
+    "raspberrypi",
+    "rpi",
+    "hostapd",
+    "dnsmasq",
+    "twilio"
+  ],
+  "main": "gulpfile.js",
+  "dependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.4.2",
+    "handlebars": "^4.0.5"
+  },
+  "devDependencies": {
+    "gulp-eol": "^0.1.2",
+    "gulp-if": "^2.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sass": "^2.3.1",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-useref": "^3.0.8",
+    "handlebars-intl": "^1.1.2",
+    "run-sequence": "^1.1.4",
+    "useref": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

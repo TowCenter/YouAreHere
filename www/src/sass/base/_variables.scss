@@ -1,0 +1,31 @@
+/* Fonts */
+$fLato: 'Lato';
+$fBebas: 'Bebas';
+$fLight: 300;
+$fNormal: 400;
+$fBold: 700;
+
+/* Colors */
+$cBlack: #111;
+$cLightGrey: #A7A9AC;
+$cGrey: #333;
+$cOrange: #D81F27;
+$cBlue: #E1F4FD;
+$cWhite: #a1a1a1;
+
+/* Colors + Use Cases */
+$cBody: $cGrey;
+$cHeadline: $cGrey;
+$cParagraph: $cGrey;
+$cLink: $cOrange;
+$cHover: $cBlack;
+$cBackground: $cBlue;
+$cButton: $cGrey;
+
+/* Responsive Breakpoints */
+$bpMobile: 768px;
+$bpTablet: 992px;
+$bpDesktop: 1200px;
+
+/* Default Padding */
+$padding: 1.5em;

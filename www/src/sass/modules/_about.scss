@@ -1,0 +1,14 @@
+.about {
+	display: none;
+	text-align: left;
+    width: 90%;
+    margin: 0 auto;
+
+	&.visible {
+		display: block;
+	}
+
+	h2 {
+		color: $cOrange;
+	}
+}

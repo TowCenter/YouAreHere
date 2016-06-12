@@ -1,0 +1,40 @@
+.button {
+	background-color: $cButton;
+	cursor: pointer;
+	display: block;
+	padding: 20px;
+	width: 200px;
+	height: 40px;
+}
+
+.btn-call {
+	cursor: pointer;
+	background: url(../img/button_tap.png) no-repeat;
+	background-size: 107px;
+	width: 107px;
+	height: 107px;
+	margin: 13px auto;
+}
+
+.btn-audio {
+	cursor: pointer;
+	margin: 5px;
+}
+.btn-audio.play {
+	background: url(../img/button_play.png) no-repeat;
+	background-position: center;
+}
+.btn-audio.play.white {
+	background: url(../img/button_play_white.png) no-repeat;
+	background-size: 65px;
+	background-position: center;
+}
+.btn-audio.pause {
+	background: url(../img/button_stop.png) no-repeat;
+	background-position: center;
+}
+.btn-audio.pause.white {
+	background: url(../img/button_stop_white.png) no-repeat;
+	background-size: 65px;
+	background-position: center;
+}

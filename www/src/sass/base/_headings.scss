@@ -1,0 +1,27 @@
+body {
+	background: $cBackground;
+	color: $cBody;
+	font-family: $fLato, sans-serif;
+	font-size: 16px;
+	font-weight: $fLight;
+	line-height: 1.25em;
+	text-align: center;
+	margin-bottom: 300px;
+}
+h1 {
+	color: $cHeadline;
+	font-size: 1.5em;
+	font-family: $fBebas, sans-serif;
+	font-weight: $fNormal;
+	padding: 12px 0;
+	text-transform: uppercase;
+	margin-bottom: .5em;
+}
+h2 {
+	color: $cHeadline;
+	font-size: 1.25em;
+	font-family: $fBebas, sans-serif;
+	font-weight: $fNormal;
+	text-transform: uppercase;
+	margin-bottom: .5em;
+}

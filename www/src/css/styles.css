@@ -1,0 +1,341 @@
+@charset "UTF-8";
+/* 
+ * Base Rules
+ *
+ A Base rule is applied to an element using an element selector, a descendent selector, or a child selector, along with any pseudo-classes. It doesn’t include any class or ID selectors. It is defining the default styling for how that element should look in all occurrences on the page.
+ *
+ */
+/* fonts */
+@font-face {
+  font-family: 'Bebas';
+  src: url("../fonts/BebasNeueBold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Lato';
+  src: url("../fonts/Lato-Light.ttf") format("truetype"); }
+
+/* Fonts */
+/* Colors */
+/* Colors + Use Cases */
+/* Responsive Breakpoints */
+/* Default Padding */
+section {
+  width: 100%; }
+
+p {
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1em; }
+
+a {
+  color: #D81F27; }
+
+.cta {
+  background-color: #D81F27;
+  color: #E1F4FD;
+  font-family: "Bebas";
+  text-transform: uppercase;
+  height: 40px;
+  padding-top: 12px;
+  margin-bottom: 17px;
+  font-size: 1.5em;
+  letter-spacing: .03em; }
+
+.tracking {
+  opacity: 0; }
+
+body {
+  background: #E1F4FD;
+  color: #333;
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.25em;
+  text-align: center;
+  margin-bottom: 300px; }
+
+h1 {
+  color: #333;
+  font-size: 1.5em;
+  font-family: "Bebas", sans-serif;
+  font-weight: 400;
+  padding: 12px 0;
+  text-transform: uppercase;
+  margin-bottom: .5em; }
+
+h2 {
+  color: #333;
+  font-size: 1.25em;
+  font-family: "Bebas", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: .5em; }
+
+/* 
+ * Layout Rules
+ *
+ The major components, such as header, footer, articles.
+ *
+ */
+.jumbotron {
+  background-color: #E1F4FD; }
+
+header {
+  margin-top: -30px; }
+  header #viewButton {
+    color: #333;
+    cursor: pointer;
+    font-family: "Bebas";
+    font-weight: 700;
+    font-size: 1.5em;
+    position: absolute;
+    right: 20px;
+    top: 13px;
+    text-transform: uppercase; }
+  header .logo {
+    display: block; }
+    header .logo img {
+      position: relative;
+      z-index: -1; }
+
+nav {
+  margin-top: 163px; }
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    nav ul li {
+      display: inline;
+      height: 30px;
+      margin-left: 10px; }
+      nav ul li a {
+        color: #111;
+        font-family: "Bebas", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase; }
+  nav .flex-nav {
+    display: -webkit-inline-flex;
+    /* Safari */
+    display: inline-flex;
+    -webkit-flex-direction: column-reverse;
+    /* Safari */
+    flex-direction: column-reverse;
+    -webkit-justify-content: space-around;
+    /* Safari */
+    justify-content: space-around;
+    padding: 10px 30px; }
+  nav .flex-item {
+    color: #fff;
+    padding: 5px;
+    background: #333;
+    margin: 2px;
+    cursor: pointer; }
+
+/* 
+ * Module Rules
+ *
+ A Module is a more discrete component of the page. It is your navigation bars and your carousels and your 
+ dialogs and your widgets and so on. This is the meat of the page. Modules sit inside Layout components. 
+ Modules can sometimes sit within other Modules, too. Each Module should be designed to exist as a 
+ standalone component.
+ *
+ */
+.about {
+  display: none;
+  text-align: left;
+  width: 90%;
+  margin: 0 auto; }
+  .about.visible {
+    display: block; }
+  .about h2 {
+    color: #D81F27; }
+
+.button {
+  background-color: #333;
+  cursor: pointer;
+  display: block;
+  padding: 20px;
+  width: 200px;
+  height: 40px; }
+
+.btn-call {
+  cursor: pointer;
+  background: url(../img/button_tap.png) no-repeat;
+  background-size: 107px;
+  width: 107px;
+  height: 107px;
+  margin: 13px auto; }
+
+.btn-audio {
+  cursor: pointer;
+  margin: 5px; }
+
+.btn-audio.play {
+  background: url(../img/button_play.png) no-repeat;
+  background-position: center; }
+
+.btn-audio.play.white {
+  background: url(../img/button_play_white.png) no-repeat;
+  background-size: 65px;
+  background-position: center; }
+
+.btn-audio.pause {
+  background: url(../img/button_stop.png) no-repeat;
+  background-position: center; }
+
+.btn-audio.pause.white {
+  background: url(../img/button_stop_white.png) no-repeat;
+  background-size: 65px;
+  background-position: center; }
+
+.error {
+  display: none;
+  transition: 0.6s; }
+  .error.visible {
+    display: block; }
+
+.loading {
+  display: none; }
+  .loading.visible {
+    display: block; }
+
+.responses {
+  display: none; }
+  .responses.visible {
+    display: inline-block; }
+  .responses .responses-list {
+    margin: 0 auto; }
+  .responses .item {
+    display: inline-block;
+    margin: 5px 0;
+    max-width: 165px;
+    width: 50%; }
+    .responses .item .btn-audio {
+      height: 80px; }
+    .responses .item .tn-holder {
+      margin: 0 auto;
+      width: 150px; }
+    .responses .item .tn {
+      background-repeat: no-repeat;
+      background-size: 150px 84px; }
+    .responses .item .time,
+    .responses .item .date {
+      margin: 0;
+      padding: 0;
+      text-align: left; }
+    .responses .item .date {
+      color: #D81F27;
+      font-family: "Bebas", sans-serif;
+      font-weight: 400;
+      font-size: 1.25em;
+      text-transform: uppercase;
+      margin-top: 7px; }
+    .responses .item .time {
+      color: #111;
+      font-family: "Lato", sans-serif;
+      font-weight: 300;
+      font-size: 0.85em;
+      margin-top: -5px; }
+
+.story {
+  display: none;
+  margin-top: -45px; }
+  .story.visible {
+    display: block; }
+  .story .btn-audio {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-top: 30px;
+    vertical-align: top; }
+  .story .story-image {
+    display: block;
+    margin: 0 auto 10px;
+    width: 100%; }
+  .story .story-content {
+    width: 95%;
+    margin: 0 auto; }
+  .story .summary {
+    display: inline-block;
+    text-align: left;
+    width: 70%;
+    margin: 0 auto 20px; }
+    .story .summary .title {
+      color: #D81F27;
+      margin-bottom: 0;
+      padding: 0; }
+  .story .prompt {
+    text-align: left;
+    margin: 0 auto;
+    width: 90%; }
+
+/* 
+ * State Rules
+ A state is something that augments and overrides all other styles. For example, an accordion section may be in a collapsed or expanded state. A message may be in a success or error state.
+ *
+ */
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+/* Desktop 
+@media only screen and (min-width: $bpDesktop) {
+
+}*/
+/* Tablet 
+@media only screen and (min-width: $bpTablet) and (max-width: $bpDesktop - 1) {
+
+}*/
+/* Mobile 
+@media only screen and (min-width: $bpMobile) and (max-width: $bpTablet - 1) {
+
+}*/
+@media only screen and (min-width: 768px) {
+  .story .btn-audio {
+    margin-top: 15px; }
+  .story .story-content {
+    width: 70%;
+    margin: 0 auto; }
+  .story .prompt {
+    width: 60%; }
+  .responses .item {
+    margin: 10px auto;
+    max-width: 25%; }
+  .about {
+    max-width: 70%;
+    margin: 0 auto; } }
+
+/* Smaller Mobile
+@media only screen and (max-width: $bpMobile - 1) {
+
+}*/
+/* Specific Mobile Device Media Queries */
+/* ----------- iPhone 6+ ----------- */
+/* Portrait and Landscape
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) { 
+
+}*/
+/* ----------- iPhone 6 ----------- */
+/* Portrait and Landscape
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (device-aspect-ratio: 375/667) { 
+
+}*/
+/* ----------- Galaxy S5 / Android / OnePlus X ----------- */
+/* Portrait and Landscape
+@media screen and (device-width: 360px) and (device-height: 640px) {
+
+}*/
+@media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3) {
+  .responses .item {
+    max-width: 160px; } }
+
+/* ----------- iPhone 5 and 5S ----------- */
+/* Portrait and Landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (device-aspect-ratio: 40/71) {
+
+}*/
+/* ----------- iPhone 4 and 4S ----------- */
+/* Portrait and Landscape
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (device-aspect-ratio: 2/3) {
+
+}*/
