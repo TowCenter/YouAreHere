@@ -34,22 +34,13 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 
         sudo ./install.sh
 
-* After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
+The installation process takes about 15 minutes. During installation, you will be prompted to name your wireless access point (default is YouAreHer). After install has completed, you will have a running lighttpd web server, a connection to a 3G data network and will be broadcasting a wireless access point. Connecting to the network and navigating to http://192.168.100.1 in a browser window will take you to the root of the web server, currently served from /var/www/.
+
+After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
 
         sudo /etc/init.d/dnsmasq stop
         sudo route del default
         sudo route add default gw 10.64.64.64
-
-* To set a cron job rebooting the device once a day, run the following command:
-
-        sudo crontab -e
-
-* Add to the crontab:
-
-        reboot pi every 24hrs at 5a  
-        0 5 * * * reboot -f
-
-The installation process takes about 5 minutes. You will be prompted to name your wireless access point. After it has completed, you will have a running lighttpd web server, a connection to a 3G data network and will be broadcasting a wireless access point. Connecting to the network and navigating to http://192.168.100.1 in a browser window will take you to the root of the web server, currently served from /var/www/.
 
 Notes
 -----
@@ -58,8 +49,16 @@ Notes
 * If you update the web site build files, rsync it to the document root in /var/www/ :  
 
         sudo rsync -r www/build/* /var/www/html/
-	
+        
+* Recommended to reboot the device every 24hrs via a cron job if left unattended for long periods of time (to deal with system crashes). To set a cron job rebooting the device once a day, run the following command:
 
+        sudo crontab -e
+
+* Add to the crontab:
+
+        reboot pi every 24hrs at 5a  
+        0 5 * * * reboot -f
+	
 References
 ----------
 * [You Are Here website](http://youarehere.network/)
