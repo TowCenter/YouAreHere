@@ -32,7 +32,6 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 
 * Run the installation script
 
-        cd YouAreHere
         sudo ./install.sh
 
 * After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
