@@ -58,7 +58,7 @@ cp scripts/stats.py /var/www/cgi/
 chmod +x /var/www/cgi/stats.py
 
 touch /var/www/stats.txt
-chmod 666 stats.txt
+chmod 666 /var/www/stats.txt
 
 # configure apache proxy, cache, ssl, rewrite
 a2enmod proxy_http proxy proxy_connect ssl cache_disk rewrite cgid
