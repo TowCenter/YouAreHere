@@ -37,8 +37,8 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 * After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
 
         sudo /etc/init.d/dnsmasq stop
-        sudo routes del default
-        sudo routes add default gw 10.64.64.64
+        sudo route del default
+        sudo route add default gw 10.64.64.64
 
 * To set a cron job rebooting the device once a day, run the following command:
 
