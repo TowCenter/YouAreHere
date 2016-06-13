@@ -2,7 +2,7 @@
 #
 # Raspberry Pi YouAreHere Installation script
 # Sarah Grant
-# Updated 21 April 2016
+# Updated 13 June 2016
 #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -14,7 +14,7 @@ RADIO_DRIVER=nl80211
 
 # ACCESS POINT
 AP_CHAN=3
-AP_SSID=You Are Here
+AP_SSID=YouAreHere
 AP_IP=192.168.100.1
 
 # DNSMASQ STUFF
@@ -55,7 +55,7 @@ usermod -a -G www-data pi
 # create script and file for tracking / analytics
 mkdir /var/www/cgi
 cp scripts/stats.py /var/www/cgi/
-chmod+x /var/www/cgi/stats.py
+chmod +x /var/www/cgi/stats.py
 
 touch /var/www/stats.txt
 chmod 666 stats.txt
@@ -72,7 +72,7 @@ cp scripts/999-youarehere-cgi.conf /etc/apache2/conf-enabled/
 
 # restart apache
 service apache2 reload
-apachectl restart
+service apache2 restart
 
 # CHECK USB WIFI HARDWARE IS FOUND
 # and that iw list does not fail with 'nl80211 not found'
