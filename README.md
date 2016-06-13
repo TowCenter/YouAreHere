@@ -34,7 +34,7 @@ Assuming you are starting with a fresh [Raspbian](http://www.raspberrypi.org/dow
 
         sudo ./install.sh
 
-The installation process takes about 15 minutes. During installation, you will be prompted to name your wireless access point (default is YouAreHer). After install has completed, you will have a running lighttpd web server, a connection to a 3G data network and will be broadcasting a wireless access point. Connecting to the network and navigating to http://192.168.100.1 in a browser window will take you to the root of the web server, currently served from /var/www/.
+The installation process takes about 15 minutes. During installation, you will be prompted to name your wireless access point (default is YouAreHere). After install has completed, you will have a running lighttpd web server, a connection to a 3G data network and will be broadcasting a wireless access point. Connecting to the network and navigating to http://192.168.100.1 in a browser window will take you to the root of the web server, currently served from /var/www/.
 
 After the installation script completes, you must SSH into the RPi and do two things: 1/ stop dnsmasq and 2/ manually set the routing gateway to that of the 3G modem (this will be fixed eventually):
 
