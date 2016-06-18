@@ -33,13 +33,15 @@ class YouAreHere {
 		       "dbname=$dbname;";
 		$this->db = new PDO($dsn, $username, $password);
 		$this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+		$this->slack_hook_url = $slack['hook_url'];
+		$this->slack_tests_enabled = $slack['tests_enabled'];
 	}
 	
 	function setup_env() {
 		
 		// Baseline PHP configs
 		ini_set('error_log', $this->log_file);
-		ini_set('display_errors', true);
+		ini_set('display_errors', false);
 		error_reporting(E_ALL);
 		date_default_timezone_set('America/New_York');
 		
@@ -89,6 +91,19 @@ class YouAreHere {
 			}
 		} else if (!empty($_GET['twilio'])) {
 			$this->handle_call();
+		} else if (!empty($_GET['test_slack'])) {
+			if (!empty($this->slack_tests_enabled)) {
+				$rsp = $this->slack_message($_GET['test_slack']);
+				header('Content-type: application/json');
+				echo json_encode(array(
+					'rsp' => $rsp
+				));
+			} else {
+				header('Content-type: application/json');
+				echo json_encode(array(
+					'error' => 'Tests are not enabled.'
+				));
+			}
 		} else {
 			$this->show_help();
 		}
@@ -176,7 +191,8 @@ class YouAreHere {
 				'?get=stories' => 'Retrieve a list of known stories.',
 				'?get=responses&story=[story ID]' => 'Retrieve a list of story responses.',
 				'?get=mp3s' => 'Download any pending MP3s from Twilio (good to cron-job this one)',
-				'?twilio=1' => 'Twilio POST endpoint'
+				'?twilio=1' => 'Twilio POST endpoint',
+				'?test_slack=[message]' => 'Test the Slack integration'
 			)
 		));
 	}
@@ -293,6 +309,7 @@ class YouAreHere {
 			$this->say('You are the first one to respond. Thanks for starting the conversation. Goodbye!');
 			$this->hangup();
 		}
+		$this->slack_message("New response to {$this->curr_story->name} from {$_POST['Caller']}");
 	}
 	
 	function record_response() {
@@ -350,6 +367,24 @@ class YouAreHere {
 	
 	function get_mp3_filename($response) {
 		return "$response->story_id-$response->id-$response->twilio_id.mp3";
+	}
+
+	function slack_message($message) {
+
+		$payload = json_encode(array(
+			'text' => $message
+		));
+		$payload = rawurlencode($payload);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $this->slack_hook_url);
+		curl_setopt($ch, CURLOPT_HEADER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "payload=$payload");
+
+		$rsp = curl_exec($ch);
+		curl_close($ch);
+		return $rsp;
 	}
 }
 

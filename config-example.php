@@ -8,4 +8,7 @@ $database = array(
 	'password' => 'mysql-password'
 );
 
-?>
+$slack = array(
+	'hook_url' => 'https://hooks.slack.com/services/...',
+	'tests_enabled' => true
+);
