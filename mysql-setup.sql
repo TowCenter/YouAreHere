@@ -6,10 +6,6 @@ CREATE TABLE `stories` (
   KEY `story_phone_number` (`story_phone_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO stories
-(story_phone_number, name)
-VALUES ('+16194314373', 'Tomkins Square');
-
 CREATE TABLE `responses` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `story_id` int(11) DEFAULT NULL,
@@ -19,5 +15,6 @@ CREATE TABLE `responses` (
   `mp3_downloaded` tinyint(4) DEFAULT '0',
   `duration` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
+  `active` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

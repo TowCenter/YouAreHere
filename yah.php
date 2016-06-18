@@ -155,11 +155,15 @@ class YouAreHere {
 				$status,
 				$response->id
 			));
+			$filename = $this->get_mp3_filename($response);
 			$mp3s[] = array(
 				'download_url' => $response->mp3_url,
-				'filename' => $this->get_mp3_filename($response),
+				'filename' => $filename,
 				'status' => $status
 			);
+			if ($status == 1) {
+				$this->slack_message("Response MP3: <$this->base_url/responses/$filename>");
+			}
 		}
 		header('Content-type: application/json');
 		echo json_encode(array(
