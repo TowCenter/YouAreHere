@@ -1,27 +1,27 @@
 <?php
 
 class YouAreHere {
-	
+
 	function __construct() {
 		$this->setup_vars();
 		$this->setup_db();
 		$this->setup_env();
 		$this->setup_stories();
 	}
-	
+
 	function setup_vars() {
 		// Where are we?
 		$protocol = $this->get_protocol();
 		$this->request_url = parse_url($_SERVER['REQUEST_URI']);
 		$this->api_url = "$protocol://{$_SERVER['HTTP_HOST']}{$this->request_url['path']}";
 		$this->base_url = dirname($this->api_url);
-		
+
 		// Where will we save files to?
 		$this->log_dir       = dirname(__DIR__) . '/log';
 		$this->log_file      = "$this->log_dir/yah.log";
 		$this->responses_dir = __DIR__ . '/responses';
 	}
-	
+
 	function setup_db() {
 		require_once __DIR__ . '/config.php';
 		extract($database);
@@ -36,38 +36,38 @@ class YouAreHere {
 		$this->slack_hook_url = $slack['hook_url'];
 		$this->slack_tests_enabled = $slack['tests_enabled'];
 	}
-	
+
 	function setup_env() {
-		
+
 		// Baseline PHP configs
 		ini_set('error_log', $this->log_file);
 		ini_set('display_errors', false);
 		error_reporting(E_ALL);
 		date_default_timezone_set('America/New_York');
-		
+
 		// Make sure we can write to the log dir
 		if (!file_exists($this->log_dir)) {
 			mkdir($this->log_dir);
 		}
-		
+
 		if (is_writable($this->log_dir)) {
 			//die("Please make $this->log_dir writable.");
 			chmod($this->log_dir, 0755);
 		}
-		
+
 		// Make sure we can write to the stories dir
 		if (!is_writable($this->responses_dir)) {
 			chmod($this->response_dir, 0755);
 		}
 	}
-	
+
 	function setup_stories() {
 		// Query for all the possible stories
 		$query = $this->db->query("
 			SELECT *
 			FROM stories
 		");
-		
+
 		// Store each possible story by incoming phone number
 		$this->stories = array();
 		foreach ($query->fetchAll() as $story) {
@@ -78,7 +78,7 @@ class YouAreHere {
 			}
 		}
 	}
-	
+
 	function handle_request() {
 		$this->log_request();
 		if (!empty($_GET['get'])) {
@@ -108,14 +108,14 @@ class YouAreHere {
 			$this->show_help();
 		}
 	}
-	
+
 	function get_stories() {
 		header('Content-type: application/json');
 		echo json_encode(array(
 			'stories' => $this->stories
 		));
 	}
-	
+
 	function get_responses() {
 		header('Content-type: application/json');
 		if (empty($_GET['story'])) {
@@ -131,7 +131,7 @@ class YouAreHere {
 		}
 		echo json_encode($json);
 	}
-	
+
 	function get_mp3s() {
 		$mp3s = array();
 		$select = $this->db->query("
@@ -170,7 +170,7 @@ class YouAreHere {
 			'mp3s' => $mp3s
 		));
 	}
-	
+
 	function handle_call() {
 		header('Content-type: text/xml');
 		echo '<' . '?xml version="1.0" encoding="UTF-8"?' . ">\n";
@@ -186,7 +186,7 @@ class YouAreHere {
 		}
 		echo "</Response>\n";
 	}
-	
+
 	function show_help() {
 		header('Content-type: application/json');
 		echo json_encode(array(
@@ -200,7 +200,7 @@ class YouAreHere {
 			)
 		));
 	}
-	
+
 	function get_protocol() {
 		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
 			return 'https';
@@ -210,9 +210,9 @@ class YouAreHere {
 			return 'http';
 		}
 	}
-	
+
 	function load_responses($story_id = null) {
-		
+
 		// Set story_id automatically
 		if (empty($story_id)) {
 			if (!empty($this->curr_story)) {
@@ -221,7 +221,7 @@ class YouAreHere {
 				return array();
 			}
 		}
-		
+
 		// Get existing responses from the database
 		$query = $this->db->prepare("
 			SELECT id, story_id, phone_number, twilio_id, duration, created
@@ -233,17 +233,17 @@ class YouAreHere {
 		$query->execute(array(
 			$story_id
 		));
-		
+
 		$responses = array();
 		foreach ($query->fetchAll() as $response) {
 			$this->anonymize_phone_number($response);
 			$this->set_mp3_url($response);
 			$responses[] = $response;
 		}
-		
+
 		return $responses;
 	}
-	
+
 	function anonymize_phone_number($story) {
 		// Note: this is currently a very US-centric format, assumes 10 digits
 		if (preg_match('/\d{4}$/', $story->phone_number, $matches)) {
@@ -252,12 +252,12 @@ class YouAreHere {
 			$story->phone_number = 'xxx-xxx-xxxx';
 		}
 	}
-	
+
 	function set_mp3_url($response) {
 		$filename = $this->get_mp3_filename($response);
 		$response->mp3_url = "responses/$filename";
 	}
-	
+
 	function log_request() {
 		$vars = '';
 		if (!empty($_REQUEST)) {
@@ -266,7 +266,7 @@ class YouAreHere {
 		}
 		error_log("{$_SERVER['REQUEST_METHOD']} {$this->request_url['path']}$vars");
 	}
-	
+
 	function play_response($index = null) {
 		if (!isset($this->responses)) {
 			$this->responses = $this->load_responses();
@@ -285,10 +285,11 @@ class YouAreHere {
 				return;
 			}
 		}
-		$this->say('You have heard all of the responses. Goodbye!');
+		//$this->say('You have heard all of the responses. Goodbye!');
+		$this->play("$this->base_url/prompt/done.mp3");
 		$this->hangup();
 	}
-	
+
 	function save_response() {
 		if (!isset($this->responses)) {
 			$this->responses = $this->load_responses();
@@ -307,18 +308,21 @@ class YouAreHere {
 			date('Y-m-d H:i:s')
 		));
 		if (!empty($this->responses)) {
-			$this->say('Thank you for sharing your response.');
+			//$this->say('Thank you for sharing your response.');
+			$this->play("$this->base_url/prompt/thanks.mp3");
 			$this->play_response(0);
 		} else {
-			$this->say('You are the first one to respond. Thanks for starting the conversation. Goodbye!');
+			//$this->say('You are the first one to respond. Thanks for starting the conversation. Goodbye!');
+			$this->play("$this->base_url/prompt/thanks-first.mp3");
 			$this->hangup();
 		}
 		$this->slack_message("New response to {$this->curr_story->name} from {$_POST['Caller']}");
 	}
-	
+
 	function record_response() {
 		$action = "$this->api_url?twilio=save_response";
-		$this->say('Hello, please share your response with us. Press # when you finish.');
+		//$this->say('Hello, please share your response with us. Press # when you finish.');
+		$this->play("$this->base_url/prompt/hello.mp3");
 		echo "
 			<Record
 				maxLength=\"3600\"
@@ -326,25 +330,25 @@ class YouAreHere {
 				finishOnKey=\"#\" />
 		";
 	}
-	
+
 	function say($message) {
 		echo "
 	  	<Say voice=\"woman\">$message</Say>
 		";
 	}
-	
+
 	function play($recording) {
 		echo "
 	  	<Play>$recording</Play>
 		";
 	}
-	
+
 	function hangup() {
 		echo "
 	  	<Hangup/>
 		";
 	}
-	
+
 	function redirect($args) {
 		$url = $this->api_url;
 		if (is_array($args)) {
@@ -360,7 +364,7 @@ class YouAreHere {
 	  	<Redirect method=\"POST\">$url</Redirect>
 		";
 	}
-	
+
 	function download_mp3($response) {
 		$curl = '/usr/bin/curl';
 		$url = $response->mp3_url;
@@ -368,7 +372,7 @@ class YouAreHere {
 		exec("cd $this->responses_dir && $curl -o $filename $url");
 		return file_exists("$this->responses_dir/$filename");
 	}
-	
+
 	function get_mp3_filename($response) {
 		return "$response->story_id-$response->id-$response->twilio_id.mp3";
 	}
