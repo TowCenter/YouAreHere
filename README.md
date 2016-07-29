@@ -1,4 +1,6 @@
-You Are Here 
+You Are Here
+
+To edit the site, edit page.html in this directory: _includes/themes/bootstrap-3/
 
 Basic instructions!
 
