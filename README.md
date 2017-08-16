@@ -7,13 +7,13 @@ Support for You Are Here is provided by the Tow Center for Digital Journalism at
 
 Recommended Hardware
 --------------------
-[Raspberry Pi 3](https://www.adafruit.com/products/3055) 
-[8GB MicroSD Card Class 10](https://www.amazon.com/gp/product/B00M55C0VU)
+[Raspberry Pi 3](https://www.adafruit.com/products/3055)  
+[8GB MicroSD Card Class 10](https://www.amazon.com/gp/product/B00M55C0VU)  
 [2.4A 5V Power Supply](https://www.adafruit.com/products/1995)  
 T-Mobile network SIM card  
-[Huawei E303 HSPA+ 3G GSM USB Wireless Mobile Broadband Modem](https://www.amazon.com/gp/product/B00C0E946U)  
+[Huawei E303 HSPA+ 3G GSM USB Wireless Mobile Broadband Modem](https://www.amazon.com/gp/product/B00C0E946U)    
 [9db Antenna](https://www.amazon.com/gp/product/B00DMJI9TA)  
-[WiFi Amplifier](https://www.amazon.com/gp/product/B00S4RIKK8) 
+[WiFi Amplifier](https://www.amazon.com/gp/product/B00S4RIKK8)  
 [TP-Link Wireless N150 Access Point, 2.4Ghz 150Mbps](https://www.amazon.com/gp/product/B002YETVVE/)  
 [Pigtail Cables](https://www.amazon.com/gp/product/B00C5WZ1VE/)  
 
